@@ -12,7 +12,7 @@
   <!-- Mobile viewport optimization h5bp.com/ad -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
 
   <!-- Home screen icon  Mathias Bynens mathiasbynens.be/notes/touch-icons -->
   <!-- For iPhone 4 with high-resolution Retina display: -->
@@ -40,53 +40,55 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/jquery.mobile-1.0.1.min.css">
   <link rel="stylesheet" href="css/style.css">
-
+  <link rel="stylesheet" href="css/steepr.css">
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   <script src="js/libs/modernizr-2.0.6.min.js"></script>
+
 </head>
 
 <body>
 
-  <div id="container">
-    <header>
+  <section id="home" data-role="page" data-theme="c">
 
+    <header data-role="header">
+      <h1>Steepr</h1>
     </header>
-    <div id="main" role="main">
-      <!-- tea type slider -->
-      <a href="" data-role="button">start timer</a>
+
+    <div data-role="content">
+      <a href="#steep" data-role="button" data-transition="slide" id="steep-timer">steep tea</a>
     </div>
 
-    <footer>
+  </section>
 
-    </footer>
-  </div> <!--! end of #container -->
+  <section id="steep" data-role="page" data-theme="c">
+    <header data-role="header">
+      <a href="#home" data-role="button" data-direction="reverse" data-transition="slide">Back</a>
+      <h1>Brewing...</h1>
+    </header>
 
+    <div data-role="content" class="content">tea is steeping...</div>
+
+  </section>
 
   <!-- JavaScript at the bottom for fast page loading -->
-
-  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
-  <script>
-    window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>');
-    jQuery.mobile || document.write('<script src="js/libs/jquery.mobile-1.0.1.min.js"><\/script>');
-  </script>
+  <script src="js/libs/jquery-1.7.1.js"></script>
+  <script src="js/libs/jquery.mobile-1.0.1.js"></script>
 
   <!-- scripts concatenated and minified via ant build script-->
   <script src="js/helper.js"></script>
-  <!-- end scripts-->
+  <script src="js/steepr.js"></script>
 
   <!-- Debugger - remove for production -->
   <!-- <script src="https://getfirebug.com/firebug-lite.js"></script> -->
 
   <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
        mathiasbynens.be/notes/async-analytics-snippet -->
-  <script>
+  <!-- <script>
     var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
     g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
     s.parentNode.insertBefore(g,s)}(document,"script"));
-  </script>
+  </script> -->
 
 </body>
 </html>
