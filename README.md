@@ -4,6 +4,8 @@ steepr
 Mobile tea steeping stopwatch
 -----------------------------
 
+[Steepr](http://christopherscott.github.com/steepr)
+
 ...more info coming soon!
 
 ---
