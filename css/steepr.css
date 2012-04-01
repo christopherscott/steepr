@@ -1,0 +1,81 @@
+@-webkit-keyframes greentea {
+  0% {
+    background: #ffffff;
+  }
+  25% {
+    background: #ffff00;
+  }
+  50% {
+    background: #acd373;
+  }
+  75% {
+    background: #005e20;
+  }
+  100% {
+    background: #736357;
+  }
+}
+@-moz-keyframes greentea {
+  0% {
+    background: #ffffff;
+  }
+  25% {
+    background: #ffff00;
+  }
+  50% {
+    background: #acd373;
+  }
+  75% {
+    background: #005e20;
+  }
+  100% {
+    background: #736357;
+  }
+}
+@-ms-keyframes greentea {
+  0% {
+    background: #ffffff;
+  }
+  25% {
+    background: #ffff00;
+  }
+  50% {
+    background: #acd373;
+  }
+  75% {
+    background: #005e20;
+  }
+  100% {
+    background: #736357;
+  }
+}
+.initial {
+  background: red;
+}
+#other {
+  height: 50%;
+  width: 50%;
+  margin: 50px auto;
+  border: 5px solid black;
+}
+#steep .content {
+  height: 800px;
+}
+.brewing {
+  -webkit-animation-name: greentea;
+  -moz-animation-name: greentea;
+  -ms-animation-name: greentea;
+  animation-name: greentea;
+  -webkit-animation-duration: 9s;
+  -moz-animation-duration: 9s;
+  -ms-animation-duration: 9s;
+  animation-duration: 9s;
+  animation-duration: 9s;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -ms-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+.blue {
+  background: blue;
+}
