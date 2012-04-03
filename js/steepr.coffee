@@ -1,8 +1,12 @@
 class Steepr
   updateType: (e, index, element) ->
+    console.log "something"
+    console.log "somethingelse"
+    console.log "and something else"
     # update tea type based on index, class name, or maybe data-attrib
 
   steep: (args) ->
+    # testing
     # switch to steeping page
     # start the (visually) updating timer
     # start the (actual) timer ^ should they be the same
