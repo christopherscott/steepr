@@ -1,6 +1,12 @@
 $(function () {
 
-  var steepr = window.steepr = {};
+  // application namespace
+  var steepr = window.steepr || (window.steepr = {
+
+    updateType:
+  });
+
+
 
   $("#steep").on("pageshow", function (e, data) {
     console.log(e, data);
@@ -14,8 +20,13 @@ $(function () {
   });
 
   // tea type swiper
-  steepr.type = new Swipe(document.getElementById("types"));
-  new Swipe(document.getElementById('slider2'));
-  var slider3 = new Swipe(document.getElementById('slider3'));
+  steepr.type = new Swipe(document.getElementById("types"), {
+
+    callback: function (e, index, slide) {
+
+    }
+
+  });
   
+
 });
