@@ -5,7 +5,11 @@
 
     function Steepr() {}
 
-    Steepr.prototype.updateType = function(e, index, element) {};
+    Steepr.prototype.updateType = function(e, index, element) {
+      console.log("something");
+      console.log("somethingelse");
+      return console.log("and something else");
+    };
 
     Steepr.prototype.steep = function(args) {};
 
