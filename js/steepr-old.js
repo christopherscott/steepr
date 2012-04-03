@@ -1,5 +1,6 @@
 $(function () {
 
+
   // application namespace
   var steepr = window.steepr || (window.steepr = {
 

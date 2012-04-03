@@ -72,7 +72,7 @@
 #   start: (debug) ->
 #     new @views.Application()
 
-Steepr = window.steepr ||= {
+Steepr = window.Steepr ||= {
   models: {}
   collections: {}
   views: {}
@@ -93,7 +93,3 @@ class Steepr.views.Application extends Backbone.View
   steep: () ->
     console.log "steeping"
 
-$ -> Steepr.init(true)
-  
-  
-  
