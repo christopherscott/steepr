@@ -83,6 +83,21 @@ Steepr = window.Steepr ||= {
   
 # main steepr application instance
 class Steepr.views.Application extends Backbone.View
+  initialize: ->
+    new Swipe($("#types").get(0))
+    
+    $("#steep").on "pageshow", (e, data) ->
+      console.log e, data
+      steep = $("#steep .content")
+      steep.addClass "brewing"
+      setTimeout (->
+        steep.removeCass('brewing')
+        console.log 'about to transition'
+        $.mobile.changePage "#home",
+          transition: "slide"
+          reverse: true
+      ), 9000
+  
   events:
     "click #steepit" : "logit"
     "pageshow #steep" : "steep"

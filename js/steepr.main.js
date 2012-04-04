@@ -21,6 +21,24 @@
       Application.__super__.constructor.apply(this, arguments);
     }
 
+    Application.prototype.initialize = function() {
+      new Swipe($("#types").get(0));
+      return $("#steep").on("pageshow", function(e, data) {
+        var steep;
+        console.log(e, data);
+        steep = $("#steep .content");
+        steep.addClass("brewing");
+        return setTimeout((function() {
+          steep.removeCass('brewing');
+          console.log('about to transition');
+          return $.mobile.changePage("#home", {
+            transition: "slide",
+            reverse: true
+          });
+        }), 9000);
+      });
+    };
+
     Application.prototype.events = {
       "click #steepit": "logit",
       "pageshow #steep": "steep"
