@@ -1,6 +1,14 @@
 # Notes
 
-## domain model:
+## Data model
+
+*Note:* It occurs to me that all three share the 'type' string, and that at some point this could get out of sync (or otherwise be hard to maintain, with customizations). Looking into relationship library for backbone to abstract out the shared data into it's own model. Debating the usefulness and/or pragmatic issues thereof.
+
+1. **Backbone Relational**: Get and set relations (one-to-one, one-to-many, many-to-one) for Backbone models
+https://github.com/PaulUithol/Backbone-relational
+
+2. **Backbone.rel**: Backbone.Rel extends your Backbone models with a lightweight relationships manager.
+https://github.com/masylum/Backbone.Rel
 
 ### tea: 
 
