@@ -7,7 +7,8 @@ Represents a tea type, like green, with steeping times. Users should be able to 
 
   - name: String
   - times: [Numbers]
-  - picture/icon ???
+  - ideal temperature: Number
+  - picture/icon?
 
 ### steeping:
 
