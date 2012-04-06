@@ -13,7 +13,8 @@
     Tea.prototype.defaults = {
       name: "Earl Gray",
       times: [50, 60, 90, 90],
-      temperature: 120
+      temperature: 120,
+      count: 0
     };
 
     return Tea;
@@ -29,29 +30,12 @@
     }
 
     Steeping.prototype.defaults = {
-      timestamp: "Fri Apr 06 2012 09:04:03 GMT-0400 (EDT)",
       type: "Earl Gray",
-      iteration: 0
+      timestamp: "Fri Apr 06 2012 09:04:03 GMT-0400 (EDT)",
+      count: 0
     };
 
     return Steeping;
-
-  })(Backbone.Model);
-
-  Steepr.models.RunningCount = (function(_super) {
-
-    __extends(RunningCount, _super);
-
-    function RunningCount() {
-      RunningCount.__super__.constructor.apply(this, arguments);
-    }
-
-    RunningCount.prototype.defaults = {
-      count: 0,
-      type: "Earl Gray"
-    };
-
-    return RunningCount;
 
   })(Backbone.Model);
 
