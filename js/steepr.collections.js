@@ -10,6 +10,8 @@
       Stuff.__super__.constructor.apply(this, arguments);
     }
 
+    Stuff.prototype.localStorage = new Backbone.LocalStorage("CollectionName");
+
     return Stuff;
 
   })(Backbone.Collection);
