@@ -1,5 +1,3 @@
-
-
 # class Steepr
   # constructor: ->
     # initialization tasks
@@ -10,9 +8,6 @@
     # @steepit = $("#steepit")
     # @steepit.on "tap", (e) ->
     #   console.log e
-    
-    
-
   
   # updateType: (e, index, element) ->
     # update tea type based on index, class name, or maybe data-attrib
