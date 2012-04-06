@@ -2,17 +2,17 @@
   var __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-  Steepr.collections.Stuff = (function(_super) {
+  Steepr.collections.Teas = (function(_super) {
 
-    __extends(Stuff, _super);
+    __extends(Teas, _super);
 
-    function Stuff() {
-      Stuff.__super__.constructor.apply(this, arguments);
+    function Teas() {
+      Teas.__super__.constructor.apply(this, arguments);
     }
 
-    Stuff.prototype.localStorage = new Backbone.LocalStorage("CollectionName");
+    Teas.prototype.model = Steepr.models.Tea;
 
-    return Stuff;
+    return Teas;
 
   })(Backbone.Collection);
 

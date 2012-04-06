@@ -72,39 +72,56 @@
 #   start: (debug) ->
 #     new @views.Application()
 
+    # name: "Earl Gray"
+    # times: [50, 60, 90, 90]
+    # temperature: 120
+    # count: 0
+
+DEFAULT_TEAS = [
+  {
+    name: "White"
+    times: [60,60,90,105]
+    temperature: "170-180"
+    count: 0
+  }
+  {
+    name: "Green"
+    times: [60,60,90,105]
+    temperature: "170-180"
+    count: 0
+  }
+  {
+    name: "Oolong"
+    times: [30,30,45,45]
+    temperature: "190-195"
+    count: 0
+  }
+  {
+    name: "Black"
+    times: [60,60,90,90]
+    temperature: "212"
+    count: 0
+  }
+  {
+    name: "Pu-erh"
+    times: [30,30,45,60]
+    temperature: "212"
+    count: 0
+  }
+]
+
 Steepr = window.Steepr ||= {
   models: {}
   collections: {}
   views: {}
   init: (debug) ->
+    # load initial tea models
+    # actually this should change to load from localStorage
+    # but for now it's ok to just bootstap via script
+    @teas = new @collections.Teas DEFAULT_TEAS
+    # start application
     @app = new @views.Application
     console.log "application started" if debug
 }
-  
-# main steepr application instance
-class Steepr.views.Application extends Backbone.View
-  initialize: ->
-    new Swipe($("#types").get(0))
-    
-    $("#steep").on "pageshow", (e, data) ->
-      console.log e, data
-      steep = $("#steep .content")
-      steep.addClass "brewing"
-      setTimeout (->
-        steep.removeCass('brewing')
-        console.log 'about to transition'
-        $.mobile.changePage "#home",
-          transition: "slide"
-          reverse: true
-      ), 9000
-  
-  events:
-    "click #steepit" : "logit"
-    "pageshow #steep" : "steep"
-  render: () ->
-    # noop
-  logit: () ->
-    console.log arguments 
-  steep: () ->
-    console.log "steeping"
+
 
