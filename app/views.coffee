@@ -3,7 +3,7 @@
 class Steepr.views.Application extends Backbone.View
   initialize: ->
     # initialize swiper widget
-    new Swipe ("#types").get(0)
+    new Swipe $("#types").get(0) 
     # basic functionality for tea steeping demo page
     $("#steep").on "pageshow", (e, data) ->
       steep = $("#steep .content")

@@ -11,7 +11,7 @@
     }
 
     Application.prototype.initialize = function() {
-      new Swipe("#types".get(0));
+      new Swipe($("#types").get(0));
       return $("#steep").on("pageshow", function(e, data) {
         var steep;
         steep = $("#steep .content");
