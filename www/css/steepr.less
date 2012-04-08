@@ -1,0 +1,86 @@
+@-webkit-keyframes greentea {
+  0%   { background: white }
+  25%  { background: yellow }
+  50%  { background: #acd373 }
+  75%  { background: #005e20 }
+  100% { background: #736357 }
+}
+@-moz-keyframes greentea {
+  0%   { background: white }
+  25%  { background: yellow }
+  50%  { background: #acd373 }
+  75%  { background: #005e20 }
+  100% { background: #736357 }
+}
+@-ms-keyframes greentea {
+  0%   { background: white }
+  25%  { background: yellow }
+  50%  { background: #acd373 }
+  75%  { background: #005e20 }
+  100% { background: #736357 }
+}
+
+.initial {
+  background: red;
+}
+
+#other {
+  height: 50%;
+  width: 50%;
+  margin: 50px auto;
+  border: 5px solid black;
+}
+
+#steep .content {
+  height: 800px;
+}
+
+.brewing {
+  -webkit-animation-name: greentea;
+  -moz-animation-name: greentea;
+  -ms-animation-name: greentea;
+  animation-name: greentea;
+
+  -webkit-animation-duration: 9s;
+  -moz-animation-duration: 9s;
+  -ms-animation-duration: 9s;
+  animation-duration: 9s;
+  animation-duration: 9s;
+
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -ms-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+
+.blue {
+  background: blue;
+}
+
+/*  
+    zero out some sizes from h5mbp:
+    conflicts with swipes default margins
+*/
+
+.swipe ol,
+.swipe ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* swipe default styles */
+.swipe {
+  padding-bottom:20px;
+}
+.swipe li div,
+.swipe div div div {
+  margin:0 10px;
+  padding:50px 10px;
+  background:#1db1ff;
+  font-weight:bold;
+  color:#fff;
+  font-size:20px;
+  text-align:center;
+  border-radius: 5px;
+}
