@@ -4,24 +4,25 @@ define(["jquery", "use!backbone", "app/Teas", "lib/swipe", "jquery_mobile"], fun
 
     initialize: function () {
       // initialize type swiper
+      console.log($("#types").get(0))
       new Swipe($("#types").get(0));
       // for basic functionality
       $("#steep").on("pageshow", function(e, data) {
-        var steep;
-        steep = $("#steep .content");
+        var steep = $("#steep .content");
         steep.addClass("brewing");
-        return setTimeout((function() {
+
+        setTimeout(function() {
           steep.removeClass('brewing');
-          return $.mobile.changePage("#home", {
+          $.mobile.changePage("#home", {
             transition: "slide",
             reverse: true
           });
-        }), 9000);
-      });
-      //
+        }, 9000);
+      })
+
       window.teas = new Teas(DEFAULT_TEAS);
-      return console.log(window);
-    },
+
+    } // /initialize
 
   });
 

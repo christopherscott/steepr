@@ -22,7 +22,7 @@
     //in a separate configuration, set this property to the location of that
     //main JS file. The first requirejs({}), require({}), requirejs.config({}),
     //or require.config({}) call found in that file will be used.
-    // mainConfigFile: '../js/main.js',
+    // mainConfigFile: 'main.js',
 
     //Set paths for modules. If relative paths, set relative to baseUrl above.
     //If a special value of "empty:" is used for the path value, then that
@@ -58,7 +58,7 @@
         },
         modernizr: {
           attach: "modernizr"
-        }   
+        }
     },
 
     //Configure CommonJS packages. See http://requirejs.org/docs/api.html#packages

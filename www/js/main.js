@@ -27,5 +27,12 @@ require.config({
 });
 
 require(["jquery", "app/Steepr"], function ($, Steepr) {
-  $(function () { new Steepr() })
+  $(function () { 
+    // initialize app
+    new Steepr();
+
+    // borrowed from Mr. Paul Irish http://paulirish.com/2009/avoiding-the-fouc-v3/ (thanks!)
+    (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)
+
+   })
 });

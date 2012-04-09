@@ -1,9 +1,14 @@
 <!doctype html>
 <!-- Conditional comment for mobile ie7 blogs.msdn.com/b/iemobile/ -->
 <!--[if IEMobile 7 ]>    <html class="no-js iem7" lang="en"> <![endif]-->
-<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> 
+<html class="no-js" lang="en">
+<!--<![endif]-->
 <head>
+  <style type="text/css">
+    /* visibility: hidden instead of display:none so swiper can setup dimensions */
+    .no-js {visibility: hidden}
+  </style>
   <meta charset="utf-8">
 
   <title>Steepr</title>
@@ -43,6 +48,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/steepr.css">
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+  
   <script type="text/javascript" src="js/lib/require.js" data-main="js/main"></script>
 </head>
 
@@ -99,24 +105,6 @@
       About info goes here, credits...
     </div>
   </section>
-
-  <!-- jquery/mobile
-  <script src="js/libs/jquery-1.7.1.js"></script>
-  <script src="js/libs/jquery.mobile-1.0.1.js"></script>
-
-  <script type="text/javascript" src="js/libs/underscore-min.js"></script>
-  <script type="text/javascript" src="js/libs/backbone-min.js"></script>
-  <script type="text/javascript" src="js/libs/backbone.localStorage-min.js"></script>
-
-  <script src="js/helper.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/models.js"></script>
-  <script src="js/collections.js"></script>
-  <script src="js/views.js"></script>
-  <script> $(function(){ Steepr.init() }) </script>
-  
-  -->
 
   <!-- Debugger - remove for production -->
   <!-- <script src="https://getfirebug.com/firebug-lite.js"></script> -->
