@@ -3,8 +3,8 @@ require.config({
     cs: "lib/cs",
     text: "lib/text",
     use: "lib/use",
-    jquery: "lib/jquery-1.7.2.min",
-    jquery_mobile: "lib/jquery.mobile-1.0.1.min",
+    jquery: "lib/jquery-1.7.1",
+    jquery_mobile: "lib/jquery.mobile-1.0.1",
     modernizr: "lib/modernizr-2.0.6.min",
     underscore: "lib/underscore-min",
     backbone: "lib/backbone-min"
@@ -26,6 +26,6 @@ require.config({
   }
 });
 
-require(["jquery", "cs!app/Steepr"], function ($, Steepr) {
+require(["jquery", "app/Steepr"], function ($, Steepr) {
   $(function () { new Steepr() })
 });
