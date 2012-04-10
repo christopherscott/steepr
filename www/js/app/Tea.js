@@ -5,7 +5,8 @@ define(["use!backbone"], function(Backbone) {
       name: "Earl Gray",
       times: [50, 60, 90, 90],
       temperature: 120,
-      count: 0
+      count: 0,
+      active: false
     }
   });
 
