@@ -8,7 +8,8 @@ require.config({
     modernizr: "lib/modernizr-2.0.6.min",
     underscore: "lib/underscore-min",
     backbone: "lib/backbone-min",
-    backbone_localStorage: "lib/backbone_localStorage"
+    backbone_localStorage: "lib/backbone_localStorage",
+    hogan: "lib/hogan-2.0.0.amd"
   },
   use: {
     underscore: {
