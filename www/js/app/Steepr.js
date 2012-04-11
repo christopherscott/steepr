@@ -6,40 +6,6 @@ define([
   "lib/swipe",
   "jquery_mobile"
   ], function($, Backbone, Teas, TeaListView) {
-  
-  var DEFAULT_TEAS = [{
-      name: "Green",
-      times: [60, 60, 90, 105],
-      temperature: "170-180",
-      count: 0,
-      active: true,
-      index: 0
-    },{
-      name: "White",
-      times: [60, 60, 90, 105],
-      temperature: "170-180",
-      count: 0,
-      index: 1
-    },{
-      name: "Black",
-      times: [60, 60, 90, 90],
-      temperature: "212",
-      count: 0,
-      index: 2
-    },{
-      name: "Oolong",
-      times: [30, 30, 45, 45],
-      temperature: "190-195",
-      count: 0,
-      index: 3
-    },{
-      name: "Pu-erh",
-      times: [30, 30, 45, 60],
-      temperature: "212",
-      count: 0,
-      index: 4
-    }
-  ]
 
   return Backbone.View.extend({
     el: $("body"),
