@@ -2,7 +2,7 @@ define(["use!backbone", "app/Tea", "use!backbone_localStorage"], function(Backbo
   
   var DEFAULT_TEAS = [{
       name: "Green",
-      times: [60, 60, 90, 105],
+      times: [5, 10, 15, 20],
       temperature: "170-180",
       count: 0,
       active: true,
