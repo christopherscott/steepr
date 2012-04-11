@@ -7,6 +7,9 @@ define(["use!backbone"], function(Backbone) {
       temperature: 120,
       count: 0,
       active: false
+    },
+    incr_count: function () {
+      this.save({count: this.get("count") + 1 })
     }
   });
 

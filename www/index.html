@@ -61,16 +61,8 @@
       <h1>Steepr</h1>
     </header>
     <div data-role="content">
-      <div id="types" class="swipe">
-        <ul>
-          <li class="green">
-            <div>Green</div>
-          </li>
-          <li class="white">White</li>
-          <li class="black">Black</li>
-          <li class="oolong">Oolong</li>
-          <li class="red">Red</li>
-        </ul>
+      <div id="tea-list" class="swipe">
+        <ul></ul>
       </div>
       <a href="#steep" data-role="button" data-transition="slide" id="steepit">steep tea</a>
       <a href="#about" data-role="button" data-transition="slide" id="aboutit">about this app</a>
@@ -80,10 +72,10 @@
 
   <section id="steep" data-role="page" data-theme="c" data-add-back-btn="true">
     <header data-role="header">
-      <h1>Brewing...</h1>
+      <h1>Brewing...<span class="type"></span></h1>
     </header>
     <div data-role="content" class="content">
-      tea is steeping...
+      <span class="type"></span> tea is steeping...
       <time>1:00:<span class="hundreths">00</span></time>
     </div>
   </section>
@@ -106,6 +98,12 @@
     </div>
   </section>
 
+  <script type="javascript/template" id="tea-type">
+    <div>
+      <h2><%= name %></h2>
+      <p>steepings: <%= count %></p>
+    </div>
+  </script>
   <!-- Debugger - remove for production -->
   <!-- <script src="https://getfirebug.com/firebug-lite.js"></script> -->
 

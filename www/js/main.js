@@ -7,7 +7,8 @@ require.config({
     jquery_mobile: "lib/jquery.mobile-1.0.1",
     modernizr: "lib/modernizr-2.0.6.min",
     underscore: "lib/underscore-min",
-    backbone: "lib/backbone-min"
+    backbone: "lib/backbone-min",
+    backbone_localStorage: "lib/backbone_localStorage"
   },
   use: {
     underscore: {
@@ -18,7 +19,8 @@ require.config({
       attach: "Backbone"
     },
     backbone_localStorage: {
-      deps: ["use!backbone"]
+      deps: ["use!backbone"],
+      attach: "Store"
     },
     modernizr: {
       attach: "modernizr"

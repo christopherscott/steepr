@@ -1,69 +1,91 @@
-define(["jquery", "use!backbone", "app/Teas", "lib/swipe", "jquery_mobile"], function($, Backbone, Teas) {
+define([
+  "jquery",
+  "use!backbone",
+  "app/Teas",
+  "app/TeaListView",
+  "lib/swipe",
+  "jquery_mobile"
+  ], function($, Backbone, Teas, TeaListView) {
   
-  var DEFAULT_TEAS = [
-    {
-      name: "White",
-      times: [60, 60, 90, 105],
-      temperature: "170-180",
-      count: 0
-    }, {
+  var DEFAULT_TEAS = [{
       name: "Green",
       times: [60, 60, 90, 105],
       temperature: "170-180",
       count: 0,
-      active: true
-    }, {
-      name: "Oolong",
-      times: [30, 30, 45, 45],
-      temperature: "190-195",
-      count: 0
-    }, {
+      active: true,
+      index: 0
+    },{
+      name: "White",
+      times: [60, 60, 90, 105],
+      temperature: "170-180",
+      count: 0,
+      index: 1
+    },{
       name: "Black",
       times: [60, 60, 90, 90],
       temperature: "212",
-      count: 0
-    }, {
+      count: 0,
+      index: 2
+    },{
+      name: "Oolong",
+      times: [30, 30, 45, 45],
+      temperature: "190-195",
+      count: 0,
+      index: 3
+    },{
       name: "Pu-erh",
       times: [30, 30, 45, 60],
       temperature: "212",
-      count: 0
+      count: 0,
+      index: 4
     }
-  ];
+  ]
 
   return Backbone.View.extend({
-
+    el: $("body"),
+    events: {
+      "pageshow #steep" : "steep"
+    },
     initialize: function () {
-      // initialize type swiper
-      // for basic functionality
-      $("#steep").on("pageshow", function(e, data) {
-        var steep = $("#steep .content");
-        steep.addClass("brewing");
+      var that = this,
+          teas = new Teas(),
+          teaListView = new TeaListView({collection: teas})
 
-        setTimeout(function() {
-          steep.removeClass('brewing');
-          $.mobile.changePage("#home", {
-            transition: "slide",
-            reverse: true
-          });
-        }, 9000);
+      // DEBUG: globals for debugging
+      window.teas = teas
+      window.teaListView = teaListView
+
+      teas.fetch({
+        add: true,
+        success: function (coll, resp) {
+          if (!coll.length) teas.loadDefaults()        
+          teaListView.activateSwipe()
+        },
+        error: function (coll, resp) { console.log(arguments) }
       })
 
-      // make a local reference, so it gets saved in closure
-      // for use in Swipe callback
-      var teas = this.teas = window.teas = new Teas(DEFAULT_TEAS);
+    },
 
-      // make one tea active
-      window.swipe = new Swipe($("#types").get(0), {
-        callback: function (e, index, element) {
-          teas.activate(index);
-        }
-      });
+    steep: function(e, data) {
+      var steep = $("#steep .content"),
+          current_tea = teas.getActive(),
+          tea_type = current_tea.get("name")
 
-      // TODO: start swipe on last steeped tea
+      current_tea.incr_count()
 
+      steep.addClass("brewing")
 
-    } // /initialize
+      $("#steep .type").text(tea_type)
 
-  });
+      setTimeout(function() {
+        steep.removeClass('brewing')
+        $.mobile.changePage("#home", {
+          transition: "slide",
+          reverse: true
+        });
+      }, 9000)
+    }
 
-});
+  })
+
+})
