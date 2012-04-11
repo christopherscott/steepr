@@ -8,6 +8,7 @@ define(["use!backbone"], function(Backbone) {
       count: 0,
       active: false
     },
+    // models are responsible for updating their own count
     incr_count: function () {
       this.save({count: this.get("count") + 1 })
     }
