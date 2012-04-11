@@ -1,4 +1,5 @@
 require.config({
+  // convenience, and plugin paths
   paths: {
     cs: "lib/cs",
     text: "lib/text",
@@ -11,31 +12,21 @@ require.config({
     backbone_localStorage: "lib/backbone_localStorage",
     hogan: "lib/hogan-2.0.0.amd"
   },
+  // config for non-AMD compatible modules, pulls objs from window[attach]
+  // http://tbranyen.com/post/amdrequirejs-shim-plugin-for-loading-incompatible-javascript
   use: {
-    underscore: {
-      attach: "_"
-    },
-    backbone: {
-      deps: ["use!underscore", "jquery"],
-      attach: "Backbone"
-    },
-    backbone_localStorage: {
-      deps: ["use!backbone"],
-      attach: "Store"
-    },
-    modernizr: {
-      attach: "modernizr"
-    }
+    underscore: { attach: "_" },
+    backbone: { deps: ["use!underscore", "jquery"], attach: "Backbone" },
+    backbone_localStorage: { deps: ["use!backbone"], attach: "Store" },
+    modernizr: { attach: "modernizr" }
   }
-});
+})
 
 require(["jquery", "app/Steepr"], function ($, Steepr) {
-  $(function () { 
+  $(function () {
     // initialize app
-    new Steepr();
-
+    new Steepr()
     // borrowed from Mr. Paul Irish http://paulirish.com/2009/avoiding-the-fouc-v3/ (thanks!)
     (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)
-
    })
-});
+})
