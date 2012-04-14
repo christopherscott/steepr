@@ -11,5 +11,5 @@ task "compile", "Compile coffee-script -> js, from src/ to www/js/ recursively",
 	# exec "coffee -o www/js/ -c src/"
 
 task 'watch', 'continually build with --watch', ->
-	coffee = spawn 'coffee', ['-cw', '-o', 'lib', 'src']
+	coffee = spawn 'coffee', ['-cw', '-o', 'www/js/', 'src']
 	coffee.stdout.on 'data', (data) -> console.log data.toString().trim()

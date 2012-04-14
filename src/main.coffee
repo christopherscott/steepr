@@ -32,6 +32,8 @@ require [ "jquery", "Steepr", "Stopwatch" ], ($, Steepr) ->
 	$ ->
 		new Steepr()
 
+		console.log "application started"
+		
 		# fixes flash of unstyled content		
 		((H) ->
 			H.className = H.className.replace(/\bno-js\b/, "js")

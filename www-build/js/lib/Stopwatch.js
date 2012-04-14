@@ -1,0 +1,1 @@
+var a=function(a){var b=c>60?Math.floor(c/60):0,c=c-60*b-1,d=99;this.total=a};a.prototype={constructor:"Stopwatch"}
