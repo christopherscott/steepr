@@ -1,23 +1,20 @@
+BREWING_CLASS = "brewing"
+
+setAnimationDuration = (jqObj, seconds) ->
+	[ "-webkit-", "-moz-", "-ms-", "" ].forEach (prefix) ->
+	  jqObj.css "#{prefix}animation-duration", "#{seconds}s"
+
 define [
 
 	"jquery"
 	"use!backbone"
 	"Teas"
 	"TeaListView"
-	"Timer"
 	"../lib/swipe"
 	"jquery_mobile"
 
-	], ($, Backbone, Teas, TeaListView, Timer) ->
+	], ($, Backbone, Teas, TeaListView) ->
 
-	setAnimationDuration = (jqObj, seconds) ->
-		prefixes = [ "-webkit-", "-moz-", "-ms-", "" ]
-		i = 0
-		len = prefixes.length
-		while i < len
-			jqObj.css "#{prefixes[i]}animation-duration", "#{steeping_secs}s"
-			i++
-			
 	class Steepr extends Backbone.View
 
 		el: $("body")
@@ -26,42 +23,45 @@ define [
 			"pageshow #steep" : "steep"
 
 		initialize: ->
-			that = this
 			teas = new Teas()
-			teaListView = new TeaListView(collection: teas)
+			teaListView = new TeaListView collection: teas
+			
+			# DEBUG
 			window.teas = teas
 			window.teaListView = teaListView
+
 			teas.fetch
 				add: true
 				success: (coll, resp) ->
 					teas.loadDefaults()  unless coll.length
 					teaListView.activateSwipe()
 				error: (coll, resp) ->
-					console.log arguments
+					console.log "Fetch Error: #{arguments}"
 
 		steep: (e, data) ->
-			steep = $("#steep .content")
-			current_tea = teas.getActive()
-			tea_type = current_tea.get("name")
-			times_threshold = current_tea.get("times").length - 1
-			times = current_tea.get("times")
-			count = current_tea.get("count")
-			steeping_secs = times[(if count < times_threshold then count else times_threshold)]
+			steep_content = $("#steep .content")
+			current = teas.getActive()
 
-			current_tea.incr_count()
+			times = current.get "times"
+			count = current.get "count"
+			last = times.length - 1
+			steeping_secs = times[(if count < last then count else last)]
 
-			# sets the css property "animation-duration" (and vendor prefixes)
-			# so that the background color transition lasts as long as timer
-			setAnimationDuration steep, steeping_secs
-			steep.addClass "brewing"
+			# todo
+			$("#steep .type").text current.get "name"
 
-			timer = new Timer()
-			interval = timer.set("total", steeping_secs)
+			current.incr_count()
+			setAnimationDuration steep_content, steeping_secs
+			steep_content.addClass BREWING_CLASS
 
-			console.log interval
-			timer.start()
-			$("#steep .type").text tea_type
+			# stopwatch updater
+			# timer = new Timer()
+			# interval = timer.set("total", steeping_secs)
+			# console.log interval
+			# timer.start()
+
+
 			setTimeout (->
-				steep.removeClass "brewing"
-				clearInterval interval
+				steep_content.removeClass BREWING_CLASS
+				# clearInterval interval
 			), steeping_secs * 1000
