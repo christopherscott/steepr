@@ -36,7 +36,7 @@
   require(["jquery", "Steepr", "Stopwatch"], function($, Steepr) {
     return $(function() {
       new Steepr();
-      console.log("application started");
+      console.log("application started...");
       return (function(H) {
         return H.className = H.className.replace(/\bno-js\b/, "js");
       })(document.documentElement);

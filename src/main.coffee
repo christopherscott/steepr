@@ -32,7 +32,7 @@ require [ "jquery", "Steepr", "Stopwatch" ], ($, Steepr) ->
 	$ ->
 		new Steepr()
 
-		console.log "application started"
+		console.log "application started..."
 		
 		# fixes flash of unstyled content		
 		((H) ->
