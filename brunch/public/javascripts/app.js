@@ -1,1 +1,519 @@
-((function(){if(!this.require){var a={},b={},c=function(f,g){var h=b[f],i=d(g,f),j;if(h)return h;if(!(j=a[i]||a[i=d(i,"./index")]))throw"module '"+f+"' not found";h={id:f,exports:{}};try{return b[f]=h.exports,j(h.exports,function(a){return c(a,e(i))},h),b[f]=h.exports}catch(k){throw delete b[f],k}},d=function(a,b){var c=[],d,e;/^\.\.?(\/|$)/.test(b)?d=[a,b].join("/").split("/"):d=b.split("/");for(var f=0,g=d.length;f<g;f++)e=d[f],e==".."?c.pop():e!="."&&e!=""&&c.push(e);return c.join("/")},e=function(a){return a.split("/").slice(0,-1).join("/")};this.require=function(a){return c(a,"")},this.require.brunch=!0,this.require.define=function(b){for(var c in b)a[c]=b[c]}}})).call(this),this.require.define({"views/home_view":function(a,b,c){((function(){var c=Object.prototype.hasOwnProperty,d=function(a,b){function e(){this.constructor=a}for(var d in b)c.call(b,d)&&(a[d]=b[d]);return e.prototype=b.prototype,a.prototype=new e,a.__super__=b.prototype,a};a.HomeView=function(a){function c(){c.__super__.constructor.apply(this,arguments)}return d(c,a),c.prototype.id="home-view",c.prototype.render=function(){return $(this.el).html(b("./templates/home")),this},c}(Backbone.View)})).call(this)}}),this.require.define({helpers:function(a,b,c){((function(){a.BrunchApplication=function(){function a(){var a=this;$(function(){return a.initialize(a)})}return a.prototype.initialize=function(){return null},a}()})).call(this)}}),this.require.define({"collections/Teas":function(a,b,c){((function(){var c,d,e=Object.prototype.hasOwnProperty,f=function(a,b){function d(){this.constructor=a}for(var c in b)e.call(b,c)&&(a[c]=b[c]);return d.prototype=b.prototype,a.prototype=new d,a.__super__=b.prototype,a};d=b("../models/Tea").Tea,a.Teas=function(a){function b(){b.__super__.constructor.apply(this,arguments)}return f(b,a),b.prototype.localStorage=new Backbone.LocalStorage("Teas"),b.prototype.model=d,b.prototype.activate=function(a){return this.each(function(a){return a.set("active",!1)}),_.each(this.where({name:a}),function(a){return a.set("active",!0)}),console.log(this.getActive().get("name"))},b.prototype.getActive=function(){return this.where({active:!0})[0]},b.prototype.comparator=function(a){return a.get("index")},b.prototype.loadDefaults=function(){var a;return a=this,_.each(c,function(b){return a.create(b)})},b}(Backbone.Collection),c=[{name:"Green",times:[5,10,15,20],temperature:"170-180",count:0,active:!0,index:0},{name:"White",times:[60,60,90,105],temperature:"170-180",count:0,index:1},{name:"Black",times:[60,60,90,90],temperature:"212",count:0,index:2},{name:"Oolong",times:[30,30,45,45],temperature:"190-195",count:0,index:3},{name:"Pu-erh",times:[30,30,45,60],temperature:"212",count:0,index:4}]})).call(this)}}),this.require.define({"models/Steeping":function(a,b,c){((function(){var b=Object.prototype.hasOwnProperty,c=function(a,c){function e(){this.constructor=a}for(var d in c)b.call(c,d)&&(a[d]=c[d]);return e.prototype=c.prototype,a.prototype=new e,a.__super__=c.prototype,a};a.Steeping=function(a){function b(){b.__super__.constructor.apply(this,arguments)}return c(b,a),b.prototype.defaults={type:"Earl Gray",timestamp:"Fri Apr 06 2012 09:04:03 GMT-0400 (EDT)",count:0},b}(Backbone.Model)})).call(this)}}),this.require.define({"models/Tea":function(a,b,c){((function(){var b=Object.prototype.hasOwnProperty,c=function(a,c){function e(){this.constructor=a}for(var d in c)b.call(c,d)&&(a[d]=c[d]);return e.prototype=c.prototype,a.prototype=new e,a.__super__=c.prototype,a};a.Tea=function(a){function b(){b.__super__.constructor.apply(this,arguments)}return c(b,a),b.prototype.defaults={name:"Earl Gray",times:[50,60,90,90],temperature:120,count:0,active:!1},b.prototype.incr_count=function(){return this.save({count:this.get("count")+1})},b}(Backbone.Model)})).call(this)}}),this.require.define({"routers/main_router":function(a,b,c){((function(){var b=Object.prototype.hasOwnProperty,c=function(a,c){function e(){this.constructor=a}for(var d in c)b.call(c,d)&&(a[d]=c[d]);return e.prototype=c.prototype,a.prototype=new e,a.__super__=c.prototype,a};a.MainRouter=function(a){function b(){b.__super__.constructor.apply(this,arguments)}return c(b,a),b.prototype.routes={"":"home"},b.prototype.home=function(){return $("body").html(app.homeView.render().el)},b}(Backbone.Router)})).call(this)}}),this.require.define({initialize:function(a,b,c){((function(){var c,d,e,f=Object.prototype.hasOwnProperty,g=function(a,b){function d(){this.constructor=a}for(var c in b)f.call(b,c)&&(a[c]=b[c]);return d.prototype=b.prototype,a.prototype=new d,a.__super__=b.prototype,a};c=b("helpers").BrunchApplication,d=b("routers/main_router").MainRouter,e=b("views/Steepr").Steepr,a.Application=function(a){function b(){b.__super__.constructor.apply(this,arguments)}return g(b,a),b.prototype.initialize=function(){return window.Steepr=new e,console.log("application should've started"),function(a){return a.className=a.className.replace(/\bno-js\b/,"js")}(document.documentElement)},b}(c),window.app=new a.Application})).call(this)}}),this.require.define({"views/Steepr":function(a,b,c){((function(){var c,d,e,f,g=Object.prototype.hasOwnProperty,h=function(a,b){function d(){this.constructor=a}for(var c in b)g.call(b,c)&&(a[c]=b[c]);return d.prototype=b.prototype,a.prototype=new d,a.__super__=b.prototype,a};e=b("../collections/Teas").Teas,d=b("./TeaListView").TeaListView,c="brewing",f=function(a,b){return["-webkit-","-moz-","-ms-",""].forEach(function(c){return a.css(""+c+"animation-duration",""+b+"s")})},a.Steepr=function(a){function b(){b.__super__.constructor.apply(this,arguments)}return h(b,a),b.prototype.el=$("body"),b.prototype.events={"pageshow #steep":"steep"},b.prototype.initialize=function(){var a,b;return b=new e,a=new d({collection:b}),window.teas=b,window.teaListView=a,b.fetch({add:!0,success:function(c,d){return c.length||b.loadDefaults(),a.activateSwipe()},error:function(a,b){return console.log("Fetch Error: "+arguments)}}),console.log("steepr view started")},b.prototype.steep=function(a,b){var d,e,g,h,i,j;return h=$("#steep .content"),e=teas.getActive(),j=e.get("times"),d=e.get("count"),g=j.length-1,i=j[d<g?d:g],$("#steep .type").text(e.get("name")),e.incr_count(),f(h,i),h.addClass(c),setTimeout(function(){return h.removeClass(c)},i*1e3)},b}(Backbone.View)})).call(this)}}),this.require.define({"views/TeaListView":function(a,b,c){((function(){var c,d=Object.prototype.hasOwnProperty,e=function(a,b){function e(){this.constructor=a}for(var c in b)d.call(b,c)&&(a[c]=b[c]);return e.prototype=b.prototype,a.prototype=new e,a.__super__=b.prototype,a};c=b("./TeaView").TeaView,a.TeaListView=function(a){function b(){b.__super__.constructor.apply(this,arguments)}return e(b,a),b.prototype.el=$("#tea-list"),b.prototype.initialize=function(){return this.collection.bind("add",this.addTeaView,this)},b.prototype.addTeaView=function(a){var b,d;return d=new c({model:a}),b=d.render().el,$(b).data("model",a),this.$("ul").append(b)},b.prototype.activateSwipe=function(){var a;return a=this.collection,window.swipe=new Swipe(this.el,{callback:function(b,c,d){return a.activate($(d).data("model").get("name"))}})},b}(Backbone.View)})).call(this)}}),this.require.define({"views/TeaView":function(a,b,c){((function(){var c,d=Object.prototype.hasOwnProperty,e=function(a,b){function e(){this.constructor=a}for(var c in b)d.call(b,c)&&(a[c]=b[c]);return e.prototype=b.prototype,a.prototype=new e,a.__super__=b.prototype,a};c=b("./templates/tea"),a.TeaView=function(a){function b(){b.__super__.constructor.apply(this,arguments)}return e(b,a),b.prototype.tagName="li",b.prototype.template=c,b.prototype.initialize=function(){return this.model.bind("change",this.render,this)},b.prototype.render=function(){return $(this.el).html(this.template(this.model.toJSON())),this},b}(Backbone.View)})).call(this)}}),this.require.define({"views/templates/tea":function(a,b,c){c.exports=Handlebars.template(function(a,b,c,d,e){c=c||a.helpers;var f="",g,h,i=this,j="function",k=c.helperMissing,l=void 0,m=this.escapeExpression;return f+="<div>\n  <h1>something</h1>\n  <h2>",h=c.name,g=h||b.name,typeof g===j?g=g.call(b,{hash:{}}):g===l&&(g=k.call(b,"name",{hash:{}})),f+=m(g)+"</h2>\n  <p>steepings: ",h=c.count,g=h||b.count,typeof g===j?g=g.call(b,{hash:{}}):g===l&&(g=k.call(b,"count",{hash:{}})),f+=m(g)+"</p>\n</div>",f})}}),this.require.define({"models/my_model":function(a,b,c){((function(){var b=Object.prototype.hasOwnProperty,c=function(a,c){function e(){this.constructor=a}for(var d in c)b.call(c,d)&&(a[d]=c[d]);return e.prototype=c.prototype,a.prototype=new e,a.__super__=c.prototype,a};a.MyModel=function(a){function b(){b.__super__.constructor.apply(this,arguments)}return c(b,a),b}(Backbone.Model)})).call(this)}})
+(function(/*! Brunch !*/) {
+  if (!this.require) {
+    var modules = {}, cache = {}, require = function(name, root) {
+      var module = cache[name], path = expand(root, name), fn;
+      if (module) {
+        return module;
+      } else if (fn = modules[path] || modules[path = expand(path, './index')]) {
+        module = {id: name, exports: {}};
+        try {
+          cache[name] = module.exports;
+          fn(module.exports, function(name) {
+            return require(name, dirname(path));
+          }, module);
+          return cache[name] = module.exports;
+        } catch (err) {
+          delete cache[name];
+          throw err;
+        }
+      } else {
+        throw 'module \'' + name + '\' not found';
+      }
+    }, expand = function(root, name) {
+      var results = [], parts, part;
+      if (/^\.\.?(\/|$)/.test(name)) {
+        parts = [root, name].join('/').split('/');
+      } else {
+        parts = name.split('/');
+      }
+      for (var i = 0, length = parts.length; i < length; i++) {
+        part = parts[i];
+        if (part == '..') {
+          results.pop();
+        } else if (part != '.' && part != '') {
+          results.push(part);
+        }
+      }
+      return results.join('/');
+    }, dirname = function(path) {
+      return path.split('/').slice(0, -1).join('/');
+    };
+    this.require = function(name) {
+      return require(name, '');
+    };
+    this.require.brunch = true;
+    this.require.define = function(bundle) {
+      for (var key in bundle)
+        modules[key] = bundle[key];
+    };
+  }
+}).call(this);(this.require.define({
+  "routers/main_router": function(exports, require, module) {
+    (function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  exports.MainRouter = (function(_super) {
+
+    __extends(MainRouter, _super);
+
+    function MainRouter() {
+      MainRouter.__super__.constructor.apply(this, arguments);
+    }
+
+    MainRouter.prototype.routes = {
+      '': 'home'
+    };
+
+    MainRouter.prototype.home = function() {
+      return $('body').html(app.homeView.render().el);
+    };
+
+    return MainRouter;
+
+  })(Backbone.Router);
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "helpers": function(exports, require, module) {
+    (function() {
+
+  exports.BrunchApplication = (function() {
+
+    function BrunchApplication() {
+      var _this = this;
+      $(function() {
+        return _this.initialize(_this);
+      });
+    }
+
+    BrunchApplication.prototype.initialize = function() {
+      return null;
+    };
+
+    return BrunchApplication;
+
+  })();
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "collections/Teas": function(exports, require, module) {
+    (function() {
+  var DEFAULT_TEAS, Tea,
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  Tea = require("../models/Tea").Tea;
+
+  exports.Teas = (function(_super) {
+
+    __extends(Teas, _super);
+
+    function Teas() {
+      Teas.__super__.constructor.apply(this, arguments);
+    }
+
+    Teas.prototype.localStorage = new Backbone.LocalStorage("Teas");
+
+    Teas.prototype.model = Tea;
+
+    Teas.prototype.activate = function(type) {
+      this.each(function(model) {
+        return model.set("active", false);
+      });
+      _.each(this.where({
+        name: type
+      }), function(model) {
+        return model.set("active", true);
+      });
+      return console.log(this.getActive().get("name"));
+    };
+
+    Teas.prototype.getActive = function() {
+      return this.where({
+        active: true
+      })[0];
+    };
+
+    Teas.prototype.comparator = function(model) {
+      return model.get("index");
+    };
+
+    Teas.prototype.loadDefaults = function() {
+      var that;
+      that = this;
+      return _.each(DEFAULT_TEAS, function(tea) {
+        return that.create(tea);
+      });
+    };
+
+    return Teas;
+
+  })(Backbone.Collection);
+
+  DEFAULT_TEAS = [
+    {
+      name: "Green",
+      times: [5, 10, 15, 20],
+      temperature: "170-180",
+      count: 0,
+      active: true,
+      index: 0
+    }, {
+      name: "White",
+      times: [60, 60, 90, 105],
+      temperature: "170-180",
+      count: 0,
+      index: 1
+    }, {
+      name: "Black",
+      times: [60, 60, 90, 90],
+      temperature: "212",
+      count: 0,
+      index: 2
+    }, {
+      name: "Oolong",
+      times: [30, 30, 45, 45],
+      temperature: "190-195",
+      count: 0,
+      index: 3
+    }, {
+      name: "Pu-erh",
+      times: [30, 30, 45, 60],
+      temperature: "212",
+      count: 0,
+      index: 4
+    }
+  ];
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "models/Steeping": function(exports, require, module) {
+    (function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  exports.Steeping = (function(_super) {
+
+    __extends(Steeping, _super);
+
+    function Steeping() {
+      Steeping.__super__.constructor.apply(this, arguments);
+    }
+
+    Steeping.prototype.defaults = {
+      type: "Earl Gray",
+      timestamp: "Fri Apr 06 2012 09:04:03 GMT-0400 (EDT)",
+      count: 0
+    };
+
+    return Steeping;
+
+  })(Backbone.Model);
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "models/Tea": function(exports, require, module) {
+    (function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  exports.Tea = (function(_super) {
+
+    __extends(Tea, _super);
+
+    function Tea() {
+      Tea.__super__.constructor.apply(this, arguments);
+    }
+
+    Tea.prototype.defaults = {
+      name: "Earl Gray",
+      times: [50, 60, 90, 90],
+      temperature: 120,
+      count: 0,
+      active: false
+    };
+
+    Tea.prototype.incr_count = function() {
+      return this.save({
+        count: this.get("count") + 1
+      });
+    };
+
+    return Tea;
+
+  })(Backbone.Model);
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "initialize": function(exports, require, module) {
+    (function() {
+  var BrunchApplication, MainRouter, Steepr,
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  BrunchApplication = require('helpers').BrunchApplication;
+
+  MainRouter = require('routers/main_router').MainRouter;
+
+  Steepr = require('views/Steepr').Steepr;
+
+  exports.Application = (function(_super) {
+
+    __extends(Application, _super);
+
+    function Application() {
+      Application.__super__.constructor.apply(this, arguments);
+    }
+
+    Application.prototype.initialize = function() {
+      window.Steepr = new Steepr;
+      console.log("application should've started");
+      return (function(H) {
+        return H.className = H.className.replace(/\bno-js\b/, "js");
+      })(document.documentElement);
+    };
+
+    return Application;
+
+  })(BrunchApplication);
+
+  window.app = new exports.Application;
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "views/home_view": function(exports, require, module) {
+    (function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  exports.HomeView = (function(_super) {
+
+    __extends(HomeView, _super);
+
+    function HomeView() {
+      HomeView.__super__.constructor.apply(this, arguments);
+    }
+
+    HomeView.prototype.id = 'home-view';
+
+    HomeView.prototype.render = function() {
+      $(this.el).html(require('./templates/home'));
+      return this;
+    };
+
+    return HomeView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "views/Steepr": function(exports, require, module) {
+    (function() {
+  var BREWING_CLASS, TeaListView, Teas, setAnimationDuration,
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  Teas = require("../collections/Teas").Teas;
+
+  TeaListView = require("./TeaListView").TeaListView;
+
+  BREWING_CLASS = "brewing";
+
+  setAnimationDuration = function(jqObj, seconds) {
+    return ["-webkit-", "-moz-", "-ms-", ""].forEach(function(prefix) {
+      return jqObj.css("" + prefix + "animation-duration", "" + seconds + "s");
+    });
+  };
+
+  exports.Steepr = (function(_super) {
+
+    __extends(Steepr, _super);
+
+    function Steepr() {
+      Steepr.__super__.constructor.apply(this, arguments);
+    }
+
+    Steepr.prototype.el = $("body");
+
+    Steepr.prototype.events = {
+      "pageshow #steep": "steep"
+    };
+
+    Steepr.prototype.initialize = function() {
+      var teaListView, teas;
+      teas = new Teas();
+      teaListView = new TeaListView({
+        collection: teas
+      });
+      window.teas = teas;
+      window.teaListView = teaListView;
+      teas.fetch({
+        add: true,
+        success: function(coll, resp) {
+          if (!coll.length) teas.loadDefaults();
+          return teaListView.activateSwipe();
+        },
+        error: function(coll, resp) {
+          return console.log("Fetch Error: " + arguments);
+        }
+      });
+      return console.log("steepr view started");
+    };
+
+    Steepr.prototype.steep = function(e, data) {
+      var count, current, last, steep_content, steeping_secs, times;
+      steep_content = $("#steep .content");
+      current = teas.getActive();
+      times = current.get("times");
+      count = current.get("count");
+      last = times.length - 1;
+      steeping_secs = times[(count < last ? count : last)];
+      $("#steep .type").text(current.get("name"));
+      current.incr_count();
+      setAnimationDuration(steep_content, steeping_secs);
+      steep_content.addClass(BREWING_CLASS);
+      return setTimeout((function() {
+        return steep_content.removeClass(BREWING_CLASS);
+      }), steeping_secs * 1000);
+    };
+
+    return Steepr;
+
+  })(Backbone.View);
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "views/TeaListView": function(exports, require, module) {
+    (function() {
+  var TeaView,
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  TeaView = require("./TeaView").TeaView;
+
+  exports.TeaListView = (function(_super) {
+
+    __extends(TeaListView, _super);
+
+    function TeaListView() {
+      TeaListView.__super__.constructor.apply(this, arguments);
+    }
+
+    TeaListView.prototype.el = $("#tea-list");
+
+    TeaListView.prototype.initialize = function() {
+      return this.collection.bind("add", this.addTeaView, this);
+    };
+
+    TeaListView.prototype.addTeaView = function(model) {
+      var el, view;
+      view = new TeaView({
+        model: model
+      });
+      el = view.render().el;
+      $(el).data("model", model);
+      return this.$("ul").append(el);
+    };
+
+    TeaListView.prototype.activateSwipe = function() {
+      var teas;
+      teas = this.collection;
+      return window.swipe = new Swipe(this.el, {
+        callback: function(e, index, element) {
+          return teas.activate($(element).data("model").get("name"));
+        }
+      });
+    };
+
+    return TeaListView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "views/TeaView": function(exports, require, module) {
+    (function() {
+  var TeaTemplate,
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  TeaTemplate = require("./templates/tea");
+
+  exports.TeaView = (function(_super) {
+
+    __extends(TeaView, _super);
+
+    function TeaView() {
+      TeaView.__super__.constructor.apply(this, arguments);
+    }
+
+    TeaView.prototype.tagName = "li";
+
+    TeaView.prototype.template = TeaTemplate;
+
+    TeaView.prototype.initialize = function() {
+      return this.model.bind("change", this.render, this);
+    };
+
+    TeaView.prototype.render = function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    };
+
+    return TeaView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "views/templates/tea": function(exports, require, module) {
+    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div>\n  <h1>something</h1>\n  <h2>";
+  foundHelper = helpers.name;
+  stack1 = foundHelper || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</h2>\n  <p>steepings: ";
+  foundHelper = helpers.count;
+  stack1 = foundHelper || depth0.count;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "count", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</p>\n</div>";
+  return buffer;});
+  }
+}));
