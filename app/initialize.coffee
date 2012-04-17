@@ -8,7 +8,10 @@ class exports.Application extends BrunchApplication
   # group things by their type e.g. `@views = {}; @views.home = new HomeView`.
   initialize: ->
     window.Steepr = new Steepr
-    console.log "application should've started"
-    ((H) -> H.className = H.className.replace(/\bno-js\b/, "js")) document.documentElement
+    # fix for FOUC, using jquery mobile
+    doc = document.documentElement
+    doc.className = doc.className.replace /\bno-js/, "js"
+
+    console.log "application started"
    
 window.app = new exports.Application
