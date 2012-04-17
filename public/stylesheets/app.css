@@ -2561,7 +2561,7 @@ span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
 .blue{background:#00f}
 .swipe ol,.swipe ul{margin:0;padding:0}
 .swipe{padding-bottom:20px}
-.swipe li div,.swipe div div div{margin:0 10px;padding:50px 10px;background:#1db1ff;font-weight:bold;color:#fff;font-size:20px;text-align:center;border-radius:5px}
+.swipe li div,.swipe div div div{margin:0 10px;padding:50px 10px;font-weight:bold;color:#333;text-shadow:0 1px #fff;font-size:20px;text-align:center;border-radius:5px}
 /* ==|== non-semantic helper classes ========================================
    Please define your styles before this section.
    ========================================================================== */

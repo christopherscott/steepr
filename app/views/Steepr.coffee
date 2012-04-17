@@ -1,6 +1,3 @@
-{Teas} = require "../collections/Teas"
-{TeaListView} = require "./TeaListView"
-
 BREWING_CLASS = "brewing"
 
 setAnimationDuration = (jqObj, seconds) ->
@@ -9,33 +6,17 @@ setAnimationDuration = (jqObj, seconds) ->
 
 class exports.Steepr extends Backbone.View
 
-	el: $("body")
+	el: $("#steepr")
 
 	events:
 		"pageshow #steep" : "steep"
 
 	initialize: ->
-		teas = new Teas()
-		teaListView = new TeaListView collection: teas
-		
-		# DEBUG
-		window.teas = teas
-		window.teaListView = teaListView
-
-		teas.fetch
-			add: true
-			success: (coll, resp) ->
-				teas.loadDefaults()  unless coll.length
-				teaListView.activateSwipe()
-			error: (coll, resp) ->
-				console.log "Fetch Error: #{arguments}"
-
 		console.log "steepr view started"
 
 	steep: (e, data) ->
 		steep_content = $("#steep .content")
-		current = teas.getActive()
-
+		current = app.teas.getActive()
 		times = current.get "times"
 		count = current.get "count"
 		last = times.length - 1
@@ -53,7 +34,6 @@ class exports.Steepr extends Backbone.View
 		# interval = timer.set("total", steeping_secs)
 		# console.log interval
 		# timer.start()
-
 
 		setTimeout (->
 			steep_content.removeClass BREWING_CLASS

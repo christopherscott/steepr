@@ -48,36 +48,6 @@
     };
   }
 }).call(this);(this.require.define({
-  "routers/main_router": function(exports, require, module) {
-    (function() {
-  var __hasProp = Object.prototype.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-  exports.MainRouter = (function(_super) {
-
-    __extends(MainRouter, _super);
-
-    function MainRouter() {
-      MainRouter.__super__.constructor.apply(this, arguments);
-    }
-
-    MainRouter.prototype.routes = {
-      '': 'home'
-    };
-
-    MainRouter.prototype.home = function() {
-      return $('body').html(app.homeView.render().el);
-    };
-
-    return MainRouter;
-
-  })(Backbone.Router);
-
-}).call(this);
-
-  }
-}));
-(this.require.define({
   "helpers": function(exports, require, module) {
     (function() {
 
@@ -97,6 +67,63 @@
     return BrunchApplication;
 
   })();
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "initialize": function(exports, require, module) {
+    (function() {
+  var BrunchApplication, Steepr, TeaListView, Teas,
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  BrunchApplication = require('helpers').BrunchApplication;
+
+  Steepr = require('./views/Steepr').Steepr;
+
+  Teas = require("./collections/Teas").Teas;
+
+  TeaListView = require("./views/TeaListView").TeaListView;
+
+  console.log(TeaListView);
+
+  exports.Application = (function(_super) {
+
+    __extends(Application, _super);
+
+    function Application() {
+      Application.__super__.constructor.apply(this, arguments);
+    }
+
+    Application.prototype.initialize = function() {
+      var doc, teaListView, teas;
+      this.steepr = new Steepr;
+      this.teas = teas = new Teas;
+      this.teaListView = teaListView = new TeaListView({
+        collection: this.teas
+      });
+      this.teas.fetch({
+        add: true,
+        success: function(coll, resp) {
+          if (!coll.length) teas.loadDefaults();
+          return teaListView.activateSwipe();
+        },
+        error: function(coll, resp) {
+          return console.log("Fetch Error: " + arguments);
+        }
+      });
+      doc = document.documentElement;
+      doc.className = doc.className.replace(/\bno-js/, "js");
+      return console.log("application started");
+    };
+
+    return Application;
+
+  })(BrunchApplication);
+
+  window.app = new exports.Application;
 
 }).call(this);
 
@@ -261,68 +288,30 @@
   }
 }));
 (this.require.define({
-  "initialize": function(exports, require, module) {
-    (function() {
-  var BrunchApplication, MainRouter, Steepr,
-    __hasProp = Object.prototype.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-  BrunchApplication = require('helpers').BrunchApplication;
-
-  MainRouter = require('routers/main_router').MainRouter;
-
-  Steepr = require('views/Steepr').Steepr;
-
-  exports.Application = (function(_super) {
-
-    __extends(Application, _super);
-
-    function Application() {
-      Application.__super__.constructor.apply(this, arguments);
-    }
-
-    Application.prototype.initialize = function() {
-      window.Steepr = new Steepr;
-      console.log("application should've started");
-      return (function(H) {
-        return H.className = H.className.replace(/\bno-js\b/, "js");
-      })(document.documentElement);
-    };
-
-    return Application;
-
-  })(BrunchApplication);
-
-  window.app = new exports.Application;
-
-}).call(this);
-
-  }
-}));
-(this.require.define({
-  "views/home_view": function(exports, require, module) {
+  "routers/main_router": function(exports, require, module) {
     (function() {
   var __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-  exports.HomeView = (function(_super) {
+  exports.MainRouter = (function(_super) {
 
-    __extends(HomeView, _super);
+    __extends(MainRouter, _super);
 
-    function HomeView() {
-      HomeView.__super__.constructor.apply(this, arguments);
+    function MainRouter() {
+      MainRouter.__super__.constructor.apply(this, arguments);
     }
 
-    HomeView.prototype.id = 'home-view';
-
-    HomeView.prototype.render = function() {
-      $(this.el).html(require('./templates/home'));
-      return this;
+    MainRouter.prototype.routes = {
+      '': 'home'
     };
 
-    return HomeView;
+    MainRouter.prototype.home = function() {
+      return $('body').html(app.homeView.render().el);
+    };
 
-  })(Backbone.View);
+    return MainRouter;
+
+  })(Backbone.Router);
 
 }).call(this);
 
@@ -331,13 +320,9 @@
 (this.require.define({
   "views/Steepr": function(exports, require, module) {
     (function() {
-  var BREWING_CLASS, TeaListView, Teas, setAnimationDuration,
+  var BREWING_CLASS, setAnimationDuration,
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-  Teas = require("../collections/Teas").Teas;
-
-  TeaListView = require("./TeaListView").TeaListView;
 
   BREWING_CLASS = "brewing";
 
@@ -355,37 +340,20 @@
       Steepr.__super__.constructor.apply(this, arguments);
     }
 
-    Steepr.prototype.el = $("body");
+    Steepr.prototype.el = $("#steepr");
 
     Steepr.prototype.events = {
       "pageshow #steep": "steep"
     };
 
     Steepr.prototype.initialize = function() {
-      var teaListView, teas;
-      teas = new Teas();
-      teaListView = new TeaListView({
-        collection: teas
-      });
-      window.teas = teas;
-      window.teaListView = teaListView;
-      teas.fetch({
-        add: true,
-        success: function(coll, resp) {
-          if (!coll.length) teas.loadDefaults();
-          return teaListView.activateSwipe();
-        },
-        error: function(coll, resp) {
-          return console.log("Fetch Error: " + arguments);
-        }
-      });
       return console.log("steepr view started");
     };
 
     Steepr.prototype.steep = function(e, data) {
       var count, current, last, steep_content, steeping_secs, times;
       steep_content = $("#steep .content");
-      current = teas.getActive();
+      current = app.teas.getActive();
       times = current.get("times");
       count = current.get("count");
       last = times.length - 1;
@@ -503,7 +471,7 @@
   var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div>\n  <h1>something</h1>\n  <h2>";
+  buffer += "<div>\n  <h2>";
   foundHelper = helpers.name;
   stack1 = foundHelper || depth0.name;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
