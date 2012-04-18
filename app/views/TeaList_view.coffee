@@ -1,6 +1,6 @@
-{TeaView} = require "./TeaView"
+{Tea_view} = require "./Tea_view"
 
-class exports.TeaListView extends Backbone.View
+class exports.TeaList_view extends Backbone.View
 
 	el: $("#tea-list")
 
@@ -12,7 +12,7 @@ class exports.TeaListView extends Backbone.View
 	# we also put a reference to the underlying model in element data
 	# so that in 'activateSwipe' we have access to model's name prop
 	addTeaView: (model) ->
-		view = new TeaView(model: model)
+		view = new Tea_view(model: model)
 		el = view.render().el
 		$(el).data "model", model
 		@$("ul").append el

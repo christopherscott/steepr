@@ -1,16 +1,16 @@
 {BrunchApplication} = require 'helpers'
-{Steepr} = require './views/Steepr'
+{Home_view} = require './views/Home_view'
 {Teas} = require "./collections/Teas"
-{TeaListView} = require "./views/TeaListView"
-console.log TeaListView
+{TeaList_view} = require "./views/TeaList_view"
+
 class exports.Application extends BrunchApplication
 	# This callback would be executed on document ready event.
 	# If you have a big application, perhaps it's a good idea to
 	# group things by their type e.g. `@views = {}; @views.home = new HomeView`.
 	initialize: ->
-		@steepr = new Steepr   	
+		@home_view = new Home_view
 		@teas = teas = new Teas
-		@teaListView = teaListView = new TeaListView collection: @teas
+		@teaList_view = teaListView = new TeaList_view collection: @teas
 
 		@teas.fetch
 			add: true

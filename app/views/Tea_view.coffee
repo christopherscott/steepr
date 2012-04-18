@@ -1,6 +1,6 @@
 TeaTemplate = require "./templates/tea"
 
-class exports.TeaView extends Backbone.View
+class exports.Tea_view extends Backbone.View
 
 	tagName: "li"
 
