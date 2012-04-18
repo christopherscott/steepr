@@ -14,8 +14,6 @@ class exports.Teas extends Backbone.Collection
 		# activate target
 		_.each @where(name: type), (model) ->
 			model.set "active", true
-		# DEBUG: ok to remove
-		console.log @getActive().get("name")
 
 	getActive: ->
 		@where(active: true)[0]
@@ -24,11 +22,16 @@ class exports.Teas extends Backbone.Collection
 		model.get "index"
 
 	loadDefaults: ->
-		that = this
+		teas = this
 		_.each DEFAULT_TEAS, (tea) ->
-			that.create tea
+			teas.create tea
 
-# TODO: need to find a better place for this
+
+
+
+
+# TODO: move to external config
+
 DEFAULT_TEAS = [
 		name: "Green"
 		times: [ 5, 10, 15, 20 ]
