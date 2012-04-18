@@ -2583,10 +2583,10 @@ span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
 .swipe{padding-bottom:20px}
 .swipe li div,.swipe div div div{margin:0 10px;padding:50px 10px;font-weight:bold;color:#333;text-shadow:0 1px #fff;font-size:20px;text-align:center;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px}
 #home .content{padding:0}
-#home #steep-button{-webkit-box-shadow:0 1px 5px #999 inset;-moz-box-shadow:0 1px 5px #999 inset;box-shadow:0 1px 5px #999 inset;padding:20px;background:#fff url("../images/bgnoise_lg.png") repeat}
-#steep .content{padding:0;background:url("../images/subtle_freckles.png") repeat}
+#home #steep-button{background:#fff url("../images/bgnoise_lg.png") repeat;-webkit-box-shadow:0 1px 5px #999 inset;-moz-box-shadow:0 1px 5px #999 inset;box-shadow:0 1px 5px #999 inset;padding:20px}
+#steep .content{padding:0}
 #timer{padding:70px 0;}
-#timer .inner{position:relative;text-align:center;padding:40px;background:#fff url("../images/bgnoise_lg.png") repeat;-webkit-border-radius:125px;-moz-border-radius:125px;border-radius:125px;height:150px;width:150px;margin:0 auto;-webkit-box-shadow:0 1px 5px #000 inset;-moz-box-shadow:0 1px 5px #000 inset;box-shadow:0 1px 5px #000 inset;text-shadow:0 2px #fff;}
+#timer .inner{background:#fff url("../images/bgnoise_lg.png") repeat;position:relative;text-align:center;padding:40px;-webkit-border-radius:125px;-moz-border-radius:125px;border-radius:125px;height:150px;width:150px;margin:0 auto;-webkit-box-shadow:0 1px 5px #000 inset;-moz-box-shadow:0 1px 5px #000 inset;box-shadow:0 1px 5px #000 inset;text-shadow:0 2px #fff;}
 #timer .inner p{margin:0 0 90px;font-size:32px;font-family:"WisdomScriptAIRegular";}
 #timer .inner p.tea{margin-top:-10px}
 #timer .inner p .steeping{margin-top:0}

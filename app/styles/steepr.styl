@@ -86,14 +86,16 @@
   border-radius: 5px;
 }
 
+inset-background(color)
+  background color url("../images/bgnoise_lg.png") repeat
+
 #home
   .content
     padding 0
   #steep-button
+    inset-background(white) 
     box-shadow 0 1px 5px #999 inset
     padding 20px
-    background white url("../images/bgnoise_lg.png") repeat
-
 
 #steep
   .content
@@ -102,10 +104,10 @@
 #timer
   padding 70px 0
   .inner
+    inset-background(white)
     position relative
     text-align center
     padding 40px
-    background white url("../images/bgnoise_lg.png") repeat
     border-radius 125px
     height 150px
     width 150px
