@@ -1,3 +1,5 @@
+@import 'nib'
+
 @-webkit-keyframes greentea {
   0%   { background: white }
   25%  { background: yellow }
@@ -31,9 +33,7 @@
   border: 5px solid black;
 }
 
-#steep .content {
-  height: 800px;
-}
+#steep .content {}
 
 .brewing {
   -webkit-animation-name: greentea;
@@ -85,3 +85,56 @@
   text-align:center;
   border-radius: 5px;
 }
+
+#home
+  .content
+    padding 0
+  #steep-button
+    box-shadow 0 1px 5px #999 inset
+    padding 20px
+    background white url("../images/bgnoise_lg.png") repeat
+
+
+#steep
+  .content
+    padding 0
+    background url("../images/subtle_freckles.png") repeat
+
+#timer
+  padding 70px 0
+  background url("../images/loose_green.png") no-repeat center center
+  .inner
+    position relative
+    text-align center
+    padding 40px
+    background white url("../images/bgnoise_lg.png") repeat
+    border-radius 125px
+    height 150px
+    width 150px
+    margin 0 auto
+    box-shadow 0 1px 5px #000 inset
+    text-shadow 0 2px #fff
+
+    p
+      margin 0 0 90px
+      font-size 32px
+      font-family "WisdomScriptAIRegular"
+      &.tea
+        margin-top -10px
+      .steeping
+        margin-top 0
+
+    time
+      position absolute
+      width 200px
+      top 60px
+      left 15px
+      color #362925
+      font-size 88px
+      font-family "FranchiseRegular"
+      b
+        color #7d7776
+
+
+
+
