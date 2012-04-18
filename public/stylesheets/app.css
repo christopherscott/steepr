@@ -2539,7 +2539,28 @@ span.ui-slider-label { position: absolute; text-align: center; width: 100%; over
 span.ui-slider-label-a { z-index: 1; left: 0; text-indent: -1.5em; }
 span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
 .ui-slider-inline { width: 120px; display: inline-block; }
-@-webkit-keyframes greentea{0%{background:#fff}
+
+@font-face {
+    font-family: 'WisdomScriptAIRegular';
+    src: url('../fonts/wisdom_script-webfont.eot');
+    src: url('../fonts/wisdom_script-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/wisdom_script-webfont.woff') format('woff'),
+         url('../fonts/wisdom_script-webfont.ttf') format('truetype'),
+         url('../fonts/wisdom_script-webfont.svg#WisdomScriptAIRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FranchiseRegular';
+    src: url('../fonts/franchise-bold-webfont.eot');
+    src: url('../fonts/franchise-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/franchise-bold-webfont.woff') format('woff'),
+         url('../fonts/franchise-bold-webfont.ttf') format('truetype'),
+         url('../fonts/franchise-bold-webfont.svg#FranchiseRegular') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}@-webkit-keyframes greentea{0%{background:#fff}
 25%{background:#ff0}
 50%{background:#acd373}
 75%{background:#005e20}
@@ -2556,12 +2577,21 @@ span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
 100%{background:#736357}
 }.initial{background:#f00}
 #other{height:50%;width:50%;margin:50px auto;border:5px solid #000}
-#steep .content{height:800px}
-.brewing{-webkit-animation-name:greentea;-moz-animation-name:greentea;-ms-animation-name:greentea;animation-name:greentea;-webkit-animation-timing-function:linear;-moz-animation-timing-function:linear;-ms-animation-timing-function:linear;animation-timing-function:linear}
+#steep .content,.brewing{-webkit-animation-name:greentea;-moz-animation-name:greentea;-ms-animation-name:greentea;-webkit-animation-name:greentea;-moz-animation-name:greentea;animation-name:greentea;-webkit-animation-timing-function:linear;-moz-animation-timing-function:linear;-ms-animation-timing-function:linear;-webkit-animation-timing-function:linear;-moz-animation-timing-function:linear;animation-timing-function:linear}
 .blue{background:#00f}
 .swipe ol,.swipe ul{margin:0;padding:0}
 .swipe{padding-bottom:20px}
-.swipe li div,.swipe div div div{margin:0 10px;padding:50px 10px;font-weight:bold;color:#333;text-shadow:0 1px #fff;font-size:20px;text-align:center;border-radius:5px}
+.swipe li div,.swipe div div div{margin:0 10px;padding:50px 10px;font-weight:bold;color:#333;text-shadow:0 1px #fff;font-size:20px;text-align:center;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px}
+#home .content{padding:0}
+#home #steep-button{-webkit-box-shadow:0 1px 5px #999 inset;-moz-box-shadow:0 1px 5px #999 inset;box-shadow:0 1px 5px #999 inset;padding:20px;background:#fff url("../images/bgnoise_lg.png") repeat}
+#steep .content{padding:0;background:url("../images/subtle_freckles.png") repeat}
+#timer{padding:70px 0;background:url("../images/loose_green.png") no-repeat center center;}
+#timer .inner{position:relative;text-align:center;padding:40px;background:#fff url("../images/bgnoise_lg.png") repeat;-webkit-border-radius:125px;-moz-border-radius:125px;border-radius:125px;height:150px;width:150px;margin:0 auto;-webkit-box-shadow:0 1px 5px #000 inset;-moz-box-shadow:0 1px 5px #000 inset;box-shadow:0 1px 5px #000 inset;text-shadow:0 2px #fff;}
+#timer .inner p{margin:0 0 90px;font-size:32px;font-family:"WisdomScriptAIRegular";}
+#timer .inner p.tea{margin-top:-10px}
+#timer .inner p .steeping{margin-top:0}
+#timer .inner time{position:absolute;width:200px;top:60px;left:15px;color:#362925;font-size:88px;font-family:"FranchiseRegular";}
+#timer .inner time b{color:#7d7776}
 /* ==|== non-semantic helper classes ========================================
    Please define your styles before this section.
    ========================================================================== */

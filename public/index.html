@@ -48,22 +48,22 @@
 
 </head>
 <body>
-  <a href="https://github.com/christopherscott/steepr"><img style="position: absolute; z-index: 100; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
 
   <div id="steepr">
     
     <section id="home" data-role="page" data-theme="c">
-
       <header data-role="header">
         <h1>Steepr</h1>
       </header>
-      <div data-role="content">
+      <div data-role="content" class="content">
         <div id="tea-list" class="swipe">
           <ul></ul>
         </div>
-        <a href="#steep" data-role="button" data-transition="slide" id="steepit">steep tea</a>
-        <a href="#about" data-role="button" data-transition="slide" id="aboutit">about this app</a>
-        <a href="#preferences" data-role="button" data-transition="slide" id="preferit">preferences</a>
+        <div id="steep-button">
+          <a href="#steep" data-role="button" data-transition="slide" id="steepit">steep tea</a>
+        </div>
+        <!-- <a href="#about" data-role="button" data-transition="slide" id="aboutit">about this app</a>
+        <a href="#preferences" data-role="button" data-transition="slide" id="preferit">preferences</a> -->
       </div>
     </section>
 
@@ -72,8 +72,13 @@
         <h1>Brewing...<span class="type"></span></h1>
       </header>
       <div data-role="content" class="content">
-        <span class="type"></span> tea is steeping...
-        <time>1:00:00</time>
+        <div id="timer">
+          <div class="inner">
+            <p class="tea">tea</p>
+            <time>1<b>:</b>15<b>:</b>94</time>
+            <p class="steeping">steeping</p>
+          </div>
+        </div>
       </div>
     </section>
 
