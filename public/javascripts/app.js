@@ -48,22 +48,59 @@
     };
   }
 }).call(this);(this.require.define({
-  "views/About_view": function(exports, require, module) {
+  "views/HomeView": function(exports, require, module) {
     (function() {
-  var __hasProp = Object.prototype.hasOwnProperty,
+  var BREWING_CLASS, setAnimationDuration,
+    __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-  exports.AboutView = (function(_super) {
+  BREWING_CLASS = "brewing";
 
-    __extends(AboutView, _super);
+  setAnimationDuration = function(jqObj, seconds) {
+    return ["-webkit-", "-moz-", "-ms-", ""].forEach(function(prefix) {
+      return jqObj.css("" + prefix + "animation-duration", "" + seconds + "s");
+    });
+  };
 
-    function AboutView() {
-      AboutView.__super__.constructor.apply(this, arguments);
+  exports.HomeView = (function(_super) {
+
+    __extends(HomeView, _super);
+
+    function HomeView() {
+      HomeView.__super__.constructor.apply(this, arguments);
     }
 
-    AboutView.prototype.el = $("#about");
+    HomeView.prototype.el = $("#steepr");
 
-    return AboutView;
+    HomeView.prototype.events = {
+      "pageshow #steep": "steep"
+    };
+
+    HomeView.prototype.initialize = function() {
+      console.log("home view started");
+      return this.trigger("something", {
+        name: "chris"
+      });
+    };
+
+    HomeView.prototype.steep = function(e, data) {
+      var count, current, last, steep_content, steeping_secs, times;
+      steep_content = $("#steep .content");
+      current = app.teas.getActive();
+      times = current.get("times");
+      count = current.get("count");
+      last = times.length - 1;
+      steeping_secs = times[(count < last ? count : last)];
+      this.trigger("steep", current);
+      current.incr_count();
+      setAnimationDuration(steep_content, steeping_secs);
+      steep_content.addClass(BREWING_CLASS);
+      return setTimeout((function() {
+        return steep_content.removeClass(BREWING_CLASS);
+      }), steeping_secs * 1000);
+    };
+
+    return HomeView;
 
   })(Backbone.View);
 
@@ -118,16 +155,13 @@
     Teas.prototype.model = Tea;
 
     Teas.prototype.activate = function(type) {
-      var session;
-      session = app.session;
       this.each(function(model) {
         return model.set("active", false);
       });
       return _.each(this.where({
         name: type
       }), function(model) {
-        model.set("active", true);
-        return session.set("current", model);
+        return model.set("active", true);
       });
     };
 
@@ -287,21 +321,49 @@
   }
 }));
 (this.require.define({
+  "views/AboutView": function(exports, require, module) {
+    (function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  exports.AboutView = (function(_super) {
+
+    __extends(AboutView, _super);
+
+    function AboutView() {
+      AboutView.__super__.constructor.apply(this, arguments);
+    }
+
+    AboutView.prototype.el = $("#about");
+
+    return AboutView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
   "initialize": function(exports, require, module) {
     (function() {
-  var BrunchApplication, Home_view, SteepView, TeaList_view, Teas,
+  var AboutView, BrunchApplication, HomeView, PreferencesView, SteepView, TeaListView, Teas,
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
   BrunchApplication = require('helpers').BrunchApplication;
 
-  Home_view = require('./views/Home_view').Home_view;
-
   Teas = require("./collections/Teas").Teas;
 
-  TeaList_view = require("./views/TeaList_view").TeaList_view;
+  HomeView = require('./views/HomeView').HomeView;
 
-  SteepView = require("./views/Steep_view").SteepView;
+  TeaListView = require("./views/TeaListView").TeaListView;
+
+  AboutView = require('./views/AboutView').AboutView;
+
+  PreferencesView = require('./views/PreferencesView').PreferencesView;
+
+  SteepView = require('./views/SteepView').SteepView;
 
   exports.Application = (function(_super) {
 
@@ -312,10 +374,13 @@
     }
 
     Application.prototype.initialize = function() {
-      var doc, teaListView, teas;
-      this.home_view = new Home_view;
+      var teaListView, teas;
+      this.home_view = new HomeView;
+      this.steep_view = new SteepView;
+      this.preferences_view = new PreferencesView;
+      this.about_view = new AboutView;
       this.teas = teas = new Teas;
-      this.teaList_view = teaListView = new TeaList_view({
+      this.teaList_view = teaListView = new TeaListView({
         collection: this.teas
       });
       this.teas.fetch({
@@ -328,13 +393,14 @@
           return console.log("Fetch Error: " + arguments);
         }
       });
-      this.session = new Backbone.Model;
-      this.steep_view = new SteepView({
-        model: this.session
-      });
-      doc = document.documentElement;
-      doc.className = doc.className.replace(/\bno-js/, "js");
+      this.fixFouc();
       return console.log("application started");
+    };
+
+    Application.prototype.fixFouc = function() {
+      var doc;
+      doc = document.documentElement;
+      return doc.className = doc.className.replace(/\bno-js/, "js");
     };
 
     return Application;
@@ -348,65 +414,7 @@
   }
 }));
 (this.require.define({
-  "views/Home_view": function(exports, require, module) {
-    (function() {
-  var BREWING_CLASS, setAnimationDuration,
-    __hasProp = Object.prototype.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-  BREWING_CLASS = "brewing";
-
-  setAnimationDuration = function(jqObj, seconds) {
-    return ["-webkit-", "-moz-", "-ms-", ""].forEach(function(prefix) {
-      return jqObj.css("" + prefix + "animation-duration", "" + seconds + "s");
-    });
-  };
-
-  exports.Home_view = (function(_super) {
-
-    __extends(Home_view, _super);
-
-    function Home_view() {
-      Home_view.__super__.constructor.apply(this, arguments);
-    }
-
-    Home_view.prototype.el = $("#steepr");
-
-    Home_view.prototype.events = {
-      "pageshow #steep": "steep"
-    };
-
-    Home_view.prototype.initialize = function() {
-      return console.log("home view started");
-    };
-
-    Home_view.prototype.steep = function(e, data) {
-      var count, current, last, steep_content, steeping_secs, times;
-      steep_content = $("#steep .content");
-      current = app.teas.getActive();
-      times = current.get("times");
-      count = current.get("count");
-      last = times.length - 1;
-      steeping_secs = times[(count < last ? count : last)];
-      $("#steep .type").text(current.get("name"));
-      current.incr_count();
-      setAnimationDuration(steep_content, steeping_secs);
-      steep_content.addClass(BREWING_CLASS);
-      return setTimeout((function() {
-        return steep_content.removeClass(BREWING_CLASS);
-      }), steeping_secs * 1000);
-    };
-
-    return Home_view;
-
-  })(Backbone.View);
-
-}).call(this);
-
-  }
-}));
-(this.require.define({
-  "views/Preferences_view": function(exports, require, module) {
+  "views/PreferencesView": function(exports, require, module) {
     (function() {
   var __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
@@ -430,33 +438,33 @@
   }
 }));
 (this.require.define({
-  "views/Steep_view": function(exports, require, module) {
+  "views/SteepView": function(exports, require, module) {
     (function() {
-  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+  var SteepTemplate,
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  SteepTemplate = require("./templates/steep");
 
   exports.SteepView = (function(_super) {
 
     __extends(SteepView, _super);
 
     function SteepView() {
-      this.render = __bind(this.render, this);
       SteepView.__super__.constructor.apply(this, arguments);
     }
 
     SteepView.prototype.el = $("#steep");
 
+    SteepView.prototype.template = SteepTemplate;
+
     SteepView.prototype.initialize = function(options) {
-      console.log("steep view initializing");
-      console.log(options);
-      console.log(this.model);
-      return this.model.on("change", this.render, this);
+      return app.home_view.on("steep", this.render, this);
     };
 
-    SteepView.prototype.render = function() {
-      console.log("steepView rendering");
-      return this.$("#current-tea").html(this.model.get("current").get("name"));
+    SteepView.prototype.render = function(active) {
+      console.log(active);
+      return $(this.el).html(this.template(active.toJSON()));
     };
 
     return SteepView;
@@ -468,69 +476,31 @@
   }
 }));
 (this.require.define({
-  "views/Tea_view": function(exports, require, module) {
+  "views/TeaListView": function(exports, require, module) {
     (function() {
-  var TeaTemplate,
+  var TeaView,
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-  TeaTemplate = require("./templates/tea");
+  TeaView = require("./TeaView").TeaView;
 
-  exports.Tea_view = (function(_super) {
+  exports.TeaListView = (function(_super) {
 
-    __extends(Tea_view, _super);
+    __extends(TeaListView, _super);
 
-    function Tea_view() {
-      Tea_view.__super__.constructor.apply(this, arguments);
+    function TeaListView() {
+      TeaListView.__super__.constructor.apply(this, arguments);
     }
 
-    Tea_view.prototype.tagName = "li";
+    TeaListView.prototype.el = $("#tea-list");
 
-    Tea_view.prototype.template = TeaTemplate;
-
-    Tea_view.prototype.initialize = function() {
-      return this.model.on("change", this.render, this);
-    };
-
-    Tea_view.prototype.render = function() {
-      $(this.el).html(this.template(this.model.toJSON()));
-      return this;
-    };
-
-    return Tea_view;
-
-  })(Backbone.View);
-
-}).call(this);
-
-  }
-}));
-(this.require.define({
-  "views/TeaList_view": function(exports, require, module) {
-    (function() {
-  var Tea_view,
-    __hasProp = Object.prototype.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-  Tea_view = require("./Tea_view").Tea_view;
-
-  exports.TeaList_view = (function(_super) {
-
-    __extends(TeaList_view, _super);
-
-    function TeaList_view() {
-      TeaList_view.__super__.constructor.apply(this, arguments);
-    }
-
-    TeaList_view.prototype.el = $("#tea-list");
-
-    TeaList_view.prototype.initialize = function() {
+    TeaListView.prototype.initialize = function() {
       return this.collection.bind("add", this.addTeaView, this);
     };
 
-    TeaList_view.prototype.addTeaView = function(model) {
+    TeaListView.prototype.addTeaView = function(model) {
       var el, view;
-      view = new Tea_view({
+      view = new TeaView({
         model: model
       });
       el = view.render().el;
@@ -538,7 +508,7 @@
       return this.$("ul").append(el);
     };
 
-    TeaList_view.prototype.activateSwipe = function() {
+    TeaListView.prototype.activateSwipe = function() {
       var teas;
       teas = this.collection;
       return window.swipe = new Swipe(this.el, {
@@ -548,7 +518,45 @@
       });
     };
 
-    return TeaList_view;
+    return TeaListView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "views/TeaView": function(exports, require, module) {
+    (function() {
+  var TeaTemplate,
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  TeaTemplate = require("./templates/tea");
+
+  exports.TeaView = (function(_super) {
+
+    __extends(TeaView, _super);
+
+    function TeaView() {
+      TeaView.__super__.constructor.apply(this, arguments);
+    }
+
+    TeaView.prototype.tagName = "li";
+
+    TeaView.prototype.template = TeaTemplate;
+
+    TeaView.prototype.initialize = function() {
+      return this.model.on("change", this.render, this);
+    };
+
+    TeaView.prototype.render = function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    };
+
+    return TeaView;
 
   })(Backbone.View);
 
@@ -574,6 +582,27 @@
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "count", { hash: {} }); }
   buffer += escapeExpression(stack1) + "</p>\n</div>";
+  return buffer;});
+  }
+}));
+(this.require.define({
+  "views/templates/steep": function(exports, require, module) {
+    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+
+  buffer += "<header data-role=\"header\" class=\"ui-header ui-bar-a\">\n  <h1>Brewing ";
+  foundHelper = helpers.name;
+  stack1 = foundHelper || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</h1>\n</header>\n  <div id=\"timer\">\n    <div class=\"inner\">\n      <p class=\"tea\">";
+  foundHelper = helpers.name;
+  stack1 = foundHelper || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</p>\n      <time>1<b>:</b>15</time>\n      <p class=\"steeping\">steeping</p>\n    </div>\n  </div>\n</div>";
   return buffer;});
   }
 }));
