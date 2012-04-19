@@ -3,6 +3,8 @@ BREWING_CLASS = "brewing"
 setAnimationDuration = (jqObj, seconds) ->
   [ "-webkit-", "-moz-", "-ms-", "" ].forEach (prefix) ->
     jqObj.css "#{prefix}animation-duration", "#{seconds}s"
+    jqObj.css "#{prefix}transition-duration", "#{seconds}s"
+
 
 class exports.HomeView extends Backbone.View
 
@@ -27,8 +29,8 @@ class exports.HomeView extends Backbone.View
     @trigger "steep", current
 
     current.incr_count()
-    setAnimationDuration steep_content, steeping_secs
-    steep_content.addClass BREWING_CLASS
+    setAnimationDuration $('#fluid'), steeping_secs
+    # steep_content.addClass BREWING_CLASS
 
     # stopwatch updater
     # timer = new Timer()
@@ -37,6 +39,6 @@ class exports.HomeView extends Backbone.View
     # timer.start()
 
     setTimeout (->
-      steep_content.removeClass BREWING_CLASS
+      # steep_content.removeClass BREWING_CLASS
       # clearInterval interval
     ), steeping_secs * 1000

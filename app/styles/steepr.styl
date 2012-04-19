@@ -1,27 +1,5 @@
 @import 'nib'
 
-@-webkit-keyframes greentea {
-  0%   { background: white }
-  25%  { background: yellow }
-  50%  { background: #acd373 }
-  75%  { background: #005e20 }
-  100% { background: #736357 }
-}
-@-moz-keyframes greentea {
-  0%   { background: white }
-  25%  { background: yellow }
-  50%  { background: #acd373 }
-  75%  { background: #005e20 }
-  100% { background: #736357 }
-}
-@-ms-keyframes greentea {
-  0%   { background: white }
-  25%  { background: yellow }
-  50%  { background: #acd373 }
-  75%  { background: #005e20 }
-  100% { background: #736357 }
-}
-
 animation-name()
   -webkit-animation-name arguments
   -moz-animation-name arguments
@@ -34,10 +12,22 @@ animation-timing-function()
   -ms-animation-timing-function arguments
   animation-timing-function arguments
 
-/*.brewing
-  animation-name(greentea)
-  animation-timing-function(linear)
-*/
+
+
+#fluid
+  left 48%
+  top 200px
+  height 50px
+  width 50px
+  background rgba(255,255,255,0)
+  position absolute
+  transition-property transform
+  transition-timing-function linear
+  border-radius 115px
+  &.brewing
+    animation-name(greentea)
+    animation-timing-function(linear)
+    transform scale(4.6)
 
 /* swipe default styles */
 .swipe
@@ -75,9 +65,9 @@ inset-background(color)
 
 #timer
   padding 70px 0
-  background url("../images/loose_green.png") no-repeat center center
+  background url("../images/tea-with-mug.png") no-repeat center center
   .inner
-    background #eee
+    background rgba(238,238,238,.5)
     position relative
     text-align center
     padding 40px
