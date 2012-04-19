@@ -12,7 +12,7 @@ class exports.Home_view extends Backbone.View
 		"pageshow #steep" : "steep"
 
 	initialize: ->
-		console.log "steepr view started"
+		console.log "home view started"
 
 	steep: (e, data) ->
 		steep_content = $("#steep .content")

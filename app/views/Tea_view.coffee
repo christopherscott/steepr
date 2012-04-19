@@ -10,7 +10,7 @@ class exports.Tea_view extends Backbone.View
 
 	# re-render with any model change (any attribute)
 	initialize: ->
-		@model.bind "change", @render, this
+		@model.on "change", @render, this
 
 	render: ->
 		$(@el).html @template @model.toJSON()
