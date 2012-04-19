@@ -2560,28 +2560,35 @@ span.ui-slider-label { position: absolute; text-align: center; width: 100%; over
 span.ui-slider-label-a { z-index: 1; left: 0; text-indent: -1.5em; }
 span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
 .ui-slider-inline { width: 120px; display: inline-block; }
-@-webkit-keyframes greentea{0%{background:#fff}
-25%{background:#ff0}
-50%{background:#acd373}
-75%{background:#005e20}
-100%{background:#736357}
-}@-moz-keyframes greentea{0%{background:#fff}
-25%{background:#ff0}
-50%{background:#acd373}
-75%{background:#005e20}
-100%{background:#736357}
-}@-ms-keyframes greentea{0%{background:#fff}
-25%{background:#ff0}
-50%{background:#acd373}
-75%{background:#005e20}
-100%{background:#736357}
-}.swipe ol,.swipe ul{margin:0;padding:0}
+@-webkit-keyframes greentea {
+  0%   { background: rgba(255,255,255,0) }
+  25%  { background: yellow }
+  50%  { background: #acd373 }
+  75%  { background: #005e20 }
+  100% { background: #736357 }
+}
+@-moz-keyframes greentea {
+  0%   { background: rgba(255,255,255,0) }
+  25%  { background: yellow }
+  50%  { background: #acd373 }
+  75%  { background: #005e20 }
+  100% { background: #736357 }
+}
+@-ms-keyframes greentea {
+  0% { background: rgba(255,255,255,0) }
+  25%  { background: yellow }
+  50%  { background: #acd373 }
+  75%  { background: #005e20 }
+  100% { background: #736357 }
+}#fluid{left:48%;top:200px;height:50px;width:50px;background:rgba(255,255,255,0.00);position:absolute;-webkit-transition-property:transform;-moz-transition-property:transform;transition-property:transform;-webkit-transition-timing-function:linear;-moz-transition-timing-function:linear;transition-timing-function:linear;-webkit-border-radius:115px;-moz-border-radius:115px;border-radius:115px;}
+#fluid.brewing{-webkit-animation-name:greentea;-moz-animation-name:greentea;-ms-animation-name:greentea;animation-name:greentea;-webkit-animation-timing-function:linear;-moz-animation-timing-function:linear;-ms-animation-timing-function:linear;animation-timing-function:linear;-webkit-transform:scale(4.6);-moz-transform:scale(4.6);transform:scale(4.6)}
+.swipe ol,.swipe ul{margin:0;padding:0}
 .swipe li div,.swipe div div div{margin:0 10px;padding:20px 10px;font-weight:bold;color:#333;text-shadow:0 1px #fff;font-size:20px;text-align:center;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;background:#fff}
 #home .content{padding:0}
 #home #steep-button{background:#fff url("../images/bgnoise_lg.png") repeat;-webkit-box-shadow:0 1px 5px #999 inset;-moz-box-shadow:0 1px 5px #999 inset;box-shadow:0 1px 5px #999 inset;padding:20px}
 #steep .content{padding:0;background:#fff url("../images/bgnoise_lg.png") repeat}
-#timer{padding:70px 0;background:url("../images/loose_green.png") no-repeat center center;}
-#timer .inner{background:#eee;position:relative;text-align:center;padding:40px;-webkit-border-radius:125px;-moz-border-radius:125px;border-radius:125px;height:150px;width:150px;margin:0 auto;-webkit-box-shadow:0 0 10px #000;-moz-box-shadow:0 0 10px #000;box-shadow:0 0 10px #000;text-shadow:0 2px #fff;border:1px solid #999;}
+#timer{padding:70px 0;background:url("../images/tea-with-mug.png") no-repeat center center;}
+#timer .inner{background:rgba(238,238,238,0.50);position:relative;text-align:center;padding:40px;-webkit-border-radius:125px;-moz-border-radius:125px;border-radius:125px;height:150px;width:150px;margin:0 auto;-webkit-box-shadow:0 0 10px #000;-moz-box-shadow:0 0 10px #000;box-shadow:0 0 10px #000;text-shadow:0 2px #fff;border:1px solid #999;}
 #timer .inner p{margin:0 0 90px;font-size:32px;font-family:"WisdomScriptAIRegular";}
 #timer .inner p.tea{margin-top:-10px}
 #timer .inner p .steeping{margin-top:0}

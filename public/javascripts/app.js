@@ -58,7 +58,8 @@
 
   setAnimationDuration = function(jqObj, seconds) {
     return ["-webkit-", "-moz-", "-ms-", ""].forEach(function(prefix) {
-      return jqObj.css("" + prefix + "animation-duration", "" + seconds + "s");
+      jqObj.css("" + prefix + "animation-duration", "" + seconds + "s");
+      return jqObj.css("" + prefix + "transition-duration", "" + seconds + "s");
     });
   };
 
@@ -93,11 +94,8 @@
       steeping_secs = times[(count < last ? count : last)];
       this.trigger("steep", current);
       current.incr_count();
-      setAnimationDuration(steep_content, steeping_secs);
-      steep_content.addClass(BREWING_CLASS);
-      return setTimeout((function() {
-        return steep_content.removeClass(BREWING_CLASS);
-      }), steeping_secs * 1000);
+      setAnimationDuration($('#fluid'), steeping_secs);
+      return setTimeout((function() {}), steeping_secs * 1000);
     };
 
     return HomeView;
@@ -441,30 +439,36 @@
   "views/SteepView": function(exports, require, module) {
     (function() {
   var SteepTemplate,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-  SteepTemplate = require("./templates/steep");
+  SteepTemplate = require('./templates/steep');
 
   exports.SteepView = (function(_super) {
 
     __extends(SteepView, _super);
 
     function SteepView() {
+      this.startTimer = __bind(this.startTimer, this);
+      this.render = __bind(this.render, this);
       SteepView.__super__.constructor.apply(this, arguments);
     }
 
-    SteepView.prototype.el = $("#steep");
-
-    SteepView.prototype.template = SteepTemplate;
+    SteepView.prototype.el = $('#steep');
 
     SteepView.prototype.initialize = function(options) {
-      return app.home_view.on("steep", this.render, this);
+      app.home_view.on('steep', this.render);
+      return app.home_view.on('steep', this.startTimer, this);
     };
 
     SteepView.prototype.render = function(active) {
-      console.log(active);
-      return $(this.el).html(this.template(active.toJSON()));
+      return this.$('.tea').html(active.get('name'));
+    };
+
+    SteepView.prototype.startTimer = function() {
+      console.log('timer started');
+      return this.$('#fluid').addClass('brewing');
     };
 
     return SteepView;
@@ -565,27 +569,6 @@
   }
 }));
 (this.require.define({
-  "views/templates/tea": function(exports, require, module) {
-    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
-
-
-  buffer += "<div>\n  <h2>";
-  foundHelper = helpers.name;
-  stack1 = foundHelper || depth0.name;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</h2>\n  <p>steepings: ";
-  foundHelper = helpers.count;
-  stack1 = foundHelper || depth0.count;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "count", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</p>\n</div>";
-  return buffer;});
-  }
-}));
-(this.require.define({
   "views/templates/steep": function(exports, require, module) {
     module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -603,6 +586,27 @@
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
   buffer += escapeExpression(stack1) + "</p>\n      <time>1<b>:</b>15</time>\n      <p class=\"steeping\">steeping</p>\n    </div>\n  </div>\n</div>";
+  return buffer;});
+  }
+}));
+(this.require.define({
+  "views/templates/tea": function(exports, require, module) {
+    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div>\n  <h2>";
+  foundHelper = helpers.name;
+  stack1 = foundHelper || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</h2>\n  <p>steepings: ";
+  foundHelper = helpers.count;
+  stack1 = foundHelper || depth0.count;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "count", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</p>\n</div>";
   return buffer;});
   }
 }));

@@ -1,0 +1,21 @@
+@-webkit-keyframes greentea {
+  0%   { background: rgba(255,255,255,0) }
+  25%  { background: yellow }
+  50%  { background: #acd373 }
+  75%  { background: #005e20 }
+  100% { background: #736357 }
+}
+@-moz-keyframes greentea {
+  0%   { background: rgba(255,255,255,0) }
+  25%  { background: yellow }
+  50%  { background: #acd373 }
+  75%  { background: #005e20 }
+  100% { background: #736357 }
+}
+@-ms-keyframes greentea {
+  0% { background: rgba(255,255,255,0) }
+  25%  { background: yellow }
+  50%  { background: #acd373 }
+  75%  { background: #005e20 }
+  100% { background: #736357 }
+}
