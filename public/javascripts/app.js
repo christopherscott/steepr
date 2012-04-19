@@ -97,34 +97,6 @@
   }
 }));
 (this.require.define({
-  "models/Steeping": function(exports, require, module) {
-    (function() {
-  var __hasProp = Object.prototype.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-  exports.Steeping = (function(_super) {
-
-    __extends(Steeping, _super);
-
-    function Steeping() {
-      Steeping.__super__.constructor.apply(this, arguments);
-    }
-
-    Steeping.prototype.defaults = {
-      type: "Earl Gray",
-      timestamp: "Fri Apr 06 2012 09:04:03 GMT-0400 (EDT)",
-      count: 0
-    };
-
-    return Steeping;
-
-  })(Backbone.Model);
-
-}).call(this);
-
-  }
-}));
-(this.require.define({
   "collections/Teas": function(exports, require, module) {
     (function() {
   var DEFAULT_TEAS, Tea,
@@ -146,13 +118,16 @@
     Teas.prototype.model = Tea;
 
     Teas.prototype.activate = function(type) {
+      var session;
+      session = app.session;
       this.each(function(model) {
         return model.set("active", false);
       });
       return _.each(this.where({
         name: type
       }), function(model) {
-        return model.set("active", true);
+        model.set("active", true);
+        return session.set("current", model);
       });
     };
 
@@ -212,6 +187,34 @@
       index: 4
     }
   ];
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "models/Steeping": function(exports, require, module) {
+    (function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  exports.Steeping = (function(_super) {
+
+    __extends(Steeping, _super);
+
+    function Steeping() {
+      Steeping.__super__.constructor.apply(this, arguments);
+    }
+
+    Steeping.prototype.defaults = {
+      type: "Earl Gray",
+      timestamp: "Fri Apr 06 2012 09:04:03 GMT-0400 (EDT)",
+      count: 0
+    };
+
+    return Steeping;
+
+  })(Backbone.Model);
 
 }).call(this);
 
@@ -286,7 +289,7 @@
 (this.require.define({
   "initialize": function(exports, require, module) {
     (function() {
-  var BrunchApplication, Home_view, TeaList_view, Teas,
+  var BrunchApplication, Home_view, SteepView, TeaList_view, Teas,
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
@@ -297,6 +300,8 @@
   Teas = require("./collections/Teas").Teas;
 
   TeaList_view = require("./views/TeaList_view").TeaList_view;
+
+  SteepView = require("./views/Steep_view").SteepView;
 
   exports.Application = (function(_super) {
 
@@ -322,6 +327,10 @@
         error: function(coll, resp) {
           return console.log("Fetch Error: " + arguments);
         }
+      });
+      this.session = new Backbone.Model;
+      this.steep_view = new SteepView({
+        model: this.session
       });
       doc = document.documentElement;
       doc.className = doc.className.replace(/\bno-js/, "js");
@@ -368,7 +377,7 @@
     };
 
     Home_view.prototype.initialize = function() {
-      return console.log("steepr view started");
+      return console.log("home view started");
     };
 
     Home_view.prototype.steep = function(e, data) {
@@ -423,7 +432,8 @@
 (this.require.define({
   "views/Steep_view": function(exports, require, module) {
     (function() {
-  var __hasProp = Object.prototype.hasOwnProperty,
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
   exports.SteepView = (function(_super) {
@@ -431,8 +441,23 @@
     __extends(SteepView, _super);
 
     function SteepView() {
+      this.render = __bind(this.render, this);
       SteepView.__super__.constructor.apply(this, arguments);
     }
+
+    SteepView.prototype.el = $("#steep");
+
+    SteepView.prototype.initialize = function(options) {
+      console.log("steep view initializing");
+      console.log(options);
+      console.log(this.model);
+      return this.model.on("change", this.render, this);
+    };
+
+    SteepView.prototype.render = function() {
+      console.log("steepView rendering");
+      return this.$("#current-tea").html(this.model.get("current").get("name"));
+    };
 
     return SteepView;
 
@@ -443,24 +468,41 @@
   }
 }));
 (this.require.define({
-  "views/templates/tea": function(exports, require, module) {
-    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+  "views/Tea_view": function(exports, require, module) {
+    (function() {
+  var TeaTemplate,
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
+  TeaTemplate = require("./templates/tea");
 
-  buffer += "<div>\n  <h2>";
-  foundHelper = helpers.name;
-  stack1 = foundHelper || depth0.name;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</h2>\n  <p>steepings: ";
-  foundHelper = helpers.count;
-  stack1 = foundHelper || depth0.count;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "count", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</p>\n</div>";
-  return buffer;});
+  exports.Tea_view = (function(_super) {
+
+    __extends(Tea_view, _super);
+
+    function Tea_view() {
+      Tea_view.__super__.constructor.apply(this, arguments);
+    }
+
+    Tea_view.prototype.tagName = "li";
+
+    Tea_view.prototype.template = TeaTemplate;
+
+    Tea_view.prototype.initialize = function() {
+      return this.model.on("change", this.render, this);
+    };
+
+    Tea_view.prototype.render = function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    };
+
+    return Tea_view;
+
+  })(Backbone.View);
+
+}).call(this);
+
   }
 }));
 (this.require.define({
@@ -515,40 +557,23 @@
   }
 }));
 (this.require.define({
-  "views/Tea_view": function(exports, require, module) {
-    (function() {
-  var TeaTemplate,
-    __hasProp = Object.prototype.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+  "views/templates/tea": function(exports, require, module) {
+    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
 
-  TeaTemplate = require("./templates/tea");
 
-  exports.Tea_view = (function(_super) {
-
-    __extends(Tea_view, _super);
-
-    function Tea_view() {
-      Tea_view.__super__.constructor.apply(this, arguments);
-    }
-
-    Tea_view.prototype.tagName = "li";
-
-    Tea_view.prototype.template = TeaTemplate;
-
-    Tea_view.prototype.initialize = function() {
-      return this.model.bind("change", this.render, this);
-    };
-
-    Tea_view.prototype.render = function() {
-      $(this.el).html(this.template(this.model.toJSON()));
-      return this;
-    };
-
-    return Tea_view;
-
-  })(Backbone.View);
-
-}).call(this);
-
+  buffer += "<div>\n  <h2>";
+  foundHelper = helpers.name;
+  stack1 = foundHelper || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</h2>\n  <p>steepings: ";
+  foundHelper = helpers.count;
+  stack1 = foundHelper || depth0.count;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "count", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</p>\n</div>";
+  return buffer;});
   }
 }));

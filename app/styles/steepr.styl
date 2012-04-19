@@ -34,9 +34,10 @@ animation-timing-function()
   -ms-animation-timing-function arguments
   animation-timing-function arguments
 
-.brewing
+/*.brewing
   animation-name(greentea)
   animation-timing-function(linear)
+*/
 
 /* swipe default styles */
 .swipe
@@ -70,11 +71,13 @@ inset-background(color)
 #steep
   .content
     padding 0
+    inset-background(white)
 
 #timer
   padding 70px 0
+  background url("../images/loose_green.png") no-repeat center center
   .inner
-    inset-background(white)
+    background #eee
     position relative
     text-align center
     padding 40px
@@ -82,8 +85,9 @@ inset-background(color)
     height 150px
     width 150px
     margin 0 auto
-    box-shadow 0 1px 5px #000 inset
+    box-shadow 0 0px 10px #000
     text-shadow 0 2px #fff
+    border 1px solid #999
 
     p
       margin 0 0 90px
