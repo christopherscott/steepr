@@ -14,20 +14,6 @@ animation-timing-function()
 
 
 
-#fluid
-  left 48%
-  top 200px
-  height 50px
-  width 50px
-  background rgba(255,255,255,0)
-  position absolute
-  transition-property transform
-  transition-timing-function linear
-  border-radius 115px
-  &.brewing
-    animation-name(greentea)
-    animation-timing-function(linear)
-    transform scale(4.6)
 
 /* swipe default styles */
 .swipe
@@ -54,20 +40,89 @@ inset-background(color)
   .content
     padding 0
   #steep-button
+    #steepit
+      background linear-gradient(top, #6f8447, #506e4c)
+      color #e0e0e0
+      text-shadow 0 -1px #000
+
     inset-background(white) 
     box-shadow 0 1px 5px #999 inset
-    padding 20px
+    padding 30px
+    .ui-btn-corner-all
+      border-radius 4em
+    .ui-btn-inner
+      padding 15px
+      .ui-btn-text
+        text-transform uppercase
+        font-weight bold
+        font-size 18px
 
 #steep
   .content
     padding 0
     inset-background(white)
 
+centered-bgimage(uri)
+  background url(uri) no-repeat center center
+
+
+
+#leaves
+  margin 0 auto
+  height 380px
+  width 387px
+  text-align center
+  centered-bgimage('../images/leaves.png')
+
+  #mug
+    position relative
+    z-index 80
+    height 380px
+    width 387px
+    centered-bgimage('../images/mug-trans.png')
+
+  #time
+    top -245px
+    z-index 100
+    position relative
+    text-shadow 0 -1px #270e0a
+    width 200px
+    color #e0e0e0
+    font-size 88px
+    font-family "FranchiseRegular"
+    b
+      color #8a470a
+
+  #tea
+    top -308px
+    z-index 90
+    position relative
+    width 100%
+    #fluid
+      margin 0 auto
+      height 20px
+      width 20px
+      background rgba(255,255,255,1)
+      transition-property transform
+      transition-timing-function linear
+      border-radius 115px
+
+  /* brewing animations */
+  &.brewing
+    #tea #fluid
+      animation-name(greentea)
+      animation-timing-function(linear)
+      transform scale(10.5)
+      background rgba(106,65,36,.8)
+    #mug
+      transform rotate(360deg)
+      transition all 20s ease-out
+
+
 #timer
   padding 70px 0
   background url("../images/tea-with-mug.png") no-repeat center center
   .inner
-    background rgba(238,238,238,.5)
     position relative
     text-align center
     padding 40px
@@ -89,13 +144,5 @@ inset-background(color)
         margin-top 0
 
     time
-      position absolute
-      width 200px
-      top 60px
-      left 15px
-      color #362925
-      font-size 88px
-      font-family "FranchiseRegular"
-      b
-        color #7d7776
+
 

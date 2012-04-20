@@ -1,44 +1,30 @@
-BREWING_CLASS = "brewing"
-
-setAnimationDuration = (jqObj, seconds) ->
-  [ "-webkit-", "-moz-", "-ms-", "" ].forEach (prefix) ->
-    jqObj.css "#{prefix}animation-duration", "#{seconds}s"
-    jqObj.css "#{prefix}transition-duration", "#{seconds}s"
-
+BREWING_CLASS = 'brewing'
 
 class exports.HomeView extends Backbone.View
 
-  el: $("#steepr")
+  el: $('#steepr')
 
-  events:
-    "pageshow #steep" : "steep"
+  events: {}
+    # 'pageshow #steep' : 'steep'
 
   initialize: ->
-    console.log "home view started"
-    @trigger "something", name: "chris"
+    console.log 'home view started'
+    home_view = this
+    new MBP.fastButton $('#steepit')[0], ->
+      $.mobile.changePage '#steep', transition: 'slide'
+      home_view.steep()
+      false
+
 
   steep: (e, data) ->
-    steep_content = $("#steep .content")
+    steep_content = $('#steep .content')
     current = app.teas.getActive()
-    times = current.get "times"
-    count = current.get "count"
+    times = current.get 'times'
+    count = current.get 'count'
     last = times.length - 1
     steeping_secs = times[(if count < last then count else last)]
 
-    # todo
-    @trigger "steep", current
+    @trigger 'steep', current, steeping_secs
 
     current.incr_count()
-    setAnimationDuration $('#fluid'), steeping_secs
-    # steep_content.addClass BREWING_CLASS
-
-    # stopwatch updater
-    # timer = new Timer()
-    # interval = timer.set("total", steeping_secs)
-    # console.log interval
-    # timer.start()
-
-    setTimeout (->
-      # steep_content.removeClass BREWING_CLASS
-      # clearInterval interval
-    ), steeping_secs * 1000
+    
