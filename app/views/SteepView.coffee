@@ -27,10 +27,12 @@ class exports.SteepView extends Backbone.View
     console.log 'timer started'
     {seconds, minutes} = @parseTime secs
     time = @$ '#time'
-    setAnimationDuration $('#fluid'), seconds--
+    setAnimationDuration $('#tea'), secs
+    setAnimationDuration $('#mug'), secs
+    seconds--
 
     @interval = interval = setInterval ->
-      if seconds > 1
+      if seconds > 0
         seconds--
       else
         if minutes
@@ -38,7 +40,7 @@ class exports.SteepView extends Backbone.View
           seconds = 59
         else
           time.html ''
-          time.html 'done!'
+          time.html 'done'
           return clearInterval interval
       # this is odd, not sure if i'm doing something wrong
       # but the timer won't update reliably unless i insert
@@ -49,7 +51,7 @@ class exports.SteepView extends Backbone.View
     , 1000
 
     @$('#leaves').addClass 'brewing'
-    @$('#leaves #time').html "#{minutes}:#{seconds}"
+    time.html "#{minutes}:#{seconds}"
 
   parseTime: (secs) ->
     seconds = secs % 60

@@ -12,26 +12,70 @@ animation-timing-function()
   -ms-animation-timing-function arguments
   animation-timing-function arguments
 
+#steepr section
+  background white url('../images/bgnoise_lg.png')
 
+.ui-header
+  margin 0
+  background none
+  border none
+  height 11px
+  .ribbon
+    position relative
+    display block
+    background url('../images/stitch.png') repeat-x bottom
+    height 11px
+    z-index 100
 
+.ui-header .ui-title
+  position relative
+  top -5px
+  padding 15px 0 20px 0
+  /* http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/ */
+  /*  text-indent 100%
+  white-space nowrap
+  overflow hidden
+  */
+  margin 0 auto
+  width 94px
+  background url('../images/tag.png') no-repeat bottom center
+  color black
+  z-index 90
+  text-shadow none
 
+#tea-list 
+  margin 70px 0 0 0
 /* swipe default styles */
 .swipe
   ol, ul
-    margin 0
+    margin 0 0 5px 0
     padding 0
 
-  li div,
-  div div div
+  li div
+    position relative
     margin 0 10px
-    padding 20px 10px
+    padding 50px 10px 20px
     font-weight bold
     color #333
     text-shadow 0 1px #fff
-    font-size 20px
+    font-size 24px
     text-align center
-    border-radius 5px
     background white
+    box-shadow 0 1px 5px #999
+
+    /* background linear-gradient(left, 0% #e5e5e5, 30% white, 70% white, 100% #e5e5e5) */
+    b
+      display block
+      width 28px
+      height: 130px
+      position absolute
+      top 62px
+      &.left
+        left 10px
+      &.right 
+        right 10px
+
+      background url('../images/grabbies.png') no-repeat center center
 
 inset-background(color)
   background color url("../images/bgnoise_lg.png") repeat
@@ -40,27 +84,23 @@ inset-background(color)
   .content
     padding 0
   #steep-button
+    padding 30px
     #steepit
-      background linear-gradient(top, #6f8447, #506e4c)
+      background linear-gradient(top, #97a528, #1a6242)
       color #e0e0e0
       text-shadow 0 -1px #000
-
-    inset-background(white) 
-    box-shadow 0 1px 5px #999 inset
-    padding 30px
     .ui-btn-corner-all
       border-radius 4em
     .ui-btn-inner
-      padding 15px
+      padding 10px
       .ui-btn-text
         text-transform uppercase
         font-weight bold
-        font-size 18px
+        font-size 21px
 
 #steep
   .content
     padding 0
-    inset-background(white)
 
 centered-bgimage(uri)
   background url(uri) no-repeat center center
@@ -69,22 +109,36 @@ centered-bgimage(uri)
 
 #leaves
   margin 0 auto
-  height 380px
-  width 387px
-  text-align center
   centered-bgimage('../images/leaves.png')
 
   #mug
     position relative
+    margin 0 auto
+    top 67px
     z-index 80
-    height 380px
-    width 387px
+    height 315px
+    width 245px
     centered-bgimage('../images/mug-trans.png')
 
-  #time
-    top -245px
-    z-index 100
+  #tea
+    top -208px
+    z-index 90
     position relative
+    margin 0 auto
+    height 20px
+    width 20px
+    background rgba(255,255,255,1)
+    transition-property transform
+    transition-timing-function linear
+    border-radius 115px
+
+  #time
+    top -144px
+    position relative
+    display block
+    text-align center
+    margin 0 auto
+    z-index 100
     text-shadow 0 -1px #270e0a
     width 200px
     color #e0e0e0
@@ -93,31 +147,17 @@ centered-bgimage(uri)
     b
       color #8a470a
 
-  #tea
-    top -308px
-    z-index 90
-    position relative
-    width 100%
-    #fluid
-      margin 0 auto
-      height 20px
-      width 20px
-      background rgba(255,255,255,1)
-      transition-property transform
-      transition-timing-function linear
-      border-radius 115px
-
   /* brewing animations */
   &.brewing
-    #tea #fluid
+    #tea
       animation-name(greentea)
       animation-timing-function(linear)
       transform scale(10.5)
       background rgba(106,65,36,.8)
     #mug
       transform rotate(360deg)
-      transition all 20s ease-out
-
+      transition-property transform
+      transition-timing-function ease-out
 
 #timer
   padding 70px 0

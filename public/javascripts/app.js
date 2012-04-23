@@ -482,9 +482,11 @@
       console.log('timer started');
       _ref = this.parseTime(secs), seconds = _ref.seconds, minutes = _ref.minutes;
       time = this.$('#time');
-      setAnimationDuration($('#fluid'), seconds--);
+      setAnimationDuration($('#tea'), secs);
+      setAnimationDuration($('#mug'), secs);
+      seconds--;
       this.interval = interval = setInterval(function() {
-        if (seconds > 1) {
+        if (seconds > 0) {
           seconds--;
         } else {
           if (minutes) {
@@ -492,7 +494,7 @@
             seconds = 59;
           } else {
             time.html('');
-            time.html('done!');
+            time.html('done');
             return clearInterval(interval);
           }
         }
@@ -500,7 +502,7 @@
         return time.html("" + minutes + ":" + seconds);
       }, 1000);
       this.$('#leaves').addClass('brewing');
-      return this.$('#leaves #time').html("" + minutes + ":" + seconds);
+      return time.html("" + minutes + ":" + seconds);
     };
 
     SteepView.prototype.parseTime = function(secs) {
@@ -611,6 +613,27 @@
   }
 }));
 (this.require.define({
+  "views/templates/tea": function(exports, require, module) {
+    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div>\n  <h2>";
+  foundHelper = helpers.name;
+  stack1 = foundHelper || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</h2>\n  <p>steepings: ";
+  foundHelper = helpers.count;
+  stack1 = foundHelper || depth0.count;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "count", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</p>\n  <b class=\"left\"></b>\n  <b class=\"right\"></b>\n</div>";
+  return buffer;});
+  }
+}));
+(this.require.define({
   "views/templates/steep": function(exports, require, module) {
     module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -628,27 +651,6 @@
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
   buffer += escapeExpression(stack1) + "</p>\n      <time>1<b>:</b>15</time>\n      <p class=\"steeping\">steeping</p>\n    </div>\n  </div>\n</div>";
-  return buffer;});
-  }
-}));
-(this.require.define({
-  "views/templates/tea": function(exports, require, module) {
-    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
-
-
-  buffer += "<div>\n  <h2>";
-  foundHelper = helpers.name;
-  stack1 = foundHelper || depth0.name;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</h2>\n  <p>steepings: ";
-  foundHelper = helpers.count;
-  stack1 = foundHelper || depth0.count;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "count", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</p>\n</div>";
   return buffer;});
   }
 }));
