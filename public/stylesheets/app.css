@@ -2581,10 +2581,8 @@ span.ui-slider-label-a { z-index: 1; left: 0; text-indent: -1.5em; }
 span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
 .ui-slider-inline { width: 120px; display: inline-block; }
 #steepr section{background:#fff url("../images/bgnoise_lg.png")}
-.ui-header{margin:0;background:none;border:none;height:11px;}
-.ui-header .ribbon{position:relative;display:block;background:url("../images/stitch.png") repeat-x bottom;height:11px;z-index:100}
-.ui-header .ui-title{position:relative;top:-5px;padding:15px 0 20px 0;margin:0 auto;width:94px;background:url("../images/tag.png") no-repeat bottom center;color:#000;z-index:90;text-shadow:none}
-#tea-list{margin:70px 0 0 0}
+.ui-header{background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #5f4e40), color-stop(1, #332214));background:-webkit-linear-gradient(top, #5f4e40 0%, #332214 100%);background:-moz-linear-gradient(top, #5f4e40 0%, #332214 100%);background:linear-gradient(top, #5f4e40 0%, #332214 100%);-webkit-box-shadow:0 1px 5px #999;-moz-box-shadow:0 1px 5px #999;box-shadow:0 1px 5px #999}
+#tea-list{margin:35px 0 0 0}
 .swipe ol,.swipe ul{margin:0 0 5px 0;padding:0}
 .swipe li div{position:relative;margin:0 10px;padding:50px 10px 20px;font-weight:bold;color:#333;text-shadow:0 1px #fff;font-size:24px;text-align:center;background:#fff;-webkit-box-shadow:0 1px 5px #999;-moz-box-shadow:0 1px 5px #999;box-shadow:0 1px 5px #999;}
 .swipe li div b{display:block;width:28px;height:130px;position:absolute;top:62px;background:url("../images/grabbies.png") no-repeat center center}
@@ -2596,13 +2594,13 @@ span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
 #home #steep-button .ui-btn-corner-all{-webkit-border-radius:4em;-moz-border-radius:4em;border-radius:4em}
 #home #steep-button .ui-btn-inner{padding:10px;}
 #home #steep-button .ui-btn-inner .ui-btn-text{text-transform:uppercase;font-weight:bold;font-size:21px}
-#steep .content{padding:0}
-#leaves{margin:0 auto;background:url("../images/leaves.png") no-repeat center center;}
-#leaves #mug{position:relative;margin:0 auto;top:67px;z-index:80;height:315px;width:245px;background:url("../images/mug-trans.png") no-repeat center center}
-#leaves #tea{top:-208px;z-index:90;position:relative;margin:0 auto;height:20px;width:20px;background:#fff;-webkit-transition-property:transform;-moz-transition-property:transform;transition-property:transform;-webkit-transition-timing-function:linear;-moz-transition-timing-function:linear;transition-timing-function:linear;-webkit-border-radius:115px;-moz-border-radius:115px;border-radius:115px}
-#leaves #time{top:-144px;position:relative;display:block;text-align:center;margin:0 auto;z-index:100;text-shadow:0 -1px #270e0a;width:200px;color:#e0e0e0;font-size:88px;font-family:"FranchiseRegular";}
+#steep .content{padding:0;overflow:hidden}
+#leaves{height:380px;margin:0 auto;background:url("../images/leaves.png") no-repeat center center;}
+#leaves #mug{position:relative;margin:0 auto;top:32px;z-index:80;height:315px;width:245px;background:url("../images/mug-trans.png") no-repeat center center}
+#leaves #tea{top:-337px;left:-1px;z-index:90;position:relative;margin:0 auto;height:210px;width:210px;background:rgba(255,255,255,0.10);-webkit-transition-property:transform;-moz-transition-property:transform;transition-property:transform;-webkit-transition-timing-function:linear;-moz-transition-timing-function:linear;transition-timing-function:linear;-webkit-border-radius:115px;-moz-border-radius:115px;border-radius:115px}
+#leaves #time{top:-180px;position:relative;display:block;text-align:center;margin:0 auto;z-index:100;text-shadow:0 -1px #270e0a;width:200px;color:#e0e0e0;font-size:88px;font-family:"FranchiseRegular";}
 #leaves #time b{color:#8a470a}
-#leaves.brewing #tea{-webkit-animation-name:greentea;-moz-animation-name:greentea;-ms-animation-name:greentea;animation-name:greentea;-webkit-animation-timing-function:linear;-moz-animation-timing-function:linear;-ms-animation-timing-function:linear;animation-timing-function:linear;-webkit-transform:scale(10.5);-moz-transform:scale(10.5);transform:scale(10.5);background:rgba(106,65,36,0.80)}
+#leaves.brewing #tea{-webkit-animation-name:greentea;-moz-animation-name:greentea;-ms-animation-name:greentea;animation-name:greentea;-webkit-animation-timing-function:linear;-moz-animation-timing-function:linear;-ms-animation-timing-function:linear;animation-timing-function:linear;background:rgba(106,65,36,0.80)}
 #leaves.brewing #mug{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);transform:rotate(360deg);-webkit-transition-property:transform;-moz-transition-property:transform;transition-property:transform;-webkit-transition-timing-function:ease-out;-moz-transition-timing-function:ease-out;transition-timing-function:ease-out}
 #timer{padding:70px 0;background:url("../images/tea-with-mug.png") no-repeat center center;}
 #timer .inner{position:relative;text-align:center;padding:40px;-webkit-border-radius:125px;-moz-border-radius:125px;border-radius:125px;height:150px;width:150px;margin:0 auto;-webkit-box-shadow:0 0 10px #000;-moz-box-shadow:0 0 10px #000;box-shadow:0 0 10px #000;text-shadow:0 2px #fff;border:1px solid #999;time}

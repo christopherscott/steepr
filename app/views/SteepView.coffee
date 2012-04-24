@@ -10,19 +10,26 @@ class exports.SteepView extends Backbone.View
   el: $ '#steep'
   
   events: 
-    "click a[data-rel=back]" : "stopAndClear"
+    "click a[data-rel=back]" : "waitAndClear"
 
   initialize: (options) ->
-    app.home_view.on 'steep', @render
-    app.home_view.on 'steep', @startTimer, this
+    steepr.home_view.on 'steep', @render
+    steepr.home_view.on 'steep', @startTimer, this
 
   render: (active) =>
     @$('.tea').html active.get 'name'
 
-  stopAndClear: ->
-    @$('#leaves').removeClass('brewing').find('#time').html ''
-    clearInterval @interval
-    
+  waitAndClear: ->
+    interval = @interval
+    that = this
+    console.log interval
+    $(document).on('pagechange', ->
+      console.log "clearing interval : #{interval}"
+      clearInterval interval
+      that.$('#leaves').removeClass('brewing').find('#time').html ''
+      $(document).off('pagechange')
+    )
+
   startTimer: (active, secs) =>
     console.log 'timer started'
     {seconds, minutes} = @parseTime secs

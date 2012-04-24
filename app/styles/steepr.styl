@@ -16,6 +16,11 @@ animation-timing-function()
   background white url('../images/bgnoise_lg.png')
 
 .ui-header
+  background linear-gradient(top, #5f4e40, #332214)
+  box-shadow 0 1px 5px #999
+
+/*
+.ui-header
   margin 0
   background none
   border none
@@ -31,20 +36,20 @@ animation-timing-function()
   position relative
   top -5px
   padding 15px 0 20px 0
-  /* http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/ */
+  http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/
   /*  text-indent 100%
   white-space nowrap
   overflow hidden
-  */
+  
   margin 0 auto
   width 94px
   background url('../images/tag.png') no-repeat bottom center
   color black
   z-index 90
   text-shadow none
-
+*/
 #tea-list 
-  margin 70px 0 0 0
+  margin 35px 0 0 0
 /* swipe default styles */
 .swipe
   ol, ul
@@ -101,6 +106,7 @@ inset-background(color)
 #steep
   .content
     padding 0
+    overflow hidden
 
 centered-bgimage(uri)
   background url(uri) no-repeat center center
@@ -108,32 +114,34 @@ centered-bgimage(uri)
 
 
 #leaves
+  height 380px
   margin 0 auto
   centered-bgimage('../images/leaves.png')
 
   #mug
     position relative
     margin 0 auto
-    top 67px
+    top 32px
     z-index 80
     height 315px
     width 245px
     centered-bgimage('../images/mug-trans.png')
 
   #tea
-    top -208px
+    top -337px
+    left -1px
     z-index 90
     position relative
     margin 0 auto
-    height 20px
-    width 20px
-    background rgba(255,255,255,1)
+    height 210px
+    width 210px
+    background rgba(255,255,255,.1)
     transition-property transform
     transition-timing-function linear
     border-radius 115px
 
   #time
-    top -144px
+    top -180px
     position relative
     display block
     text-align center
@@ -152,7 +160,7 @@ centered-bgimage(uri)
     #tea
       animation-name(greentea)
       animation-timing-function(linear)
-      transform scale(10.5)
+      /*transform scale(10.5)*/
       background rgba(106,65,36,.8)
     #mug
       transform rotate(360deg)
