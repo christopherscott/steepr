@@ -413,30 +413,6 @@
   }
 }));
 (this.require.define({
-  "views/PreferencesView": function(exports, require, module) {
-    (function() {
-  var __hasProp = Object.prototype.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-  exports.PreferencesView = (function(_super) {
-
-    __extends(PreferencesView, _super);
-
-    function PreferencesView() {
-      PreferencesView.__super__.constructor.apply(this, arguments);
-    }
-
-    PreferencesView.prototype.el = $("#preferences");
-
-    return PreferencesView;
-
-  })(Backbone.View);
-
-}).call(this);
-
-  }
-}));
-(this.require.define({
   "views/SteepView": function(exports, require, module) {
     (function() {
   var SteepTemplate, setAnimationDuration,
@@ -538,36 +514,22 @@
   }
 }));
 (this.require.define({
-  "views/TeaView": function(exports, require, module) {
+  "views/PreferencesView": function(exports, require, module) {
     (function() {
-  var TeaTemplate,
-    __hasProp = Object.prototype.hasOwnProperty,
+  var __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-  TeaTemplate = require("./templates/tea");
+  exports.PreferencesView = (function(_super) {
 
-  exports.TeaView = (function(_super) {
+    __extends(PreferencesView, _super);
 
-    __extends(TeaView, _super);
-
-    function TeaView() {
-      TeaView.__super__.constructor.apply(this, arguments);
+    function PreferencesView() {
+      PreferencesView.__super__.constructor.apply(this, arguments);
     }
 
-    TeaView.prototype.tagName = "li";
+    PreferencesView.prototype.el = $("#preferences");
 
-    TeaView.prototype.template = TeaTemplate;
-
-    TeaView.prototype.initialize = function() {
-      return this.model.on("change", this.render, this);
-    };
-
-    TeaView.prototype.render = function() {
-      $(this.el).html(this.template(this.model.toJSON()));
-      return this;
-    };
-
-    return TeaView;
+    return PreferencesView;
 
   })(Backbone.View);
 
@@ -619,6 +581,44 @@
     };
 
     return TeaListView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "views/TeaView": function(exports, require, module) {
+    (function() {
+  var TeaTemplate,
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  TeaTemplate = require("./templates/tea");
+
+  exports.TeaView = (function(_super) {
+
+    __extends(TeaView, _super);
+
+    function TeaView() {
+      TeaView.__super__.constructor.apply(this, arguments);
+    }
+
+    TeaView.prototype.tagName = "li";
+
+    TeaView.prototype.template = TeaTemplate;
+
+    TeaView.prototype.initialize = function() {
+      return this.model.on("change", this.render, this);
+    };
+
+    TeaView.prototype.render = function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    };
+
+    return TeaView;
 
   })(Backbone.View);
 
