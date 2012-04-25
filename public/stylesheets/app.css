@@ -2613,7 +2613,7 @@ span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
 .swipe ol,.swipe ul{margin:0 0 5px 0;padding:0 0 0 10px}
 .swipe li{position:relative}
 .swipe li div.tea-slide{height:188px;position:relative;margin:0 10px;padding:50px 10px 20px;font-weight:bold;color:#333;text-shadow:0 1px #fff;font-size:24px;text-align:center;background:url("../images/paper-bg.png") repeat-x;}
-.swipe li div.tea-slide h2{color:#005e20;font-size:60px;font-family:"ChunkFiveRegular";margin:0}
+.swipe li div.tea-slide h2{color:#005e20;font-size:60px;font-family:"ChunkFiveRegular";margin:0;font-weight:normal}
 .swipe li div.tea-slide p{font-family:"MuseoSlab500";font-size:16px;color:#2e1300;text-shadow:0 1px 0 #fff;font-weight:normal}
 .swipe li div.tea-slide .count{font-family:"Helvetica Neue","Helvetica","Arial",sans;font-weight:bold;color:#fff;text-shadow:0 1px #999;display:inline-block;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:rgba(184,184,184,0.80);-webkit-box-shadow:0 1px 0 #999 inset,0 1px 0 #fff;-moz-box-shadow:0 1px 0 #999 inset,0 1px 0 #fff;box-shadow:0 1px 0 #999 inset,0 1px 0 #fff;padding:3px 10px 3px}
 #home .content{padding:0}
