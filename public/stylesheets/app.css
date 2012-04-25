@@ -2602,7 +2602,7 @@ span.ui-slider-label-a { z-index: 1; left: 0; text-indent: -1.5em; }
 span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
 .ui-slider-inline { width: 120px; display: inline-block; }
 #steepr section{background:#fff url("../images/bgnoise_lg.png")}
-.ui-header{background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #612800), color-stop(1, #2e1300));background:-webkit-linear-gradient(top, #612800 0%, #2e1300 100%);background:-moz-linear-gradient(top, #612800 0%, #2e1300 100%);background:linear-gradient(top, #612800 0%, #2e1300 100%);-webkit-box-shadow:0 1px 5px #999;-moz-box-shadow:0 1px 5px #999;box-shadow:0 1px 5px #999}
+.ui-header,.ui-foooter{background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #612800), color-stop(1, #2e1300));background:-webkit-linear-gradient(top, #612800 0%, #2e1300 100%);background:-moz-linear-gradient(top, #612800 0%, #2e1300 100%);background:linear-gradient(top, #612800 0%, #2e1300 100%);-webkit-box-shadow:0 1px 5px #999;-moz-box-shadow:0 1px 5px #999;box-shadow:0 1px 5px #999}
 #steepr header{font-family:"MuseoSlab500";font-weight:normal;}
 #steepr header .ui-title{font-size:21px;margin:10px}
 #tea-list{margin:35px 0 0 0}

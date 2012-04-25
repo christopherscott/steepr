@@ -415,6 +415,30 @@
   }
 }));
 (this.require.define({
+  "views/PreferencesView": function(exports, require, module) {
+    (function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  exports.PreferencesView = (function(_super) {
+
+    __extends(PreferencesView, _super);
+
+    function PreferencesView() {
+      PreferencesView.__super__.constructor.apply(this, arguments);
+    }
+
+    PreferencesView.prototype.el = $("#preferences");
+
+    return PreferencesView;
+
+  })(Backbone.View);
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
   "views/SteepView": function(exports, require, module) {
     (function() {
   var SteepTemplate, setAnimationDuration,
@@ -508,30 +532,6 @@
     };
 
     return SteepView;
-
-  })(Backbone.View);
-
-}).call(this);
-
-  }
-}));
-(this.require.define({
-  "views/PreferencesView": function(exports, require, module) {
-    (function() {
-  var __hasProp = Object.prototype.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-  exports.PreferencesView = (function(_super) {
-
-    __extends(PreferencesView, _super);
-
-    function PreferencesView() {
-      PreferencesView.__super__.constructor.apply(this, arguments);
-    }
-
-    PreferencesView.prototype.el = $("#preferences");
-
-    return PreferencesView;
 
   })(Backbone.View);
 
