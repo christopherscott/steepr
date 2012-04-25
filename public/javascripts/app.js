@@ -283,7 +283,8 @@
       name: "Earl Gray",
       times: [50, 60, 90, 90],
       temperature: 120,
-      count: 0,
+      total: 235,
+      round: 1,
       active: false
     };
 
@@ -393,7 +394,8 @@
       this.preferences_view = new PreferencesView;
       this.about_view = new AboutView;
       this.fixFouc();
-      return console.log("application started");
+      console.log("application started");
+      return MBP.hideUrlBarOnLoad();
     };
 
     Steepr.prototype.fixFouc = function() {
@@ -407,6 +409,30 @@
   })(BrunchApplication);
 
   window.steepr = new exports.Steepr;
+
+}).call(this);
+
+  }
+}));
+(this.require.define({
+  "views/PreferencesView": function(exports, require, module) {
+    (function() {
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
+  exports.PreferencesView = (function(_super) {
+
+    __extends(PreferencesView, _super);
+
+    function PreferencesView() {
+      PreferencesView.__super__.constructor.apply(this, arguments);
+    }
+
+    PreferencesView.prototype.el = $("#preferences");
+
+    return PreferencesView;
+
+  })(Backbone.View);
 
 }).call(this);
 
@@ -514,30 +540,6 @@
   }
 }));
 (this.require.define({
-  "views/PreferencesView": function(exports, require, module) {
-    (function() {
-  var __hasProp = Object.prototype.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-  exports.PreferencesView = (function(_super) {
-
-    __extends(PreferencesView, _super);
-
-    function PreferencesView() {
-      PreferencesView.__super__.constructor.apply(this, arguments);
-    }
-
-    PreferencesView.prototype.el = $("#preferences");
-
-    return PreferencesView;
-
-  })(Backbone.View);
-
-}).call(this);
-
-  }
-}));
-(this.require.define({
   "views/TeaListView": function(exports, require, module) {
     (function() {
   var TeaView,
@@ -576,7 +578,8 @@
       return window.swipe = new Swipe(this.el, {
         callback: function(e, index, element) {
           return teas.activate($(element).data("model").get("name"));
-        }
+        },
+        edgeBuffer: 20
       });
     };
 
@@ -654,17 +657,27 @@
   var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div>\n  <h2>";
+  buffer += "<b class=\"left\"></b>\n<div class=\"tea-slide\">\n  <h2>";
   foundHelper = helpers.name;
   stack1 = foundHelper || depth0.name;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</h2>\n  <p>steepings: ";
-  foundHelper = helpers.count;
-  stack1 = foundHelper || depth0.count;
+  buffer += escapeExpression(stack1) + "</h2>\n  <p class=\"round-";
+  foundHelper = helpers.round;
+  stack1 = foundHelper || depth0.round;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "count", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</p>\n  <b class=\"left\"></b>\n  <b class=\"right\"></b>\n</div>";
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "round", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\">Steepings this round: ";
+  foundHelper = helpers.round;
+  stack1 = foundHelper || depth0.round;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "round", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</p>\n  <p>Total steepings: <span class=\"count\">";
+  foundHelper = helpers.total;
+  stack1 = foundHelper || depth0.total;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "total", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</span></p>\n</div>\n<b class=\"right\"></b>";
   return buffer;});
   }
 }));

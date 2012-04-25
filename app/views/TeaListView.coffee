@@ -33,5 +33,6 @@ class exports.TeaListView extends Backbone.View
         # that way the collection can handle logic to ensure
         # only one tea is active at once, and to deactivate
         # other if necessary
-        teas.activate $(element).data("model").get("name")
+        teas.activate $(element).data("model").get("name"),
+      edgeBuffer: 20
     )

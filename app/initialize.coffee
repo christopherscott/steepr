@@ -24,6 +24,8 @@ class exports.Steepr extends BrunchApplication
 
     console.log "application started"
 
+    MBP.hideUrlBarOnLoad()
+
   fixFouc: ->
     # fix for FOUC, using jquery mobile
     doc = document.documentElement

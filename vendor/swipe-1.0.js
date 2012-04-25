@@ -5,6 +5,7 @@
  * Copyright 2011, Licensed GPL & MIT
  *
 */
+
 window.Swipe = function(element, options) {
 
   // return immediately if element doesn't exist
@@ -18,6 +19,7 @@ window.Swipe = function(element, options) {
   this.speed = this.options.speed || 300;
   this.callback = this.options.callback || function() {};
   this.delay = this.options.auto || 0;
+  this.edgeBuffer = this.options.edgeBuffer || 0;
 
   // reference dom elements
   this.container = element;
@@ -72,7 +74,7 @@ Swipe.prototype = {
     var index = this.slides.length;
     while (index--) {
       var el = this.slides[index];
-      el.style.width = (this.width - 20) + 'px';
+      el.style.width = this.width + 'px';
       el.style.display = 'table-cell';
       el.style.verticalAlign = 'top';
     }
@@ -93,8 +95,8 @@ Swipe.prototype = {
     style.webkitTransitionDuration = style.MozTransitionDuration = style.msTransitionDuration = style.OTransitionDuration = style.transitionDuration = duration + 'ms';
 
     // translate to given index position
-    style.webkitTransform = 'translate3d(' + -(index * (this.width - 20)) + 'px,0,0)';
-    style.msTransform = style.MozTransform = style.OTransform = 'translateX(' + -(index * this.width) + 'px)';
+    style.webkitTransform = 'translate3d(' + -(index * this.width) + 'px,0,0)';
+    style.msTransform = style.MozTransform = style.OTransform = 'translateX(' + -(index * (this.width - this.edgeBuffer)) + 'px)';
 
     // set new index to allow for expression arguments
     this.index = index;
@@ -229,7 +231,7 @@ Swipe.prototype = {
           : 1 );                                          // no resistance if false
       
       // translate immediately 1-to-1
-      this.element.style.webkitTransform = 'translate3d(' + (this.deltaX - this.index * this.width) + 'px,0,0)';
+      this.element.style.webkitTransform = 'translate3d(' + (this.deltaX - this.index * (this.width - this.edgeBuffer)) + 'px,0,0)';
 
     }
 

@@ -16,7 +16,7 @@ animation-timing-function()
   background white url('../images/bgnoise_lg.png')
 
 .ui-header
-  background linear-gradient(top, #5f4e40, #332214)
+  background linear-gradient(top, #612800, #2e1300)
   box-shadow 0 1px 5px #999
 
 /*
@@ -48,15 +48,42 @@ animation-timing-function()
   z-index 90
   text-shadow none
 */
+
+#steepr
+  header
+    font-family "MuseoSlab500"
+    font-weight normal
+    .ui-title
+      font-size 21px
+      margin 10px
+
 #tea-list 
   margin 35px 0 0 0
 /* swipe default styles */
 .swipe
+  position relative
+  b
+    display block
+    width 10px
+    height: 300px
+    position absolute
+    top 0
+    &.left
+      left 0
+      background url('../images/perforation-left.png') no-repeat
+    &.right
+      right 0
+      background url('../images/perforation-right.png') no-repeat
+      
+      /* background url('../images/perforation-right.png') no-repeat*/
+  
   ol, ul
     margin 0 0 5px 0
-    padding 0
-
-  li div
+    padding 0 0 0 10px
+  li
+    position relative
+  li div.tea-slide
+    height 188px
     position relative
     margin 0 10px
     padding 50px 10px 20px
@@ -65,22 +92,31 @@ animation-timing-function()
     text-shadow 0 1px #fff
     font-size 24px
     text-align center
-    background white
-    box-shadow 0 1px 5px #999
-
+    background url('../images/paper-bg.png') repeat-x
+    h2
+      color #005e20
+      font-size 60px
+      font-family "ChunkFiveRegular"
+      margin 0
+    p
+      font-family "MuseoSlab500"
+      font-size 16px
+      color #2e1300
+      text-shadow 0 1px 0 #fff
+      font-weight normal
+    .count
+      font-family "Helvetica Neue", "Helvetica", "Arial", sans
+      font-weight bold
+      color #fff
+      text-shadow 0 1px #999
+      display inline-block
+      border-radius 12px
+      background rgba(184,184,184,.8)
+      box-shadow 0 1px 0 #999 inset, 0 1px 0 #fff
+      padding 3px 10px 3px
     /* background linear-gradient(left, 0% #e5e5e5, 30% white, 70% white, 100% #e5e5e5) */
-    b
-      display block
-      width 28px
-      height: 130px
-      position absolute
-      top 62px
-      &.left
-        left 10px
-      &.right 
-        right 10px
 
-      background url('../images/grabbies.png') no-repeat center center
+
 
 inset-background(color)
   background color url("../images/bgnoise_lg.png") repeat
