@@ -51,6 +51,7 @@
   "views/HomeView": function(exports, require, module) {
     (function() {
   var BREWING_CLASS, TeaListView, Teas,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
@@ -65,6 +66,7 @@
     __extends(HomeView, _super);
 
     function HomeView() {
+      this.steep = __bind(this.steep, this);
       HomeView.__super__.constructor.apply(this, arguments);
     }
 
@@ -73,42 +75,18 @@
     HomeView.prototype.events = {};
 
     HomeView.prototype.initialize = function() {
-      var home_view, teaListView, teas;
-      console.log('home view started');
-      home_view = this;
-      new MBP.fastButton($('#steepit')[0], function() {
-        $.mobile.changePage('#steep', {
-          transition: 'slide'
-        });
-        home_view.steep();
-        return false;
-      });
-      teas = this.teas = this.collection;
-      this.teaList_view = teaListView = new TeaListView({
-        collection: teas
-      });
-      return teas.fetch({
-        add: true,
-        success: function(coll, resp) {
-          if (!coll.length) teas.loadDefaults();
-          return teaListView.activateSwipe();
-        },
-        error: function(coll, resp) {
-          return console.log("Fetch Error: " + arguments);
-        }
+      new MBP.fastButton($('#steepit')[0], this.steep);
+      return this.teaList_view = new TeaListView({
+        collection: this.collection
       });
     };
 
     HomeView.prototype.steep = function(e, data) {
-      var count, current, last, steep_content, steeping_secs, times;
-      steep_content = $('#steep .content');
-      current = this.teas.getActive();
-      times = current.get('times');
-      count = current.get('count');
-      last = times.length - 1;
-      steeping_secs = times[(count < last ? count : last)];
-      this.trigger('steep', current, steeping_secs);
-      return current.incr_count();
+      $.mobile.changePage('#steep', {
+        transition: 'slide'
+      });
+      this.collection.getActive().increment();
+      return this.trigger('steep');
     };
 
     return HomeView;
@@ -148,6 +126,7 @@
   "collections/Teas": function(exports, require, module) {
     (function() {
   var DEFAULT_TEAS, Tea,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
@@ -158,6 +137,7 @@
     __extends(Teas, _super);
 
     function Teas() {
+      this.getActiveTime = __bind(this.getActiveTime, this);
       Teas.__super__.constructor.apply(this, arguments);
     }
 
@@ -180,6 +160,10 @@
       return this.where({
         active: true
       })[0];
+    };
+
+    Teas.prototype.getActiveTime = function() {
+      return this.getActive().getCurrentTime();
     };
 
     Teas.prototype.comparator = function(model) {
@@ -238,37 +222,10 @@
   }
 }));
 (this.require.define({
-  "models/Steeping": function(exports, require, module) {
-    (function() {
-  var __hasProp = Object.prototype.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-  exports.Steeping = (function(_super) {
-
-    __extends(Steeping, _super);
-
-    function Steeping() {
-      Steeping.__super__.constructor.apply(this, arguments);
-    }
-
-    Steeping.prototype.defaults = {
-      type: "Earl Gray",
-      timestamp: "Fri Apr 06 2012 09:04:03 GMT-0400 (EDT)",
-      count: 0
-    };
-
-    return Steeping;
-
-  })(Backbone.Model);
-
-}).call(this);
-
-  }
-}));
-(this.require.define({
   "models/Tea": function(exports, require, module) {
     (function() {
-  var __hasProp = Object.prototype.hasOwnProperty,
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
   exports.Tea = (function(_super) {
@@ -276,22 +233,41 @@
     __extends(Tea, _super);
 
     function Tea() {
+      this.getCurrentTime = __bind(this.getCurrentTime, this);
       Tea.__super__.constructor.apply(this, arguments);
     }
 
     Tea.prototype.defaults = {
       name: "Earl Gray",
-      times: [50, 60, 90, 90],
       temperature: 120,
-      total: 235,
-      round: 1,
+      times: [50, 60, 90, 90],
+      total: 0,
+      round: 0,
+      batch: 4,
       active: false
     };
 
-    Tea.prototype.incr_count = function() {
+    Tea.prototype.increment = function() {
       return this.save({
-        count: this.get("count") + 1
+        round: this.get('round') + 1,
+        total: this.get('total') + 1
       });
+    };
+
+    Tea.prototype.atLimit = function() {
+      return this.get('round' === this.get('batch'));
+    };
+
+    Tea.prototype.overLimit = function() {
+      return this.get('round' > this.get('batch'));
+    };
+
+    Tea.prototype.getCurrentTime = function() {
+      var count, last, times;
+      times = this.get('times');
+      count = this.get('count');
+      last = times.length - 1;
+      return times[(count < last ? count : last)];
     };
 
     return Tea;
@@ -389,10 +365,9 @@
         collection: this.teas
       });
       this.steep_view = new SteepView({
-        collection: this.teas
+        collection: this.teas,
+        home_view: this.home_view
       });
-      this.preferences_view = new PreferencesView;
-      this.about_view = new AboutView;
       this.fixFouc();
       console.log("application started");
       return MBP.hideUrlBarOnLoad();
@@ -461,6 +436,7 @@
 
     function SteepView() {
       this.startTimer = __bind(this.startTimer, this);
+      this.clearTimer = __bind(this.clearTimer, this);
       this.render = __bind(this.render, this);
       SteepView.__super__.constructor.apply(this, arguments);
     }
@@ -472,30 +448,30 @@
     };
 
     SteepView.prototype.initialize = function(options) {
-      steepr.home_view.on('steep', this.render);
-      return steepr.home_view.on('steep', this.startTimer, this);
+      var home;
+      home = options.home_view;
+      home.on('steep', this.render);
+      return home.on('steep', this.startTimer, this);
     };
 
-    SteepView.prototype.render = function(active) {
-      return this.$('.tea').html(active.get('name'));
+    SteepView.prototype.render = function() {
+      return this.$('.tea').html(this.collection.getActive().get('name'));
     };
 
     SteepView.prototype.waitAndClear = function() {
-      var interval, that;
-      interval = this.interval;
-      that = this;
-      console.log(interval);
-      return $(document).on('pagechange', function() {
-        console.log("clearing interval : " + interval);
-        clearInterval(interval);
-        that.$('#leaves').removeClass('brewing').find('#time').html('');
-        return $(document).off('pagechange');
-      });
+      return $(document).on('pagechange', this.clearTimer);
     };
 
-    SteepView.prototype.startTimer = function(active, secs) {
-      var interval, minutes, seconds, time, _ref;
+    SteepView.prototype.clearTimer = function() {
+      clearInterval(this.interval);
+      this.$('#leaves').removeClass('brewing').find('#time').html('');
+      return $(document).off('pagechange');
+    };
+
+    SteepView.prototype.startTimer = function() {
+      var interval, minutes, seconds, secs, time, _ref;
       console.log('timer started');
+      secs = this.collection.getActiveTime();
       _ref = this.parseTime(secs), seconds = _ref.seconds, minutes = _ref.minutes;
       time = this.$('#time');
       setAnimationDuration($('#tea'), secs);
@@ -543,6 +519,7 @@
   "views/TeaListView": function(exports, require, module) {
     (function() {
   var TeaView,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
@@ -553,13 +530,28 @@
     __extends(TeaListView, _super);
 
     function TeaListView() {
+      this.fetchSuccess = __bind(this.fetchSuccess, this);
       TeaListView.__super__.constructor.apply(this, arguments);
     }
 
     TeaListView.prototype.el = $("#tea-list");
 
     TeaListView.prototype.initialize = function() {
-      return this.collection.bind("add", this.addTeaView, this);
+      this.collection.bind("add", this.addTeaView, this);
+      return this.collection.fetch({
+        add: true,
+        success: this.fetchSuccess,
+        error: this.fetchError
+      });
+    };
+
+    TeaListView.prototype.fetchSuccess = function(coll, resp) {
+      if (!coll.length) this.collection.loadDefaults();
+      return this.activateSwipe();
+    };
+
+    TeaListView.prototype.fetchError = function(coll, resp) {
+      return console.log("Fetch Error: " + arguments);
     };
 
     TeaListView.prototype.addTeaView = function(model) {
@@ -630,27 +622,6 @@
   }
 }));
 (this.require.define({
-  "views/templates/steep": function(exports, require, module) {
-    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
-
-
-  buffer += "<header data-role=\"header\" class=\"ui-header ui-bar-a\">\n  <h1>Brewing ";
-  foundHelper = helpers.name;
-  stack1 = foundHelper || depth0.name;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</h1>\n</header>\n  <div id=\"timer\">\n    <div class=\"inner\">\n      <p class=\"tea\">";
-  foundHelper = helpers.name;
-  stack1 = foundHelper || depth0.name;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</p>\n      <time>1<b>:</b>15</time>\n      <p class=\"steeping\">steeping</p>\n    </div>\n  </div>\n</div>";
-  return buffer;});
-  }
-}));
-(this.require.define({
   "views/templates/tea": function(exports, require, module) {
     module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -678,6 +649,27 @@
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "total", { hash: {} }); }
   buffer += escapeExpression(stack1) + "</span></p>\n</div>\n<b class=\"right\"></b>";
+  return buffer;});
+  }
+}));
+(this.require.define({
+  "views/templates/steep": function(exports, require, module) {
+    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+
+  buffer += "<header data-role=\"header\" class=\"ui-header ui-bar-a\">\n  <h1>Brewing ";
+  foundHelper = helpers.name;
+  stack1 = foundHelper || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</h1>\n</header>\n  <div id=\"timer\">\n    <div class=\"inner\">\n      <p class=\"tea\">";
+  foundHelper = helpers.name;
+  stack1 = foundHelper || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</p>\n      <time>1<b>:</b>15</time>\n      <p class=\"steeping\">steeping</p>\n    </div>\n  </div>\n</div>";
   return buffer;});
   }
 }));

@@ -16,9 +16,12 @@ class exports.Steepr extends BrunchApplication
     @teas = new Teas
 
     @home_view = new HomeView collection: @teas
-    @steep_view = new SteepView collection: @teas
-    @preferences_view = new PreferencesView
-    @about_view = new AboutView
+    @steep_view = new SteepView
+      collection: @teas
+      home_view: @home_view
+      
+    #@preferences_view = new PreferencesView
+    #@about_view = new AboutView
 
     @fixFouc()
 

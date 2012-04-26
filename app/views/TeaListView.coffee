@@ -8,6 +8,22 @@ class exports.TeaListView extends Backbone.View
   initialize: ->
     @collection.bind "add", @addTeaView, this
 
+    # populate initial models, contrary to the 
+    # recommended backbone practice of bootstrapping
+    # into place, mostly since we're using localStorage
+    # and making a offline web app
+    @collection.fetch
+      add: true
+      success: @fetchSuccess
+      error: @fetchError
+
+  fetchSuccess: (coll, resp) =>
+    @collection.loadDefaults() unless coll.length
+    @activateSwipe()
+
+  fetchError: (coll, resp) ->
+    console.log "Fetch Error: #{arguments}"
+
   # each time a model is added, we add a corresponding view
   # we also put a reference to the underlying model in element data
   # so that in 'activateSwipe' we have access to model's name prop

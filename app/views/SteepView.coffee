@@ -13,27 +13,29 @@ class exports.SteepView extends Backbone.View
     "click a[data-rel=back]" : "waitAndClear"
 
   initialize: (options) ->
-    steepr.home_view.on 'steep', @render
-    steepr.home_view.on 'steep', @startTimer, this
+    home = options.home_view
+    home.on 'steep', @render
+    home.on 'steep', @startTimer, this
 
-  render: (active) =>
-    @$('.tea').html active.get 'name'
+  render: =>
+    @$('.tea').html @collection.getActive().get 'name'
 
   waitAndClear: ->
-    interval = @interval
-    that = this
-    console.log interval
-    $(document).on('pagechange', ->
-      console.log "clearing interval : #{interval}"
-      clearInterval interval
-      that.$('#leaves').removeClass('brewing').find('#time').html ''
-      $(document).off('pagechange')
-    )
+    $(document).on 'pagechange', @clearTimer
 
-  startTimer: (active, secs) =>
+  clearTimer: =>
+    clearInterval @interval
+    @$('#leaves').removeClass('brewing').find('#time').html ''
+    $(document).off('pagechange')
+
+  startTimer: =>
     console.log 'timer started'
+
+    secs = @collection.getActiveTime()
     {seconds, minutes} = @parseTime secs
+
     time = @$ '#time'
+
     setAnimationDuration $('#tea'), secs
     setAnimationDuration $('#mug'), secs
     seconds--
@@ -49,6 +51,7 @@ class exports.SteepView extends Backbone.View
           time.html ''
           time.html 'done'
           return clearInterval interval
+
       # this is odd, not sure if i'm doing something wrong
       # but the timer won't update reliably unless i insert
       # the empty string before writing out, maybe it forces

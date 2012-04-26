@@ -13,6 +13,9 @@ class exports.Teas extends Backbone.Collection
   getActive: ->
     @where(active: true)[0]
 
+  getActiveTime: =>
+    @getActive().getCurrentTime()
+
   comparator: (model) ->
     model.get "index"
 

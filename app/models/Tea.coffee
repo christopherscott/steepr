@@ -2,12 +2,27 @@ class exports.Tea extends Backbone.Model
   
   defaults:
     name: "Earl Gray"
-    times: [ 50, 60, 90, 90 ]
     temperature: 120
-    total: 235
-    round: 1
+    times: [ 50, 60, 90, 90 ]
+    total: 0
+    round: 0
+    batch: 4
     active: false
 
-  # models are responsible for updating their own count
-  incr_count: ->
-    @save count: @get("count") + 1
+  increment: ->
+    @save
+      round: @get('round') + 1
+      total: @get('total') + 1
+
+  atLimit: ->
+    @get 'round' == @get 'batch'
+
+  overLimit: ->
+    @get 'round' > @get 'batch'
+
+  getCurrentTime: =>
+    times = @get 'times'
+    count = @get 'count'
+    last = times.length - 1
+
+    times[(if count < last then count else last)]
