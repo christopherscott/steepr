@@ -180,6 +180,7 @@ body {
   background: transparent;
 }
 #steepr #home #tea-selector ul li .label h2 {
+  text-align: center;
   color: #6b7823;
   font: normal 55px/40px 'ChunkFiveRegular', serif;
   text-shadow: 0 1px #fff;
@@ -195,7 +196,7 @@ body {
 }
 #steepr #home #tea-selector ul li .label p .count {
   display: inline-block;
-  margin-left: 11px;
+  margin-left: 10px;
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans;
   font-weight: bold;
   color: #fff;
@@ -215,7 +216,7 @@ body {
   font-style: normal;
 }
 #steepr #home #tea-selector-nav #position {
-  font-size: 3em;
+  font-size: 30px;
 }
 #steepr #home #tea-selector-nav #position em {
   background-color: #c2bbb4;
