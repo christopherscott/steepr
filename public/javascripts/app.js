@@ -85,7 +85,6 @@
       $.mobile.changePage('#steep', {
         transition: 'slide'
       });
-      this.collection.getActive().increment();
       return this.trigger('steep');
     };
 
@@ -137,7 +136,9 @@
     __extends(Teas, _super);
 
     function Teas() {
+      this.incrementActive = __bind(this.incrementActive, this);
       this.getActiveTime = __bind(this.getActiveTime, this);
+      this.getActive = __bind(this.getActive, this);
       Teas.__super__.constructor.apply(this, arguments);
     }
 
@@ -145,14 +146,14 @@
 
     Teas.prototype.model = Tea;
 
-    Teas.prototype.activate = function(type) {
-      this.each(function(model) {
-        return model.set("active", false);
+    Teas.prototype.activate = function(tea) {
+      this.each(function(tea) {
+        return tea.save({
+          active: false
+        });
       });
-      return _.each(this.where({
-        name: type
-      }), function(model) {
-        return model.set("active", true);
+      return tea.save({
+        active: true
       });
     };
 
@@ -166,15 +167,20 @@
       return this.getActive().getCurrentTime();
     };
 
+    Teas.prototype.incrementActive = function() {
+      return this.getActive().increment();
+    };
+
     Teas.prototype.comparator = function(model) {
       return model.get("index");
     };
 
     Teas.prototype.loadDefaults = function() {
-      var teas;
-      teas = this;
+      var self;
+      self = this;
       return _.each(DEFAULT_TEAS, function(tea) {
-        return teas.create(tea);
+        var new_tea;
+        return new_tea = self.create(tea);
       });
     };
 
@@ -187,32 +193,37 @@
       name: "Green",
       times: [5, 10, 15, 20],
       temperature: "170-180",
-      count: 0,
+      total: 0,
+      round: 0,
       active: true,
       index: 0
     }, {
       name: "White",
       times: [60, 60, 90, 105],
       temperature: "170-180",
-      count: 0,
+      total: 0,
+      round: 0,
       index: 1
     }, {
       name: "Black",
       times: [60, 60, 90, 90],
       temperature: "212",
-      count: 0,
+      total: 0,
+      round: 0,
       index: 2
     }, {
       name: "Oolong",
       times: [30, 30, 45, 45],
       temperature: "190-195",
-      count: 0,
+      total: 0,
+      round: 0,
       index: 3
     }, {
       name: "Pu-erh",
       times: [30, 30, 45, 60],
       temperature: "212",
-      count: 0,
+      total: 0,
+      round: 0,
       index: 4
     }
   ];
@@ -255,19 +266,25 @@
     };
 
     Tea.prototype.atLimit = function() {
-      return this.get('round' === this.get('batch'));
+      return this.get('round') === this.get('batch');
     };
 
     Tea.prototype.overLimit = function() {
-      return this.get('round' > this.get('batch'));
+      return this.get('round') > this.get('batch');
     };
 
     Tea.prototype.getCurrentTime = function() {
-      var count, last, times;
+      var last, round, times;
       times = this.get('times');
-      count = this.get('count');
+      round = this.get('round');
       last = times.length - 1;
-      return times[(count < last ? count : last)];
+      return times[(round < last ? round : last)];
+    };
+
+    Tea.prototype.toggleActive = function() {
+      return this.set({
+        active: !this.get('active')
+      });
     };
 
     return Tea;
@@ -455,7 +472,8 @@
     };
 
     SteepView.prototype.render = function() {
-      return this.$('.tea').html(this.collection.getActive().get('name'));
+      var _ref;
+      return this.$('.tea').html((_ref = this.collection.active) != null ? _ref.get('name') : void 0);
     };
 
     SteepView.prototype.waitAndClear = function() {
@@ -470,15 +488,14 @@
 
     SteepView.prototype.startTimer = function() {
       var interval, minutes, seconds, secs, time, _ref;
-      console.log('timer started');
       secs = this.collection.getActiveTime();
-      _ref = this.parseTime(secs), seconds = _ref.seconds, minutes = _ref.minutes;
       time = this.$('#time');
+      _ref = this.parseTime(secs), seconds = _ref.seconds, minutes = _ref.minutes;
+      this.collection.incrementActive();
       setAnimationDuration($('#tea'), secs);
       setAnimationDuration($('#mug'), secs);
-      seconds--;
       this.interval = interval = setInterval(function() {
-        if (seconds > 0) {
+        if (seconds > 1) {
           seconds--;
         } else {
           if (minutes) {
@@ -523,21 +540,22 @@
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-  TeaView = require("./TeaView").TeaView;
+  TeaView = require('./TeaView').TeaView;
 
   exports.TeaListView = (function(_super) {
 
     __extends(TeaListView, _super);
 
     function TeaListView() {
+      this.activateTea = __bind(this.activateTea, this);
       this.fetchSuccess = __bind(this.fetchSuccess, this);
       TeaListView.__super__.constructor.apply(this, arguments);
     }
 
-    TeaListView.prototype.el = $("#tea-list");
+    TeaListView.prototype.el = $('#tea-list');
 
     TeaListView.prototype.initialize = function() {
-      this.collection.bind("add", this.addTeaView, this);
+      this.collection.bind('add', this.addTeaView, this);
       return this.collection.fetch({
         add: true,
         success: this.fetchSuccess,
@@ -554,25 +572,28 @@
       return console.log("Fetch Error: " + arguments);
     };
 
+    TeaListView.prototype.activateSwipe = function() {
+      console.log('activating swipe');
+      return window.swipe = new Swipe(this.el, {
+        callback: this.activateTea,
+        startSlide: this.collection.getActive().get('index')
+      });
+    };
+
     TeaListView.prototype.addTeaView = function(model) {
       var el, view;
       view = new TeaView({
         model: model
       });
       el = view.render().el;
-      $(el).data("model", model);
-      return this.$("ul").append(el);
+      this.$('ul').append(el);
+      $(el).data('model', model);
+      return $(el).data('view', view);
     };
 
-    TeaListView.prototype.activateSwipe = function() {
-      var teas;
-      teas = this.collection;
-      return window.swipe = new Swipe(this.el, {
-        callback: function(e, index, element) {
-          return teas.activate($(element).data("model").get("name"));
-        },
-        edgeBuffer: 20
-      });
+    TeaListView.prototype.activateTea = function(e, index, element) {
+      console.log('activating', element);
+      return this.collection.activate($(element).data('model'));
     };
 
     return TeaListView;
@@ -622,6 +643,27 @@
   }
 }));
 (this.require.define({
+  "views/templates/steep": function(exports, require, module) {
+    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+
+  buffer += "<header data-role=\"header\" class=\"ui-header ui-bar-a\">\n  <h1>Brewing ";
+  foundHelper = helpers.name;
+  stack1 = foundHelper || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</h1>\n</header>\n  <div id=\"timer\">\n    <div class=\"inner\">\n      <p class=\"tea\">";
+  foundHelper = helpers.name;
+  stack1 = foundHelper || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</p>\n      <time>1<b>:</b>15</time>\n      <p class=\"steeping\">steeping</p>\n    </div>\n  </div>\n</div>";
+  return buffer;});
+  }
+}));
+(this.require.define({
   "views/templates/tea": function(exports, require, module) {
     module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -649,27 +691,6 @@
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "total", { hash: {} }); }
   buffer += escapeExpression(stack1) + "</span></p>\n</div>\n<b class=\"right\"></b>";
-  return buffer;});
-  }
-}));
-(this.require.define({
-  "views/templates/steep": function(exports, require, module) {
-    module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
-
-
-  buffer += "<header data-role=\"header\" class=\"ui-header ui-bar-a\">\n  <h1>Brewing ";
-  foundHelper = helpers.name;
-  stack1 = foundHelper || depth0.name;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</h1>\n</header>\n  <div id=\"timer\">\n    <div class=\"inner\">\n      <p class=\"tea\">";
-  foundHelper = helpers.name;
-  stack1 = foundHelper || depth0.name;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</p>\n      <time>1<b>:</b>15</time>\n      <p class=\"steeping\">steeping</p>\n    </div>\n  </div>\n</div>";
   return buffer;});
   }
 }));

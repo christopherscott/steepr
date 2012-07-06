@@ -18,7 +18,7 @@ class exports.SteepView extends Backbone.View
     home.on 'steep', @startTimer, this
 
   render: =>
-    @$('.tea').html @collection.getActive().get 'name'
+    @$('.tea').html @collection.active?.get 'name'
 
   waitAndClear: ->
     $(document).on 'pagechange', @clearTimer
@@ -29,19 +29,18 @@ class exports.SteepView extends Backbone.View
     $(document).off('pagechange')
 
   startTimer: =>
-    console.log 'timer started'
-
     secs = @collection.getActiveTime()
+    time = @$ '#time'
     {seconds, minutes} = @parseTime secs
 
-    time = @$ '#time'
+    @collection.incrementActive()
 
     setAnimationDuration $('#tea'), secs
     setAnimationDuration $('#mug'), secs
-    seconds--
 
     @interval = interval = setInterval ->
-      if seconds > 0
+      
+      if seconds > 1
         seconds--
       else
         if minutes

@@ -15,14 +15,17 @@ class exports.Tea extends Backbone.Model
       total: @get('total') + 1
 
   atLimit: ->
-    @get 'round' == @get 'batch'
+    @get('round') == @get 'batch'
 
   overLimit: ->
-    @get 'round' > @get 'batch'
+    @get('round') > @get 'batch'
 
   getCurrentTime: =>
     times = @get 'times'
-    count = @get 'count'
+    round = @get 'round'
     last = times.length - 1
+    times[(if round < last then round else last)]
 
-    times[(if count < last then count else last)]
+  toggleActive: ->
+    @set active: !@get 'active'
+  

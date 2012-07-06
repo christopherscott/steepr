@@ -16,11 +16,4 @@ class exports.HomeView extends Backbone.View
     
   steep: (e, data) =>
     $.mobile.changePage '#steep', transition: 'slide'
-    @collection.getActive().increment()
     @trigger 'steep'
-
-
-
-
-
-

@@ -1,12 +1,12 @@
-{TeaView} = require "./TeaView"
+{TeaView} = require './TeaView'
 
 class exports.TeaListView extends Backbone.View
 
-  el: $("#tea-list")
+  el: $('#tea-list')
 
   # subscribe to 'add' event for tea collection
   initialize: ->
-    @collection.bind "add", @addTeaView, this
+    @collection.bind 'add', @addTeaView, this
 
     # populate initial models, contrary to the 
     # recommended backbone practice of bootstrapping
@@ -24,15 +24,6 @@ class exports.TeaListView extends Backbone.View
   fetchError: (coll, resp) ->
     console.log "Fetch Error: #{arguments}"
 
-  # each time a model is added, we add a corresponding view
-  # we also put a reference to the underlying model in element data
-  # so that in 'activateSwipe' we have access to model's name prop
-  addTeaView: (model) ->
-    view = new TeaView(model: model)
-    el = view.render().el
-    $(el).data "model", model
-    @$("ul").append el
-
   # this init logic could've been put in initialize BUT
   # it requires all the child views to be created and rendered
   # in order to measure for the size of the swiper,
@@ -40,15 +31,22 @@ class exports.TeaListView extends Backbone.View
   # after the Teas collection is populated and views have been
   # appended to the DOM
   activateSwipe: ->
-    teas = @collection
-    # activate swipe widget
-    # https://github.com/bradbirdsall/Swipe
-    window.swipe = new Swipe(@el,
-      callback: (e, index, element) ->
-        # we delegate activation of teas to the collection
-        # that way the collection can handle logic to ensure
-        # only one tea is active at once, and to deactivate
-        # other if necessary
-        teas.activate $(element).data("model").get("name"),
-      edgeBuffer: 20
-    )
+    console.log 'activating swipe'
+    window.swipe = new Swipe @el,
+      callback: @activateTea
+      startSlide: @collection.getActive().get 'index'
+
+  # each time a model is added, we add a corresponding view
+  # we also put a reference to the underlying model in element data
+  # so that in 'activateSwipe' we have access to model's name prop
+  addTeaView: (model) ->
+    view = new TeaView(model: model)
+    el = view.render().el
+    @$('ul').append el
+
+    $(el).data 'model', model
+    $(el).data 'view', view
+
+  activateTea: (e, index, element) =>
+    console.log 'activating', element 
+    @collection.activate($(element).data('model'))

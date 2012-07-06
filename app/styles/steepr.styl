@@ -13,13 +13,17 @@ animation-timing-function()
   animation-timing-function arguments
 
 #steepr section
-  background white url('../images/bgnoise_lg.png')
+  background url('../images/bgnoise_lg.png')
   background-size 50px 50px
+
+global-shadow()
+  box-shadow 0 1px 10px rgba(0,0,0,.6)
 
 .ui-header,
 .ui-foooter
-  background  linear-gradient(top, #612800, #2e1300)
-  box-shadow 0 1px 5px #999
+  background url('../images/clove-texture-81.png') repeat-x
+  background-size 50px 44px
+  global-shadow()
 
 /*
 .ui-header
@@ -111,7 +115,7 @@ animation-timing-function()
       font-family "Helvetica Neue", "Helvetica", "Arial", sans
       font-weight bold
       color #fff
-      text-shadow 0 1px #999
+      text-shadow 0 1px #666
       display inline-block
       border-radius 12px
       background rgba(184,184,184,.8)
@@ -131,13 +135,16 @@ inset-background(color)
   #steep-button
     padding 30px
     #steepit
-      box-shadow 0 1px 5px #999
+      margin 0 auto
+      global-shadow()
       border 1px solid #306100
-      background linear-gradient(top, #688700, #306100)
+      background linear-gradient(top, #614530, #2e1300) /* linear-gradient(top, #688700, #306100) */
       color #e0e0e0
       text-shadow 0 -1px #000
     .ui-btn-corner-all
-      border-radius 12px
+      border-radius 100px
+      width 100px
+      height 100px
     .ui-btn-inner
       padding 10px
       .ui-btn-text
