@@ -4,83 +4,114 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
   <title>My Page</title> 
 </head>
-<body>
+<body id="steepr">
 
-  <div data-role="page">
+  <section id="home" data-role="page" data-theme="steepr">
 
-    <div data-role="header" data-position="fixed">
-      <h1>My Title</h1>
-    </div><!-- /header -->
+    <header data-role="header" data-position="fixed" data-theme="steepr" data-tap-toggle="false">
+      <div class="steepr-button left"><a id="info" href="index.html">Info</a></div>
+      <h1>steepr</h1>
+      <div class="steepr-button right"><a id="config" href="index.html">Config</a></div>
+    </header><!-- /header -->
 
-    <div data-role="content"> 
-      <p>Hello world</p>
-      <div id='slider' class='swipe'>
-        <div>
-          <div style='display:block'><div>1</div></div>
-          <div style='display:none'><div>2</div></div>
-          <div style='display:none'><div>3</div></div>
-          <div style='display:none'><div>4</div></div>
-          <div style='display:none'><div>5</div></div>
-        </div>
+    <div data-role="content" data-theme="steepr">
+
+      <div id='tea-selector' class='swipe'>
+
+        <ul>
+
+          <li style='display:block'>
+            <div class="label">
+              <div class="counter">
+                <div class="leaf"></div>
+              </div>
+              <div class="type">
+                <h2>Green</h2>
+                <p>Total steepings: <span class="count">109</span> </p>
+              </div>
+            </div>
+          </li>
+          <li style='display:none'>
+            <div class="label">
+              <div class="counter">
+                <div class="leaf"></div>
+              </div>
+              <div class="type">
+                <h2>Black</h2>
+                <p>Total steepings: <span class="count">109</span> </p>
+              </div>
+            </div>
+          </li>
+          <li style='display:none'>
+            <div class="label">
+              <div class="counter">
+                <div class="leaf"></div>
+              </div>
+              <div class="type">
+                <h2>Red</h2>
+                <p>Total steepings: <span class="count">109</span> </p>
+              </div>
+            </div>
+          </li>
+
+          <li style='display:none'>
+            <div class="label">
+              <div class="counter">
+                <div class="leaf"></div>
+              </div>
+              <div class="type">
+                <h2>Oolong</h2>
+                <p>Total steepings: <span class="count">109</span> </p>
+              </div>
+            </div>
+          </li>
+
+          <li style='display:none'>
+            <div class="label">
+              <div class="counter">
+                <div class="leaf"></div>
+              </div>
+              <div class="type">
+                <h2>Pu-erh</h2>
+                <p>Total steepings: <span class="count">109</span> </p>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+
       </div>
-            <div id='slider' class='swipe'>
-        <div>
-          <div style='display:block'><div>1</div></div>
-          <div style='display:none'><div>2</div></div>
-          <div style='display:none'><div>3</div></div>
-          <div style='display:none'><div>4</div></div>
-          <div style='display:none'><div>5</div></div>
-        </div>
-      </div>
-            <div id='slider' class='swipe'>
-        <div>
-          <div style='display:block'><div>1</div></div>
-          <div style='display:none'><div>2</div></div>
-          <div style='display:none'><div>3</div></div>
-          <div style='display:none'><div>4</div></div>
-          <div style='display:none'><div>5</div></div>
-        </div>
-      </div>
-            <div id='slider' class='swipe'>
-        <div>
-          <div style='display:block'><div>1</div></div>
-          <div style='display:none'><div>2</div></div>
-          <div style='display:none'><div>3</div></div>
-          <div style='display:none'><div>4</div></div>
-          <div style='display:none'><div>5</div></div>
-        </div>
-      </div>      <div id='slider' class='swipe'>
-        <div>
-          <div style='display:block'><div>1</div></div>
-          <div style='display:none'><div>2</div></div>
-          <div style='display:none'><div>3</div></div>
-          <div style='display:none'><div>4</div></div>
-          <div style='display:none'><div>5</div></div>
-        </div>
-      </div>      <div id='slider' class='swipe'>
-        <div>
-          <div style='display:block'><div>1</div></div>
-          <div style='display:none'><div>2</div></div>
-          <div style='display:none'><div>3</div></div>
-          <div style='display:none'><div>4</div></div>
-          <div style='display:none'><div>5</div></div>
-        </div>
-      </div>
+
+      <nav id="tea-selector-nav">
+        <a href="#" id="prev" onclick="slider.prev();return false;"><em>prev</em></a>
+        <span id="position">
+          <em class="on">•</em>
+          <em class=" ">•</em>
+          <em class=" ">•</em>
+          <em class=" ">•</em>
+          <em class=" ">•</em>
+        </span>
+        <a href="#" id="next" onclick="slider.next();return false;"><em>next</em></a>
+      </nav>
+
     </div><!-- /content -->
 
-    <div data-role="footer" data-position="fixed">
-      <h1>Fixed Footer!</h1>
-    </div>
-  </div><!-- /page -->
+    <footer data-role="footer" data-position="fixed" data-theme="steepr" data-tap-toggle="false">
+      <div><a id="steep-button" href="#">steep!</a></div>
+    </footer>
+  </section><!-- /page -->
 
   <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
   <script type="text/javascript" src="js/swipe.js"></script>
   <script type="text/javascript">
-    var slider4 = new Swipe(document.getElementById('slider'));
+    $(function(){
+      window.slider = new Swipe(document.getElementById('tea-selector'));
+    });
   </script>
 </body>
 </html>
