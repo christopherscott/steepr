@@ -14,9 +14,9 @@
   <section id="home" data-role="page" data-theme="steepr">
 
     <header data-role="header" data-position="fixed" data-theme="steepr" data-tap-toggle="false">
-      <div class="steepr-button left"><a id="info" href="index.html">Info</a></div>
+      <a id="info" href="#info" data-theme="steepr">Info</a>
       <h1>steepr</h1>
-      <div class="steepr-button right"><a id="config" href="index.html">Config</a></div>
+      <a id="config" href="#config" data-theme="steepr">Config</a>
     </header><!-- /header -->
 
     <div data-role="content" data-theme="steepr">
@@ -103,9 +103,32 @@
     </div><!-- /content -->
 
     <footer data-role="footer" data-position="fixed" data-theme="steepr" data-tap-toggle="false">
-      <div><a id="steep-button" href="#">steep!</a></div>
+      <div><a id="steep-button" href="#steep">steep!</a></div>
     </footer>
   </section><!-- /page -->
+
+  <section id="config" data-role="page" data-theme="steepr" data-add-back-btn="true">
+    <header data-role="header" data-position="fixed" data-theme="steepr" data-tap-toggle="false">
+      <!-- <h1>steepr</h1> -->
+      <h2>steepr</h2>
+    </header><!-- /header -->
+    <div data-role="content">config</div>
+  </section>
+  <section id="info" data-role="page" data-theme="steepr" data-add-back-btn="true">
+    <header data-role="header" data-position="fixed" data-theme="steepr" data-tap-toggle="false">
+      <!-- <h1>steepr</h1> -->
+      <h2>steepr</h2>
+    </header><!-- /header -->
+    <div data-role="content">info</div>
+  </section>
+  
+  <section id="steep" data-role="page" data-add-back-btn="true" data-theme="steepr">
+    <header data-role="header" data-position="fixed" data-theme="steepr" data-tap-toggle="false">
+      <!-- <h1>steepr</h1> -->
+      <h2>steepr</h2>
+    </header><!-- /header -->
+    <div data-role="content">steeping</div>
+  </section>
 
   <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>

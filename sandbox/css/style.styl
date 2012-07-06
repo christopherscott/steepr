@@ -22,9 +22,42 @@ body
 
 // steepr styles
 
+
+
 #steepr
   background url('../img/beige-carpet.png') repeat
   background-size 50px 50px
+  .ui-btn-up-steepr,
+  .ui-btn-hover-steepr,
+  .ui-btn-active-steepr
+    ir()
+    text-decoration none
+    top 5px
+    background linear-gradient(top, #4e3d29, #2e2519)
+    border 1px solid rgba(36,28,10,.6)
+    box-shadow 0 1px #493c2d, 0 2px 5px #2f2519 inset
+    border-radius 5px
+    width 38px
+    height 29px
+    .ui-btn-inner
+      border 0
+      display block
+      height 100%
+      border-radius 5px
+    .ui-icon
+      height 24px 22px
+      background url('../img/back-arrow.png') no-repeat center center
+      background-size 24px 22px
+      border none
+      box-shadow none
+      left 10px
+      top 15px
+
+  .ui-btn-active,
+  .ui-btn-hover 
+    .ui-btn-inner
+      background #2e2519
+
   header.ui-bar-steepr
     height 44px
     background url('../img/clove-texture-81.png') repeat-x
@@ -38,28 +71,20 @@ body
       background url('../img/steepr-logo.png') no-repeat
       background-size 77px 44px
     .steepr-button
-      position absolute
-      top 5px
-      background linear-gradient(top, #4e3d29, #2e2519)
-      border 1px solid rgba(36,28,10,.6)
-      box-shadow 0 1px #493c2d, 0 2px 5px #2f2519 inset
-      border-radius 5px
-      width 38px
-      height 29px
+
+
       &:hover,
       &:active
-        background #2e2519
+        
       a
         display block
         ir()
         height 100%
         &:hover
           background #2e2519
-
-    .steepr-button.left
-      left 5px
-    .steepr-button.right
-      right 5px
+    #info,
+    #config
+      ir()
     #info
       background url('../img/i.png') no-repeat center center
       background-size 8px 17px

@@ -63,6 +63,55 @@ body {
   -moz-background-size: 50px 50px;
   background-size: 50px 50px;
 }
+#steepr .ui-btn-up-steepr,
+#steepr .ui-btn-hover-steepr,
+#steepr .ui-btn-active-steepr {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-decoration: none;
+  top: 5px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4e3d29), color-stop(1, #2e2519));
+  background: -webkit-linear-gradient(top, #4e3d29 0%, #2e2519 100%);
+  background: -moz-linear-gradient(top, #4e3d29 0%, #2e2519 100%);
+  background: -o-linear-gradient(top, #4e3d29 0%, #2e2519 100%);
+  background: -ms-linear-gradient(top, #4e3d29 0%, #2e2519 100%);
+  background: linear-gradient(top, #4e3d29 0%, #2e2519 100%);
+  border: 1px solid rgba(36,28,10,0.60);
+  -webkit-box-shadow: 0 1px #493c2d, 0 2px 5px #2f2519 inset;
+  box-shadow: 0 1px #493c2d, 0 2px 5px #2f2519 inset;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 38px;
+  height: 29px;
+}
+#steepr .ui-btn-up-steepr .ui-btn-inner,
+#steepr .ui-btn-hover-steepr .ui-btn-inner,
+#steepr .ui-btn-active-steepr .ui-btn-inner {
+  border: 0;
+  display: block;
+  height: 100%;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+#steepr .ui-btn-up-steepr .ui-icon,
+#steepr .ui-btn-hover-steepr .ui-icon,
+#steepr .ui-btn-active-steepr .ui-icon {
+  height: 24px 22px;
+  background: url("../img/back-arrow.png") no-repeat center center;
+  -webkit-background-size: 24px 22px;
+  -moz-background-size: 24px 22px;
+  background-size: 24px 22px;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  left: 10px;
+  top: 15px;
+}
+#steepr .ui-btn-active .ui-btn-inner,
+#steepr .ui-btn-hover .ui-btn-inner {
+  background: #2e2519;
+}
 #steepr header.ui-bar-steepr {
   height: 44px;
   background: url("../img/clove-texture-81.png") repeat-x;
@@ -84,27 +133,8 @@ body {
   -moz-background-size: 77px 44px;
   background-size: 77px 44px;
 }
-#steepr header.ui-bar-steepr .steepr-button {
-  position: absolute;
-  top: 5px;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4e3d29), color-stop(1, #2e2519));
-  background: -webkit-linear-gradient(top, #4e3d29 0%, #2e2519 100%);
-  background: -moz-linear-gradient(top, #4e3d29 0%, #2e2519 100%);
-  background: -o-linear-gradient(top, #4e3d29 0%, #2e2519 100%);
-  background: -ms-linear-gradient(top, #4e3d29 0%, #2e2519 100%);
-  background: linear-gradient(top, #4e3d29 0%, #2e2519 100%);
-  border: 1px solid rgba(36,28,10,0.60);
-  -webkit-box-shadow: 0 1px #493c2d, 0 2px 5px #2f2519 inset;
-  box-shadow: 0 1px #493c2d, 0 2px 5px #2f2519 inset;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  width: 38px;
-  height: 29px;
-}
 #steepr header.ui-bar-steepr .steepr-button:hover,
-#steepr header.ui-bar-steepr .steepr-button:active {
-  background: #2e2519;
-}
+#steepr header.ui-bar-steepr .steepr-button:active,
 #steepr header.ui-bar-steepr .steepr-button a {
   display: block;
   text-indent: 100%;
@@ -112,14 +142,16 @@ body {
   overflow: hidden;
   height: 100%;
 }
+#steepr header.ui-bar-steepr .steepr-button:hover:hover,
+#steepr header.ui-bar-steepr .steepr-button:active:hover,
 #steepr header.ui-bar-steepr .steepr-button a:hover {
   background: #2e2519;
 }
-#steepr header.ui-bar-steepr .steepr-button.left {
-  left: 5px;
-}
-#steepr header.ui-bar-steepr .steepr-button.right {
-  right: 5px;
+#steepr header.ui-bar-steepr #info,
+#steepr header.ui-bar-steepr #config {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 #steepr header.ui-bar-steepr #info {
   background: url("../img/i.png") no-repeat center center;
