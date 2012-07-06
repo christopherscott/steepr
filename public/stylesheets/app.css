@@ -2601,25 +2601,27 @@ span.ui-slider-label { position: absolute; text-align: center; width: 100%; over
 span.ui-slider-label-a { z-index: 1; left: 0; text-indent: -1.5em; }
 span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
 .ui-slider-inline { width: 120px; display: inline-block; }
-#steepr section{background:url("../images/bgnoise_lg.png");-webkit-background-size:50px 50px;-moz-background-size:50px 50px;background-size:50px 50px}
+#steepr section{background:url("../images/beige-carpet.png");-webkit-background-size:50px 50px;-moz-background-size:50px 50px;background-size:50px 50px}
 .ui-header,.ui-foooter{background:url("../images/clove-texture-81.png") repeat-x;-webkit-background-size:50px 44px;-moz-background-size:50px 44px;background-size:50px 44px;-webkit-box-shadow:0 1px 10px rgba(0,0,0,0.60);-moz-box-shadow:0 1px 10px rgba(0,0,0,0.60);box-shadow:0 1px 10px rgba(0,0,0,0.60)}
-#steepr header{font-family:"MuseoSlab500";font-weight:normal;}
-#steepr header .ui-title{font-size:21px;margin:10px}
-#tea-list{margin:35px 0 0 0}
+#steepr header{font-family:"MuseoSlab500";font-weight:normal}
+#tea-list{margin:0 0 0 0;}
+#tea-list ul{background:url("../images/brown-paper.png") repeat-x;background-position:left bottom;-webkit-background-size:1103px 283px;-moz-background-size:1103px 283px;background-size:1103px 283px;height:224px;padding-top:15px;padding-bottom:5px}
 .swipe{position:relative;}
 .swipe b{display:block;width:10px;height:300px;position:absolute;top:0;}
 .swipe b.left{left:0;background:url("../images/perforation-left.png") no-repeat}
 .swipe b.right{right:0;background:url("../images/perforation-right.png") no-repeat;}
-.swipe ol,.swipe ul{margin:0 0 5px 0;padding:0 0 0 10px}
+.swipe ol,.swipe ul{margin:0 0 0 0;padding:0 0 0 0}
 .swipe li{position:relative}
-.swipe li div.tea-slide{height:188px;position:relative;margin:0 10px;padding:50px 10px 20px;font-weight:bold;color:#333;text-shadow:0 1px #fff;font-size:24px;text-align:center;background:url("../images/paper-bg.png") repeat-x;}
-.swipe li div.tea-slide h2{color:#005e20;font-size:60px;font-family:"ChunkFiveRegular";margin:0;font-weight:normal}
+.swipe li div.tea-slide{width:300px;background:url("../images/label-paper.png") no-repeat top center;-webkit-background-size:299px 190px;-moz-background-size:299px 190px;background-size:299px 190px;padding:20px 0;position:relative;font-weight:bold;color:#333;text-shadow:0 1px #fff;font-size:24px;text-align:center;margin:0 10px;}
+.swipe li div.tea-slide h2{color:#6b7823;font-size:48px;font-family:"ChunkFiveRegular";margin:0;font-weight:normal}
 .swipe li div.tea-slide p{font-family:"MuseoSlab500";font-size:16px;color:#2e1300;text-shadow:0 1px 0 #fff;font-weight:normal}
 .swipe li div.tea-slide .count{font-family:"Helvetica Neue","Helvetica","Arial",sans;font-weight:bold;color:#fff;text-shadow:0 1px #666;display:inline-block;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:rgba(184,184,184,0.80);-webkit-box-shadow:0 1px 0 #999 inset,0 1px 0 #fff;-moz-box-shadow:0 1px 0 #999 inset,0 1px 0 #fff;box-shadow:0 1px 0 #999 inset,0 1px 0 #fff;padding:3px 10px 3px}
+#home .ui-title{background:url("../images/steepr-logo.png") no-repeat center center;-webkit-background-size:77px 44px;-moz-background-size:77px 44px;background-size:77px 44px;height:44px;margin:0;text-indent:100%;white-space:nowrap;overflow:hidden}
 #home .content{padding:0}
-#home #steep-button{padding:30px;}
-#home #steep-button #steepit{margin:0 auto;-webkit-box-shadow:0 1px 10px rgba(0,0,0,0.60);-moz-box-shadow:0 1px 10px rgba(0,0,0,0.60);box-shadow:0 1px 10px rgba(0,0,0,0.60);border:1px solid #306100;background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #614530), color-stop(1, #2e1300));background:-webkit-linear-gradient(top, #614530 0%, #2e1300 100%);background:-moz-linear-gradient(top, #614530 0%, #2e1300 100%);background:linear-gradient(top, #614530 0%, #2e1300 100%);color:#e0e0e0;text-shadow:0 -1px #000}
-#home #steep-button .ui-btn-corner-all{-webkit-border-radius:100px;-moz-border-radius:100px;border-radius:100px;width:100px;height:100px}
+#home #steep-button{background:url("../images/clove-texture-footer.png") center top no-repeat;-webkit-background-size:320px 129px;-moz-background-size:320px 129px;background-size:320px 129px;padding:15px 0 9px 0;}
+#home #steep-button #steepit{text-indent:100%;white-space:nowrap;overflow:hidden;margin:0 auto;background:url("../images/brushed-metal-steep.png");-webkit-background-size:104px 210px;-moz-background-size:104px 210px;background-size:104px 210px;}
+#home #steep-button #steepit:hover{background-position:0 -105px}
+#home #steep-button .ui-btn-corner-all{border:none;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;width:104px;height:105px}
 #home #steep-button .ui-btn-inner{padding:10px;}
 #home #steep-button .ui-btn-inner .ui-btn-text{font-weight:bold;font-size:18px}
 #steep .content{padding:0;overflow:hidden}

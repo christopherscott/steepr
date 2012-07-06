@@ -670,7 +670,7 @@
   var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
 
 
-  buffer += "<b class=\"left\"></b>\n<div class=\"tea-slide\">\n  <h2>";
+  buffer += "<div class=\"tea-slide\">\n  <h2>";
   foundHelper = helpers.name;
   stack1 = foundHelper || depth0.name;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
@@ -690,7 +690,7 @@
   stack1 = foundHelper || depth0.total;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "total", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</span></p>\n</div>\n<b class=\"right\"></b>";
+  buffer += escapeExpression(stack1) + "</span></p>\n</div>\n";
   return buffer;});
   }
 }));
