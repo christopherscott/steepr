@@ -151,8 +151,9 @@ body {
   margin: 0 auto;
 }
 #steepr #home #tea-selector ul li .label {
-  margin: 0 10px;
+  margin: 0 auto;
   height: 130px;
+  width: 300px;
   padding: 40px 10px 20px;
   background: url("../img/label-paper.png") no-repeat top center;
   -webkit-background-size: 299px 190px;
