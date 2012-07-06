@@ -2,7 +2,7 @@
 
 ## Mobile tea steeping stopwatch
 
-Work-in-progress: [Steepr (on GitHub)](http://christopherscott.github.com/steepr/public) - no promises, might be broken, odd, unfinished or otherwise weird.
+Work-in-progress: [Steepr (on GitHub)](http://christopherscott.github.com/steepr/sandbox) - no promises, might be broken, odd, unfinished or otherwise weird.
 
 Jasmine tests: [http://christopherscott.github.com/steepr/public](http://christopherscott.github.com/steepr/public)
 
