@@ -220,6 +220,10 @@ body {
   line-height: 10px;
 }
 #steepr #home #tea-selector-nav #position em {
+  font-size: 30px;
+  line-height: 10px;
+  display: inline-block;
+  height: 10px;
   background-color: #c2bbb4;
   -webkit-background-clip: text;
   color: transparent;
