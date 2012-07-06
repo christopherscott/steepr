@@ -1,2 +1,0 @@
-Backbone.sync = ->
-  # pass

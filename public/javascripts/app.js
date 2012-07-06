@@ -574,10 +574,12 @@
 
     TeaListView.prototype.activateSwipe = function() {
       console.log('activating swipe');
-      return window.swipe = new Swipe(this.el, {
+      window.swipe = new Swipe(this.el, {
         callback: this.activateTea,
         startSlide: this.collection.getActive().get('index')
       });
+      console.log($("#swipe-tester")[0]);
+      return window.swipe2 = new Swipe($("#swipe-tester")[0]);
     };
 
     TeaListView.prototype.addTeaView = function(model) {

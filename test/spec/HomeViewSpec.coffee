@@ -1,2 +1,0 @@
-describe "Home Page View", ->
-  
