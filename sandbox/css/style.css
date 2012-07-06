@@ -217,6 +217,7 @@ body {
 }
 #steepr #home #tea-selector-nav #position {
   font-size: 30px;
+  line-height: 10px;
 }
 #steepr #home #tea-selector-nav #position em {
   background-color: #c2bbb4;
