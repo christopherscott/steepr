@@ -20,10 +20,6 @@ body
   -webkit-text-size-adjust none
   font-family sans-serif
 
-// steepr styles
-
-
-
 #steepr
   background url('../img/beige-carpet.png') repeat
   background-size 50px 50px
@@ -44,6 +40,7 @@ body
       display block
       height 100%
       border-radius 5px
+      padding 0
     .ui-icon
       height 24px 22px
       background url('../img/back-arrow.png') no-repeat center center
@@ -52,11 +49,10 @@ body
       box-shadow none
       left 10px
       top 15px
-
-  .ui-btn-active,
-  .ui-btn-hover 
-    .ui-btn-inner
-      background #2e2519
+  // darken background on hover/tap/click
+  .ui-btn-hover-steepr,
+  .ui-btn-hover-active
+    background #2e2519
 
   header.ui-bar-steepr
     height 44px
@@ -71,11 +67,6 @@ body
       background url('../img/steepr-logo.png') no-repeat
       background-size 77px 44px
     .steepr-button
-
-
-      &:hover,
-      &:active
-        
       a
         display block
         ir()
@@ -86,11 +77,14 @@ body
     #config
       ir()
     #info
-      background url('../img/i.png') no-repeat center center
-      background-size 8px 17px
+      .ui-btn-inner
+        background url('../img/i.png') no-repeat center center
+        background-size 8px 17px
+        
     #config
-      background url('../img/cogs.png') no-repeat center center
-      background-size 19px 23px
+      .ui-btn-inner
+        background url('../img/cogs.png') no-repeat center center
+        background-size 19px 23px
 
   #home
     .ui-body-steepr
@@ -186,11 +180,6 @@ body
         &:active
           margin-top 15px
 
-// Swipe.js styles
-// .swipe 
-//   padding-bottom 20px
-// .swipe li div
-//   margin 0 10px
 
 
 

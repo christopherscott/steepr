@@ -93,6 +93,7 @@ body {
   height: 100%;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+  padding: 0;
 }
 #steepr .ui-btn-up-steepr .ui-icon,
 #steepr .ui-btn-hover-steepr .ui-icon,
@@ -108,8 +109,8 @@ body {
   left: 10px;
   top: 15px;
 }
-#steepr .ui-btn-active .ui-btn-inner,
-#steepr .ui-btn-hover .ui-btn-inner {
+#steepr .ui-btn-hover-steepr,
+#steepr .ui-btn-hover-active {
   background: #2e2519;
 }
 #steepr header.ui-bar-steepr {
@@ -133,8 +134,6 @@ body {
   -moz-background-size: 77px 44px;
   background-size: 77px 44px;
 }
-#steepr header.ui-bar-steepr .steepr-button:hover,
-#steepr header.ui-bar-steepr .steepr-button:active,
 #steepr header.ui-bar-steepr .steepr-button a {
   display: block;
   text-indent: 100%;
@@ -142,8 +141,6 @@ body {
   overflow: hidden;
   height: 100%;
 }
-#steepr header.ui-bar-steepr .steepr-button:hover:hover,
-#steepr header.ui-bar-steepr .steepr-button:active:hover,
 #steepr header.ui-bar-steepr .steepr-button a:hover {
   background: #2e2519;
 }
@@ -153,13 +150,13 @@ body {
   white-space: nowrap;
   overflow: hidden;
 }
-#steepr header.ui-bar-steepr #info {
+#steepr header.ui-bar-steepr #info .ui-btn-inner {
   background: url("../img/i.png") no-repeat center center;
   -webkit-background-size: 8px 17px;
   -moz-background-size: 8px 17px;
   background-size: 8px 17px;
 }
-#steepr header.ui-bar-steepr #config {
+#steepr header.ui-bar-steepr #config .ui-btn-inner {
   background: url("../img/cogs.png") no-repeat center center;
   -webkit-background-size: 19px 23px;
   -moz-background-size: 19px 23px;
