@@ -205,13 +205,13 @@ body {
 }
 #steepr #home #tea-selector ul li .label .type {
   float: left;
-  width: 158px;
+  width: 178px;
   background: transparent;
 }
 #steepr #home #tea-selector ul li .label h2 {
   text-align: center;
   color: #6b7823;
-  font: normal 55px/40px 'ChunkFiveRegular', serif;
+  font: normal 48px/40px 'ChunkFiveRegular', serif;
   text-shadow: 0 1px #fff;
   padding-bottom: 20px;
   border-bottom: 1px solid #dbd7ca;
@@ -221,7 +221,7 @@ body {
   border-top: 1px solid #fff;
   padding-top: 20px;
   color: #000;
-  font: normal 16px/20px "MuseoSlab500", sans-serif;
+  font: normal 15px/20px "MuseoSlab500", sans-serif;
 }
 #steepr #home #tea-selector ul li .label p .count {
   display: inline-block;
