@@ -1,0 +1,20 @@
+{
+  "name": "steepr",
+  "version": "0.0.0",
+  "description": "mobile web app for keeping track of tea steepings",
+  "main": "app.js",
+  "dependencies": {
+    "nib": "~0.6.0",
+    "stylus": "~0.27.2",
+    "express": "~3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/christopherscott/steepr.git"
+  },
+  "license": "BSD"
+}
