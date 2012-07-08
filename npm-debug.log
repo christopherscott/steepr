@@ -1,0 +1,625 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'grunt' ]
+2 info using npm@1.1.32
+3 info using node@v0.8.0
+4 verbose config file /Users/chris/.npmrc
+5 verbose config file /usr/local/etc/npmrc
+6 verbose config file /usr/local/lib/node_modules/npm/npmrc
+7 verbose read json /usr/local/lib/package.json
+8 verbose read json /usr/local/lib/package.json
+9 verbose cache add [ 'grunt', null ]
+10 silly cache add name=undefined spec="grunt" args=["grunt",null]
+11 verbose parsed url { pathname: 'grunt', path: 'grunt', href: 'grunt' }
+12 verbose addNamed [ 'grunt', '' ]
+13 verbose addNamed [ null, '' ]
+14 silly addNameRange { name: 'grunt', range: '', hasData: false }
+15 verbose url raw grunt
+16 verbose url resolving [ 'https://registry.npmjs.org/', './grunt' ]
+17 verbose url resolved https://registry.npmjs.org/grunt
+18 verbose etag "9PTQA8P965IOLMSUPL1G9FRUC"
+19 http GET https://registry.npmjs.org/grunt
+20 http 304 https://registry.npmjs.org/grunt
+21 silly registry.get cb [ 304,
+21 silly registry.get   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+21 silly registry.get     etag: '"9PTQA8P965IOLMSUPL1G9FRUC"',
+21 silly registry.get     date: 'Sun, 08 Jul 2012 19:44:48 GMT',
+21 silly registry.get     'content-length': '0' } ]
+22 verbose etag grunt from cache
+23 silly addNameRange number 2 { name: 'grunt', range: '', hasData: true }
+24 silly addNameRange versions [ 'grunt',
+24 silly addNameRange   [ '0.1.0',
+24 silly addNameRange     '0.1.1',
+24 silly addNameRange     '0.1.2',
+24 silly addNameRange     '0.2.0',
+24 silly addNameRange     '0.2.1',
+24 silly addNameRange     '0.2.2',
+24 silly addNameRange     '0.2.3',
+24 silly addNameRange     '0.2.4',
+24 silly addNameRange     '0.2.5',
+24 silly addNameRange     '0.2.6',
+24 silly addNameRange     '0.2.7',
+24 silly addNameRange     '0.2.8',
+24 silly addNameRange     '0.2.9',
+24 silly addNameRange     '0.2.10',
+24 silly addNameRange     '0.2.11',
+24 silly addNameRange     '0.2.12',
+24 silly addNameRange     '0.2.13',
+24 silly addNameRange     '0.2.14',
+24 silly addNameRange     '0.2.15',
+24 silly addNameRange     '0.3.0',
+24 silly addNameRange     '0.3.1',
+24 silly addNameRange     '0.3.2',
+24 silly addNameRange     '0.3.3',
+24 silly addNameRange     '0.3.4',
+24 silly addNameRange     '0.3.5',
+24 silly addNameRange     '0.3.6',
+24 silly addNameRange     '0.3.7',
+24 silly addNameRange     '0.3.8',
+24 silly addNameRange     '0.3.9',
+24 silly addNameRange     '0.3.10',
+24 silly addNameRange     '0.3.11' ] ]
+25 verbose read json /Users/chris/.npm/grunt/0.3.11/package/package.json
+26 silly resolved [ { name: 'grunt',
+26 silly resolved     description: 'A task-based command line build tool for JavaScript projects.',
+26 silly resolved     version: '0.3.11',
+26 silly resolved     author: { name: '"Cowboy" Ben Alman', url: 'http://benalman.com/' },
+26 silly resolved     homepage: 'http://github.com/cowboy/grunt',
+26 silly resolved     repository: { type: 'git', url: 'git://github.com/cowboy/grunt.git' },
+26 silly resolved     bugs: { url: 'http://github.com/cowboy/grunt/issues' },
+26 silly resolved     licenses: [ [Object] ],
+26 silly resolved     main: 'lib/grunt',
+26 silly resolved     bin: { grunt: 'bin/grunt' },
+26 silly resolved     scripts: { test: 'grunt test' },
+26 silly resolved     engines: { node: '>= 0.6.0' },
+26 silly resolved     preferGlobal: true,
+26 silly resolved     keywords:
+26 silly resolved      [ 'async',
+26 silly resolved        'cli',
+26 silly resolved        'minify',
+26 silly resolved        'uglify',
+26 silly resolved        'build',
+26 silly resolved        'underscore',
+26 silly resolved        'unit',
+26 silly resolved        'test',
+26 silly resolved        'qunit',
+26 silly resolved        'nodeunit',
+26 silly resolved        'server',
+26 silly resolved        'init',
+26 silly resolved        'scaffold',
+26 silly resolved        'make',
+26 silly resolved        'jake',
+26 silly resolved        'tool' ],
+26 silly resolved     dependencies:
+26 silly resolved      { async: '~0.1.18',
+26 silly resolved        colors: '~0.6.0',
+26 silly resolved        connect: '~2.3.4',
+26 silly resolved        dateformat: '1.0.2-1.2.3',
+26 silly resolved        'glob-whatev': '~0.1.4',
+26 silly resolved        hooker: '~0.2.3',
+26 silly resolved        jshint: '~0.5.9',
+26 silly resolved        nodeunit: '~0.6.4',
+26 silly resolved        nopt: '~1.0.10',
+26 silly resolved        prompt: '~0.1.12',
+26 silly resolved        semver: '~1.0.13',
+26 silly resolved        'uglify-js': '~1.0.7',
+26 silly resolved        underscore: '~1.2.4',
+26 silly resolved        'underscore.string': '~2.1.1',
+26 silly resolved        temporary: '~0.0.4',
+26 silly resolved        'gzip-js': '~0.3.1' },
+26 silly resolved     devDependencies: {},
+26 silly resolved     readme: '# grunt\nGrunt is a task-based command line build tool for JavaScript projects.\n\n_Grunt is currently in beta. While I\'m already using it on multiple projects, it might have a minor issue or two. And things might change before its final release, based on your feedback. Please try it out in a project, and [make suggestions][issues] or [report bugs][issues]!_\n\n## Getting started <a name="getting-started" href="#getting-started" title="Link to this section">⚑</a>\nBe sure to read the [getting started guide](/cowboy/grunt/blob/master/docs/getting_started.md), which is a complete guide to configuring grunt for your project. In addition, check out the [example gruntfiles](/cowboy/grunt/blob/master/docs/example_gruntfiles.md) which highlight a number of fairly common configurations.\n\n## Built-in tasks <a name="built-in-tasks" href="#built-in-tasks" title="Link to this section">⚑</a>\nAs of now, grunt has the following predefined tasks that you can use in your project:\n\n* [concat](/cowboy/grunt/blob/master/docs/task_concat.md) - Concatenate files.\n* [init](/cowboy/grunt/blob/master/docs/task_init.md) - Generate project scaffolding from a predefined template.\n* [lint](/cowboy/grunt/blob/master/docs/task_lint.md) - Validate files with [JSHint][jshint].\n* [min](/cowboy/grunt/blob/master/docs/task_min.md) - Minify files with [UglifyJS][uglify].\n* [qunit](/cowboy/grunt/blob/master/docs/task_qunit.md) - Run [QUnit][qunit] unit tests in a headless [PhantomJS][phantom] instance.\n* [server](/cowboy/grunt/blob/master/docs/task_server.md) - Start a static web server.\n* test - Run unit tests with [nodeunit][nodeunit].\n* watch - Run predefined tasks whenever watched files change.\n\n_(More documentation forthcoming)_\n\n## Custom tasks <a name="custom-tasks" href="#custom-tasks" title="Link to this section">⚑</a>\nIn addition to the built-in tasks, you can create your own tasks. Don\'t like a built-in task\'s default behavior? Override it. Check out the [grunt API documentation](/cowboy/grunt/blob/master/docs/api.md) and the [built-in tasks source](/cowboy/grunt/blob/master/tasks) for everything you need to know about creating custom tasks.\n\n## Documentation <a name="documentation" href="#documentation" title="Link to this section">⚑</a>\nTake a look at the [documentation table of contents][docs] for all the things.\n\n## Why does grunt exist? <a name="why-does-grunt-exist" href="#why-does-grunt-exist" title="Link to this section">⚑</a>\nDoing all this stuff manually is a total pain, and building all this stuff into a gigantic Makefile / Jakefile / Cakefile / Rakefile / ?akefile that\'s maintained across all my projects was also becoming a total pain. Since I always found myself performing the same tasks over and over again, for every project, it made sense to build a task-based build tool.\n\nBeing primarily a JavaScript developer, I decided to use [Node.js][node] and [npm][npm] because the dependencies I most care about ([JSHint][jshint] and [UglifyJS][uglify]) were already npm modules. That being said, while Node.js was designed to support highly-concurrent asynchronous-IO-driven web servers, it was clearly NOT designed to make command-line build tools. But none of that matters, because grunt works. Just install it and see.\n\n## Installing grunt <a name="installing-grunt" href="#installing-grunt" title="Link to this section">⚑</a>\n\nGrunt is available as an [npm][npm] module. If you install grunt globally via `npm install -g grunt`, it will be available for use in all of your projects. Once grunt has been installed, you can type `grunt --help` at the command line for more information. And if you want to see grunt "grunt" itself, cd into grunt\'s directory and type `grunt`\n\n_Note: in Windows, you may need to run grunt as `grunt.cmd`. See the [FAQ](/cowboy/grunt/blob/master/docs/faq.md) for more Windows-specific information._\n\nFor projects already using grunt, you\'re done. Otherwise, if you\'re adding grunt to an existing project or starting from scratch, check out the [getting started guide](/cowboy/grunt/blob/master/docs/getting_started.md), which is a complete guide to configuring grunt for your project.\n\n## Release History <a name="release-history" href="#release-history" title="Link to this section">⚑</a>\n_(Until v1.0.0, this will only be updated when major or breaking changes are made)_\n\n* 2012/06/25 - v0.3.10 - Updating a few dependencies to work with node 0.8.x (0.6.x should still work).\n* 2012/04/18 - v0.3.9 - The min task (via the uglify helper) now appends a semicolon to the end of the generated source.\n* 2012/04/06 - v0.3.8 - Init template tweaks. Anchor links added to docs, along with grunt-internal docs task to generate them. The watch task now supports multiple targets with separate wildcards and tasks. Locally-installed grunt will override global grunt even when run from global "grunt" script.\n* 2012/04/01 - v0.3.7 - Tweaked the behavior of the init template `exports.warnOn` property and added more init template documentation. Fixed duplicate PhantomJS debug output in qunit task. Added useful nodeunit and qunit comments into init template generated test .js files.\n* 2012/03/28 - v0.3.6 - Fixed a `--help` screen issue, a few grunt plugin related issues, and attempted to improve the overall grunt plugin docs and API.\n* 2012/03/27 - v0.3.5 - Fixed a handful of weird Windows issues. Changed default m/d/yyyy dates to yyyy-mm-dd ISO 8601. Fixed some init task bugs, docs errata, and added a lot more content to the init task docs.\n* 2012/03/26 - v0.3.3 - Added a "gruntfile" init template. Create a basic gruntfile in seconds with `grunt init:gruntfile`. A few other minor fixes.\n* 2012/03/25 - v0.3.2 - Init tasks can now specify a file matching wildcard for the initial "files exist" warning. The jQuery init template now has jQuery 1.7.2. Fixed a bug in the `task.expand*` methods.\n* 2012/03/25 - v0.3.1 - Added a few methods. Substantially reworked the init task and templates.\n* 2012/03/23 - v0.3.0 - Too many changes to list. But in brief: completely reorganized the API, removed all globals, added docs and examples for nearly everything, built a preliminary plugin system (that still needs to be tested). PLEASE RTFM OK? THX U.\n* 2012/02/03 - v0.2.14 - Added a server task (which starts a static webserver for your tasks). The qunit task now uses PhantomJS instead of Zombie.js (4768 of 4971 jQuery unit test pass, neat), and supports both file wildcards as well as http:// or https:// urls. (static webserver, anyone?). Grunt should no longer "hang" when done.\n* 2012/01/29 - v0.2.5 - Added a "qunit" task as well as an init "jquery" template (as of now, there are also "node" and "commonjs" init templates).\n* 2012/01/22 - v0.2.1 - Removed handlebars, templates are universally handled by underscore now. Changed init task template tags from <% %> to {% %}. Banners beginning with /*! will no longer be stripped.\n* 2012/01/22 - v0.2.0 - Added "init" task with a sample template, reworked a lot of code. Hopefully it\'s backwards-compatible.\n* 2012/01/11 - v0.1.0 - Initial release.\n\n## License <a name="license" href="#license" title="Link to this section">⚑</a>\nCopyright (c) 2012 "Cowboy" Ben Alman  \nLicensed under the MIT license.  \n<http://benalman.com/about/license/>\n\n\n[docs]: /cowboy/grunt/blob/master/docs/toc.md\n[docs-init]: /cowboy/grunt/blob/master/docs/task_init.md\n[issues]: /cowboy/grunt/issues\n\n[node]: http://nodejs.org/\n[npm]: http://npmjs.org/\n[jshint]: http://www.jshint.com/\n[uglify]: https://github.com/mishoo/UglifyJS/\n[nodeunit]: https://github.com/caolan/nodeunit\n[qunit]: http://docs.jquery.com/QUnit\n[phantom]: http://www.phantomjs.org/\n',
+26 silly resolved     _id: 'grunt@0.3.11',
+26 silly resolved     _from: 'grunt' } ]
+27 info install grunt@0.3.11 into /usr/local/lib
+28 info installOne grunt@0.3.11
+29 verbose from cache /Users/chris/.npm/grunt/0.3.11/package/package.json
+30 info /usr/local/lib/node_modules/grunt unbuild
+31 verbose read json /usr/local/lib/node_modules/grunt/package.json
+32 info preuninstall grunt@0.3.8
+33 info uninstall grunt@0.3.8
+34 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild grunt@0.3.8
+35 verbose /usr/local/bin,[object Object] binRoot
+36 info postuninstall grunt@0.3.8
+37 verbose tar unpack /Users/chris/.npm/grunt/0.3.11/package.tgz
+38 silly gunzTarPerm modes [ '755', '644' ]
+39 silly gunzTarPerm extractEntry package.json
+40 silly gunzTarPerm extractEntry .npmignore
+41 silly gunzTarPerm extractEntry README.md
+42 silly gunzTarPerm extractEntry grunt.js
+43 silly gunzTarPerm extractEntry test/fixtures/a.js
+44 silly gunzTarPerm extractEntry test/fixtures/b.js
+45 silly gunzTarPerm extractEntry test/fixtures/banner.js
+46 silly gunzTarPerm extractEntry test/fixtures/banner2.js
+47 silly gunzTarPerm extractEntry test/fixtures/banner3.js
+48 silly gunzTarPerm extractEntry test/fixtures/octocat.png
+49 silly gunzTarPerm extractEntry test/fixtures/template.txt
+50 silly gunzTarPerm extractEntry test/fixtures/test.json
+51 silly gunzTarPerm extractEntry test/grunt/file_test.js
+52 silly gunzTarPerm extractEntry test/grunt/template_test.js
+53 silly gunzTarPerm extractEntry test/grunt/utils_test.js
+54 silly gunzTarPerm extractEntry test/tasks/concat_test.js
+55 silly gunzTarPerm extractEntry test/tasks/init_test.js
+56 silly gunzTarPerm extractEntry test/tasks/misc_test.js
+57 silly gunzTarPerm extractEntry test/util/namespace_test.js
+58 silly gunzTarPerm extractEntry test/util/task_test.js
+59 silly gunzTarPerm extractEntry bin/grunt
+60 silly gunzTarPerm extractEntry LICENSE-MIT
+61 silly gunzTarPerm extractEntry dev/init.exp
+62 silly gunzTarPerm extractEntry docs/README.md
+63 silly gunzTarPerm extractEntry docs/getting_started.md
+64 silly gunzTarPerm extractEntry docs/api_fail.md
+65 silly gunzTarPerm extractEntry docs/api_file.md
+66 silly gunzTarPerm extractEntry docs/api_log.md
+67 silly gunzTarPerm extractEntry docs/api_task.md
+68 silly gunzTarPerm extractEntry docs/api_template.md
+69 silly gunzTarPerm extractEntry docs/api_utils.md
+70 silly gunzTarPerm extractEntry docs/contributing.md
+71 silly gunzTarPerm extractEntry docs/example_gruntfiles.md
+72 silly gunzTarPerm extractEntry docs/exit_codes.md
+73 silly gunzTarPerm extractEntry docs/faq.md
+74 silly gunzTarPerm extractEntry docs/api_config.md
+75 silly gunzTarPerm extractEntry docs/helpers_directives.md
+76 silly gunzTarPerm extractEntry docs/plugins.md
+77 silly gunzTarPerm extractEntry docs/api.md
+78 silly gunzTarPerm extractEntry docs/task_concat.md
+79 silly gunzTarPerm extractEntry docs/task_init.md
+80 silly gunzTarPerm extractEntry docs/task_lint.md
+81 silly gunzTarPerm extractEntry docs/task_min.md
+82 silly gunzTarPerm extractEntry docs/task_qunit.md
+83 silly gunzTarPerm extractEntry docs/task_server.md
+84 silly gunzTarPerm extractEntry docs/toc.md
+85 silly gunzTarPerm extractEntry docs/types_of_tasks.md
+86 silly gunzTarPerm extractEntry tasks/concat.js
+87 silly gunzTarPerm extractEntry tasks/init.js
+88 silly gunzTarPerm extractEntry tasks/lint.js
+89 silly gunzTarPerm extractEntry tasks/min.js
+90 silly gunzTarPerm extractEntry tasks/test.js
+91 silly gunzTarPerm extractEntry tasks/server.js
+92 silly gunzTarPerm extractEntry tasks/qunit.js
+93 silly gunzTarPerm extractEntry tasks/watch.js
+94 silly gunzTarPerm extractEntry tasks/misc.js
+95 silly gunzTarPerm extractEntry tasks/qunit/phantom.js
+96 silly gunzTarPerm extractEntry tasks/qunit/qunit.js
+97 silly gunzTarPerm extractEntry tasks/qunit/phantom.json
+98 silly gunzTarPerm extractEntry tasks/init/node.js
+99 silly gunzTarPerm extractEntry tasks/init/gruntfile.js
+100 silly gunzTarPerm extractEntry tasks/init/gruntplugin.js
+101 silly gunzTarPerm extractEntry tasks/init/commonjs.js
+102 silly gunzTarPerm extractEntry tasks/init/jquery.js
+103 silly gunzTarPerm extractEntry tasks/init/gruntfile/root/grunt.js
+104 silly gunzTarPerm extractEntry tasks/init/commonjs/rename.json
+105 silly gunzTarPerm extractEntry tasks/init/commonjs/root/.npmignore
+106 silly gunzTarPerm extractEntry tasks/init/commonjs/root/README.md
+107 silly gunzTarPerm extractEntry tasks/init/commonjs/root/grunt.js
+108 silly gunzTarPerm extractEntry tasks/init/commonjs/root/lib/name.js
+109 silly gunzTarPerm extractEntry tasks/init/commonjs/root/test/name_test.js
+110 silly gunzTarPerm extractEntry tasks/init/gruntplugin/rename.json
+111 silly gunzTarPerm extractEntry tasks/init/gruntplugin/root/.npmignore
+112 silly gunzTarPerm extractEntry tasks/init/gruntplugin/root/README.md
+113 silly gunzTarPerm extractEntry tasks/init/gruntplugin/root/grunt.js
+114 silly gunzTarPerm extractEntry tasks/init/gruntplugin/root/bin/name
+115 silly gunzTarPerm extractEntry tasks/init/gruntplugin/root/tasks/name.js
+116 silly gunzTarPerm extractEntry tasks/init/gruntplugin/root/test/name_test.js
+117 silly gunzTarPerm extractEntry tasks/init/licenses/LICENSE-GPL
+118 silly gunzTarPerm extractEntry tasks/init/licenses/LICENSE-MIT
+119 silly gunzTarPerm extractEntry tasks/init/misc/placeholder
+120 silly gunzTarPerm extractEntry tasks/init/node/rename.json
+121 silly gunzTarPerm extractEntry tasks/init/node/root/.npmignore
+122 silly gunzTarPerm extractEntry tasks/init/node/root/README.md
+123 silly gunzTarPerm extractEntry tasks/init/node/root/grunt.js
+124 silly gunzTarPerm extractEntry tasks/init/node/root/lib/name.js
+125 silly gunzTarPerm extractEntry tasks/init/node/root/test/name_test.js
+126 silly gunzTarPerm extractEntry tasks/init/jquery/rename.json
+127 silly gunzTarPerm extractEntry tasks/init/jquery/root/README.md
+128 silly gunzTarPerm extractEntry tasks/init/jquery/root/grunt.js
+129 silly gunzTarPerm extractEntry tasks/init/jquery/root/libs/jquery-loader.js
+130 silly gunzTarPerm extractEntry tasks/init/jquery/root/libs/jquery/jquery.js
+131 silly gunzTarPerm extractEntry tasks/init/jquery/root/libs/qunit/qunit.js
+132 silly gunzTarPerm extractEntry tasks/init/jquery/root/libs/qunit/qunit.css
+133 silly gunzTarPerm extractEntry tasks/init/jquery/root/src/name.js
+134 silly gunzTarPerm extractEntry tasks/init/jquery/root/test/name_test.js
+135 silly gunzTarPerm extractEntry tasks/init/jquery/root/test/name.html
+136 silly gunzTarPerm extractEntry lib/grunt.js
+137 silly gunzTarPerm extractEntry lib/grunt/cli.js
+138 silly gunzTarPerm extractEntry lib/grunt/config.js
+139 silly gunzTarPerm extractEntry lib/grunt/fail.js
+140 silly gunzTarPerm extractEntry lib/grunt/file.js
+141 silly gunzTarPerm extractEntry lib/grunt/help.js
+142 silly gunzTarPerm extractEntry lib/grunt/log.js
+143 silly gunzTarPerm extractEntry lib/grunt/option.js
+144 silly gunzTarPerm extractEntry lib/grunt/task.js
+145 silly gunzTarPerm extractEntry lib/grunt/template.js
+146 silly gunzTarPerm extractEntry lib/grunt/utils.js
+147 silly gunzTarPerm extractEntry lib/util/findup.js
+148 silly gunzTarPerm extractEntry lib/util/namespace.js
+149 silly gunzTarPerm extractEntry lib/util/task.js
+150 verbose from cache /usr/local/lib/node_modules/grunt/package.json
+151 info preinstall grunt@0.3.11
+152 verbose from cache /usr/local/lib/node_modules/grunt/package.json
+153 verbose readDependencies using package.json deps
+154 verbose from cache /usr/local/lib/node_modules/grunt/package.json
+155 verbose readDependencies using package.json deps
+156 verbose cache add [ 'async@~0.1.18', null ]
+157 silly cache add name=undefined spec="async@~0.1.18" args=["async@~0.1.18",null]
+158 verbose parsed url { pathname: 'async@~0.1.18',
+158 verbose parsed url   path: 'async@~0.1.18',
+158 verbose parsed url   href: 'async@~0.1.18' }
+159 silly cache add name="async" spec="~0.1.18" args=["async","~0.1.18"]
+160 verbose parsed url { pathname: '~0.1.18', path: '~0.1.18', href: '~0.1.18' }
+161 verbose addNamed [ 'async', '~0.1.18' ]
+162 verbose addNamed [ null, '>=0.1.18- <0.2.0-' ]
+163 silly addNameRange { name: 'async', range: '>=0.1.18- <0.2.0-', hasData: false }
+164 verbose cache add [ 'colors@~0.6.0', null ]
+165 silly cache add name=undefined spec="colors@~0.6.0" args=["colors@~0.6.0",null]
+166 verbose parsed url { pathname: 'colors@~0.6.0',
+166 verbose parsed url   path: 'colors@~0.6.0',
+166 verbose parsed url   href: 'colors@~0.6.0' }
+167 silly cache add name="colors" spec="~0.6.0" args=["colors","~0.6.0"]
+168 verbose parsed url { pathname: '~0.6.0', path: '~0.6.0', href: '~0.6.0' }
+169 verbose addNamed [ 'colors', '~0.6.0' ]
+170 verbose addNamed [ null, '>=0.6.0- <0.7.0-' ]
+171 silly addNameRange { name: 'colors', range: '>=0.6.0- <0.7.0-', hasData: false }
+172 verbose cache add [ 'connect@~1.8.6', null ]
+173 silly cache add name=undefined spec="connect@~1.8.6" args=["connect@~1.8.6",null]
+174 verbose parsed url { pathname: 'connect@~1.8.6',
+174 verbose parsed url   path: 'connect@~1.8.6',
+174 verbose parsed url   href: 'connect@~1.8.6' }
+175 silly cache add name="connect" spec="~1.8.6" args=["connect","~1.8.6"]
+176 verbose parsed url { pathname: '~1.8.6', path: '~1.8.6', href: '~1.8.6' }
+177 verbose addNamed [ 'connect', '~1.8.6' ]
+178 verbose addNamed [ null, '>=1.8.6- <1.9.0-' ]
+179 silly addNameRange { name: 'connect', range: '>=1.8.6- <1.9.0-', hasData: false }
+180 verbose cache add [ 'dateformat@1.0.2-1.2.3', null ]
+181 silly cache add name=undefined spec="dateformat@1.0.2-1.2.3" args=["dateformat@1.0.2-1.2.3",null]
+182 verbose parsed url { pathname: 'dateformat@1.0.2-1.2.3',
+182 verbose parsed url   path: 'dateformat@1.0.2-1.2.3',
+182 verbose parsed url   href: 'dateformat@1.0.2-1.2.3' }
+183 silly cache add name="dateformat" spec="1.0.2-1.2.3" args=["dateformat","1.0.2-1.2.3"]
+184 verbose parsed url { pathname: '1.0.2-1.2.3',
+184 verbose parsed url   path: '1.0.2-1.2.3',
+184 verbose parsed url   href: '1.0.2-1.2.3' }
+185 verbose addNamed [ 'dateformat', '1.0.2-1.2.3' ]
+186 verbose addNamed [ '1.0.2-1.2.3', '1.0.2-1.2.3' ]
+187 verbose cache add [ 'glob-whatev@~0.1.4', null ]
+188 silly cache add name=undefined spec="glob-whatev@~0.1.4" args=["glob-whatev@~0.1.4",null]
+189 verbose parsed url { pathname: 'glob-whatev@~0.1.4',
+189 verbose parsed url   path: 'glob-whatev@~0.1.4',
+189 verbose parsed url   href: 'glob-whatev@~0.1.4' }
+190 silly cache add name="glob-whatev" spec="~0.1.4" args=["glob-whatev","~0.1.4"]
+191 verbose parsed url { pathname: '~0.1.4', path: '~0.1.4', href: '~0.1.4' }
+192 verbose addNamed [ 'glob-whatev', '~0.1.4' ]
+193 verbose addNamed [ null, '>=0.1.4- <0.2.0-' ]
+194 silly addNameRange { name: 'glob-whatev',
+194 silly addNameRange   range: '>=0.1.4- <0.2.0-',
+194 silly addNameRange   hasData: false }
+195 verbose cache add [ 'hooker@~0.2.3', null ]
+196 silly cache add name=undefined spec="hooker@~0.2.3" args=["hooker@~0.2.3",null]
+197 verbose parsed url { pathname: 'hooker@~0.2.3',
+197 verbose parsed url   path: 'hooker@~0.2.3',
+197 verbose parsed url   href: 'hooker@~0.2.3' }
+198 silly cache add name="hooker" spec="~0.2.3" args=["hooker","~0.2.3"]
+199 verbose parsed url { pathname: '~0.2.3', path: '~0.2.3', href: '~0.2.3' }
+200 verbose addNamed [ 'hooker', '~0.2.3' ]
+201 verbose addNamed [ null, '>=0.2.3- <0.3.0-' ]
+202 silly addNameRange { name: 'hooker', range: '>=0.2.3- <0.3.0-', hasData: false }
+203 verbose cache add [ 'jshint@~0.5.9', null ]
+204 silly cache add name=undefined spec="jshint@~0.5.9" args=["jshint@~0.5.9",null]
+205 verbose parsed url { pathname: 'jshint@~0.5.9',
+205 verbose parsed url   path: 'jshint@~0.5.9',
+205 verbose parsed url   href: 'jshint@~0.5.9' }
+206 silly cache add name="jshint" spec="~0.5.9" args=["jshint","~0.5.9"]
+207 verbose parsed url { pathname: '~0.5.9', path: '~0.5.9', href: '~0.5.9' }
+208 verbose addNamed [ 'jshint', '~0.5.9' ]
+209 verbose addNamed [ null, '>=0.5.9- <0.6.0-' ]
+210 silly addNameRange { name: 'jshint', range: '>=0.5.9- <0.6.0-', hasData: false }
+211 verbose cache add [ 'nodeunit@~0.6.4', null ]
+212 silly cache add name=undefined spec="nodeunit@~0.6.4" args=["nodeunit@~0.6.4",null]
+213 verbose parsed url { pathname: 'nodeunit@~0.6.4',
+213 verbose parsed url   path: 'nodeunit@~0.6.4',
+213 verbose parsed url   href: 'nodeunit@~0.6.4' }
+214 silly cache add name="nodeunit" spec="~0.6.4" args=["nodeunit","~0.6.4"]
+215 verbose parsed url { pathname: '~0.6.4', path: '~0.6.4', href: '~0.6.4' }
+216 verbose addNamed [ 'nodeunit', '~0.6.4' ]
+217 verbose addNamed [ null, '>=0.6.4- <0.7.0-' ]
+218 silly addNameRange { name: 'nodeunit', range: '>=0.6.4- <0.7.0-', hasData: false }
+219 verbose cache add [ 'nopt@~1.0.10', null ]
+220 silly cache add name=undefined spec="nopt@~1.0.10" args=["nopt@~1.0.10",null]
+221 verbose parsed url { pathname: 'nopt@~1.0.10',
+221 verbose parsed url   path: 'nopt@~1.0.10',
+221 verbose parsed url   href: 'nopt@~1.0.10' }
+222 silly cache add name="nopt" spec="~1.0.10" args=["nopt","~1.0.10"]
+223 verbose parsed url { pathname: '~1.0.10', path: '~1.0.10', href: '~1.0.10' }
+224 verbose addNamed [ 'nopt', '~1.0.10' ]
+225 verbose addNamed [ null, '>=1.0.10- <1.1.0-' ]
+226 silly addNameRange { name: 'nopt', range: '>=1.0.10- <1.1.0-', hasData: false }
+227 verbose cache add [ 'prompt@~0.1.12', null ]
+228 silly cache add name=undefined spec="prompt@~0.1.12" args=["prompt@~0.1.12",null]
+229 verbose parsed url { pathname: 'prompt@~0.1.12',
+229 verbose parsed url   path: 'prompt@~0.1.12',
+229 verbose parsed url   href: 'prompt@~0.1.12' }
+230 silly cache add name="prompt" spec="~0.1.12" args=["prompt","~0.1.12"]
+231 verbose parsed url { pathname: '~0.1.12', path: '~0.1.12', href: '~0.1.12' }
+232 verbose addNamed [ 'prompt', '~0.1.12' ]
+233 verbose addNamed [ null, '>=0.1.12- <0.2.0-' ]
+234 silly addNameRange { name: 'prompt', range: '>=0.1.12- <0.2.0-', hasData: false }
+235 verbose url raw colors
+236 verbose url resolving [ 'https://registry.npmjs.org/', './colors' ]
+237 verbose url resolved https://registry.npmjs.org/colors
+238 verbose etag "3UXN3GP8ULBLCZ373D8RIYA39"
+239 http GET https://registry.npmjs.org/colors
+240 verbose url raw dateformat/1.0.2-1.2.3
+241 verbose url resolving [ 'https://registry.npmjs.org/', './dateformat/1.0.2-1.2.3' ]
+242 verbose url resolved https://registry.npmjs.org/dateformat/1.0.2-1.2.3
+243 verbose etag "DSKMFA2TY2AZV4HV0T6ZA988Z"
+244 http GET https://registry.npmjs.org/dateformat/1.0.2-1.2.3
+245 verbose url raw async
+246 verbose url resolving [ 'https://registry.npmjs.org/', './async' ]
+247 verbose url resolved https://registry.npmjs.org/async
+248 verbose etag "DZ7OAJQVQ7LDJVFNN2OT7BJTX"
+249 http GET https://registry.npmjs.org/async
+250 verbose url raw connect
+251 verbose url resolving [ 'https://registry.npmjs.org/', './connect' ]
+252 verbose url resolved https://registry.npmjs.org/connect
+253 verbose etag "270IS9O7MS8TK35FCIFTJKW6"
+254 http GET https://registry.npmjs.org/connect
+255 verbose url raw glob-whatev
+256 verbose url resolving [ 'https://registry.npmjs.org/', './glob-whatev' ]
+257 verbose url resolved https://registry.npmjs.org/glob-whatev
+258 verbose etag "6CXOGAF0G6BRCHFPYZJAC31ND"
+259 http GET https://registry.npmjs.org/glob-whatev
+260 verbose cache add [ 'semver@~1.0.13', null ]
+261 silly cache add name=undefined spec="semver@~1.0.13" args=["semver@~1.0.13",null]
+262 verbose parsed url { pathname: 'semver@~1.0.13',
+262 verbose parsed url   path: 'semver@~1.0.13',
+262 verbose parsed url   href: 'semver@~1.0.13' }
+263 silly cache add name="semver" spec="~1.0.13" args=["semver","~1.0.13"]
+264 verbose parsed url { pathname: '~1.0.13', path: '~1.0.13', href: '~1.0.13' }
+265 verbose addNamed [ 'semver', '~1.0.13' ]
+266 verbose addNamed [ null, '>=1.0.13- <1.1.0-' ]
+267 silly addNameRange { name: 'semver', range: '>=1.0.13- <1.1.0-', hasData: false }
+268 verbose cache add [ 'uglify-js@~1.0.7', null ]
+269 silly cache add name=undefined spec="uglify-js@~1.0.7" args=["uglify-js@~1.0.7",null]
+270 verbose parsed url { pathname: 'uglify-js@~1.0.7',
+270 verbose parsed url   path: 'uglify-js@~1.0.7',
+270 verbose parsed url   href: 'uglify-js@~1.0.7' }
+271 silly cache add name="uglify-js" spec="~1.0.7" args=["uglify-js","~1.0.7"]
+272 verbose parsed url { pathname: '~1.0.7', path: '~1.0.7', href: '~1.0.7' }
+273 verbose addNamed [ 'uglify-js', '~1.0.7' ]
+274 verbose addNamed [ null, '>=1.0.7- <1.1.0-' ]
+275 silly addNameRange { name: 'uglify-js', range: '>=1.0.7- <1.1.0-', hasData: false }
+276 verbose cache add [ 'underscore@~1.2.4', null ]
+277 silly cache add name=undefined spec="underscore@~1.2.4" args=["underscore@~1.2.4",null]
+278 verbose parsed url { pathname: 'underscore@~1.2.4',
+278 verbose parsed url   path: 'underscore@~1.2.4',
+278 verbose parsed url   href: 'underscore@~1.2.4' }
+279 silly cache add name="underscore" spec="~1.2.4" args=["underscore","~1.2.4"]
+280 verbose parsed url { pathname: '~1.2.4', path: '~1.2.4', href: '~1.2.4' }
+281 verbose addNamed [ 'underscore', '~1.2.4' ]
+282 verbose addNamed [ null, '>=1.2.4- <1.3.0-' ]
+283 silly addNameRange { name: 'underscore', range: '>=1.2.4- <1.3.0-', hasData: false }
+284 verbose cache add [ 'underscore.string@~2.1.1', null ]
+285 silly cache add name=undefined spec="underscore.string@~2.1.1" args=["underscore.string@~2.1.1",null]
+286 verbose parsed url { pathname: 'underscore.string@~2.1.1',
+286 verbose parsed url   path: 'underscore.string@~2.1.1',
+286 verbose parsed url   href: 'underscore.string@~2.1.1' }
+287 silly cache add name="underscore.string" spec="~2.1.1" args=["underscore.string","~2.1.1"]
+288 verbose parsed url { pathname: '~2.1.1', path: '~2.1.1', href: '~2.1.1' }
+289 verbose addNamed [ 'underscore.string', '~2.1.1' ]
+290 verbose addNamed [ null, '>=2.1.1- <2.2.0-' ]
+291 silly addNameRange { name: 'underscore.string',
+291 silly addNameRange   range: '>=2.1.1- <2.2.0-',
+291 silly addNameRange   hasData: false }
+292 verbose cache add [ 'temporary@~0.0.2', null ]
+293 silly cache add name=undefined spec="temporary@~0.0.2" args=["temporary@~0.0.2",null]
+294 verbose parsed url { pathname: 'temporary@~0.0.2',
+294 verbose parsed url   path: 'temporary@~0.0.2',
+294 verbose parsed url   href: 'temporary@~0.0.2' }
+295 silly cache add name="temporary" spec="~0.0.2" args=["temporary","~0.0.2"]
+296 verbose parsed url { pathname: '~0.0.2', path: '~0.0.2', href: '~0.0.2' }
+297 verbose addNamed [ 'temporary', '~0.0.2' ]
+298 verbose addNamed [ null, '>=0.0.2- <0.1.0-' ]
+299 silly addNameRange { name: 'temporary', range: '>=0.0.2- <0.1.0-', hasData: false }
+300 verbose cache add [ 'gzip-js@~0.3.1', null ]
+301 silly cache add name=undefined spec="gzip-js@~0.3.1" args=["gzip-js@~0.3.1",null]
+302 verbose parsed url { pathname: 'gzip-js@~0.3.1',
+302 verbose parsed url   path: 'gzip-js@~0.3.1',
+302 verbose parsed url   href: 'gzip-js@~0.3.1' }
+303 silly cache add name="gzip-js" spec="~0.3.1" args=["gzip-js","~0.3.1"]
+304 verbose parsed url { pathname: '~0.3.1', path: '~0.3.1', href: '~0.3.1' }
+305 verbose addNamed [ 'gzip-js', '~0.3.1' ]
+306 verbose addNamed [ null, '>=0.3.1- <0.4.0-' ]
+307 silly addNameRange { name: 'gzip-js', range: '>=0.3.1- <0.4.0-', hasData: false }
+308 verbose url raw hooker
+309 verbose url resolving [ 'https://registry.npmjs.org/', './hooker' ]
+310 verbose url resolved https://registry.npmjs.org/hooker
+311 verbose etag "3828JAXJKKX9J5SBXN0ENYL4R"
+312 http GET https://registry.npmjs.org/hooker
+313 verbose url raw jshint
+314 verbose url resolving [ 'https://registry.npmjs.org/', './jshint' ]
+315 verbose url resolved https://registry.npmjs.org/jshint
+316 verbose etag "325K1ZLQCKA0A1JZVST078SOB"
+317 http GET https://registry.npmjs.org/jshint
+318 verbose url raw prompt
+319 verbose url resolving [ 'https://registry.npmjs.org/', './prompt' ]
+320 verbose url resolved https://registry.npmjs.org/prompt
+321 verbose etag "CAN613LWRDYME7HBBW6O76K56"
+322 http GET https://registry.npmjs.org/prompt
+323 verbose url raw nodeunit
+324 verbose url resolving [ 'https://registry.npmjs.org/', './nodeunit' ]
+325 verbose url resolved https://registry.npmjs.org/nodeunit
+326 verbose etag "E30AYTL9ESEZ7GE6U4OK3KM7D"
+327 http GET https://registry.npmjs.org/nodeunit
+328 verbose url raw nopt
+329 verbose url resolving [ 'https://registry.npmjs.org/', './nopt' ]
+330 verbose url resolved https://registry.npmjs.org/nopt
+331 verbose etag "5Z61J8YK1AIXS81W8D8PN87F7"
+332 http GET https://registry.npmjs.org/nopt
+333 verbose url raw uglify-js
+334 verbose url resolving [ 'https://registry.npmjs.org/', './uglify-js' ]
+335 verbose url resolved https://registry.npmjs.org/uglify-js
+336 verbose etag "E3VYY3SAPKDR67SC9IK1R82S0"
+337 http GET https://registry.npmjs.org/uglify-js
+338 verbose url raw underscore
+339 verbose url resolving [ 'https://registry.npmjs.org/', './underscore' ]
+340 verbose url resolved https://registry.npmjs.org/underscore
+341 verbose etag "1NJRTKE1FFVHBOYSRXGDISZN6"
+342 http GET https://registry.npmjs.org/underscore
+343 verbose url raw semver
+344 verbose url resolving [ 'https://registry.npmjs.org/', './semver' ]
+345 verbose url resolved https://registry.npmjs.org/semver
+346 verbose etag "9T5UEI3QHYC00P9HPYZNPM0L6"
+347 http GET https://registry.npmjs.org/semver
+348 verbose url raw underscore.string
+349 verbose url resolving [ 'https://registry.npmjs.org/', './underscore.string' ]
+350 verbose url resolved https://registry.npmjs.org/underscore.string
+351 verbose etag "9BYWFLOQT7UGJXGZR9BHIL89D"
+352 http GET https://registry.npmjs.org/underscore.string
+353 verbose url raw temporary
+354 verbose url resolving [ 'https://registry.npmjs.org/', './temporary' ]
+355 verbose url resolved https://registry.npmjs.org/temporary
+356 verbose etag "F2YRDCRHGMU17YMFTSPYO94WW"
+357 http GET https://registry.npmjs.org/temporary
+358 verbose url raw gzip-js
+359 verbose url resolving [ 'https://registry.npmjs.org/', './gzip-js' ]
+360 verbose url resolved https://registry.npmjs.org/gzip-js
+361 verbose etag "96FTS8RJPTIBLOXAMH2CO1WE9"
+362 http GET https://registry.npmjs.org/gzip-js
+363 http 200 https://registry.npmjs.org/colors
+364 silly registry.get cb [ 200,
+364 silly registry.get   { vary: 'Accept',
+364 silly registry.get     server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+364 silly registry.get     etag: '"5NDTFIRQYK9Z4EBV57MMBKH08"',
+364 silly registry.get     date: 'Sun, 08 Jul 2012 19:44:48 GMT',
+364 silly registry.get     'content-type': 'application/json',
+364 silly registry.get     'content-length': '3797' } ]
+365 http 200 https://registry.npmjs.org/dateformat/1.0.2-1.2.3
+366 silly registry.get cb [ 200,
+366 silly registry.get   { vary: 'Accept',
+366 silly registry.get     server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+366 silly registry.get     etag: '"7L794YO3WT5IVUUYS7QIBFBUY"',
+366 silly registry.get     date: 'Sun, 08 Jul 2012 19:44:48 GMT',
+366 silly registry.get     'content-type': 'application/json',
+366 silly registry.get     'content-length': '821' } ]
+367 silly addNameRange number 2 { name: 'colors', range: '>=0.6.0- <0.7.0-', hasData: true }
+368 silly addNameRange versions [ 'colors', [ '0.3.0', '0.5.0', '0.5.1', '0.6.0', '0.6.0-1' ] ]
+369 verbose addRemoteTarball [ 'https://registry.npmjs.org/dateformat/-/dateformat-1.0.2-1.2.3.tgz',
+369 verbose addRemoteTarball   'b0220c02de98617433b72851cf47de3df2cdbee9' ]
+370 verbose read json /Users/chris/.npm/colors/0.6.0-1/package/package.json
+371 verbose fetch to= /Users/chris/tmp/npm-1341776688905/1341776688905-0.6781939521897584/tmp.tgz
+372 http GET https://registry.npmjs.org/dateformat/-/dateformat-1.0.2-1.2.3.tgz
+373 http 200 https://registry.npmjs.org/glob-whatev
+374 silly registry.get cb [ 200,
+374 silly registry.get   { vary: 'Accept',
+374 silly registry.get     server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+374 silly registry.get     etag: '"BZT1PF6Z8SCQIZGQ0K00LTRU1"',
+374 silly registry.get     date: 'Sun, 08 Jul 2012 19:44:48 GMT',
+374 silly registry.get     'content-type': 'application/json',
+374 silly registry.get     'content-length': '13742' } ]
+375 silly addNameRange number 2 { name: 'glob-whatev', range: '>=0.1.4- <0.2.0-', hasData: true }
+376 silly addNameRange versions [ 'glob-whatev',
+376 silly addNameRange   [ '0.1.0',
+376 silly addNameRange     '0.1.1',
+376 silly addNameRange     '0.1.2',
+376 silly addNameRange     '0.1.3',
+376 silly addNameRange     '0.1.4',
+376 silly addNameRange     '0.1.5',
+376 silly addNameRange     '0.1.6',
+376 silly addNameRange     '0.1.7' ] ]
+377 verbose addRemoteTarball [ 'https://registry.npmjs.org/glob-whatev/-/glob-whatev-0.1.7.tgz',
+377 verbose addRemoteTarball   '30c3f3c76a95f70edd28d95e01c0425e9556c28f' ]
+378 verbose fetch to= /Users/chris/tmp/npm-1341776688905/1341776688973-0.7897149412892759/tmp.tgz
+379 http GET https://registry.npmjs.org/glob-whatev/-/glob-whatev-0.1.7.tgz
+380 http 200 https://registry.npmjs.org/hooker
+381 silly registry.get cb [ 200,
+381 silly registry.get   { vary: 'Accept',
+381 silly registry.get     server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+381 silly registry.get     etag: '"4I1JAZOB8SARSM6I3ME8W9CZT"',
+381 silly registry.get     date: 'Sun, 08 Jul 2012 19:44:48 GMT',
+381 silly registry.get     'content-type': 'application/json',
+381 silly registry.get     'content-length': '7646' } ]
+382 silly addNameRange number 2 { name: 'hooker', range: '>=0.2.3- <0.3.0-', hasData: true }
+383 silly addNameRange versions [ 'hooker', [ '0.2.3' ] ]
+384 verbose read json /Users/chris/.npm/hooker/0.2.3/package/package.json
+385 http 200 https://registry.npmjs.org/connect
+386 silly registry.get cb [ 200,
+386 silly registry.get   { vary: 'Accept',
+386 silly registry.get     server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+386 silly registry.get     etag: '"AB02SFUUA6MHD6BK6K4DAJ57R"',
+386 silly registry.get     date: 'Sun, 08 Jul 2012 19:44:48 GMT',
+386 silly registry.get     'content-type': 'application/json',
+386 silly registry.get     'content-length': '87932' } ]
+387 silly addNameRange number 2 { name: 'connect', range: '>=1.8.6- <1.9.0-', hasData: true }
+388 silly addNameRange versions [ 'connect',
+388 silly addNameRange   [ '0.0.1',
+388 silly addNameRange     '0.0.2',
+388 silly addNameRange     '0.0.3',
+388 silly addNameRange     '0.0.4',
+388 silly addNameRange     '0.0.5',
+388 silly addNameRange     '0.0.6',
+388 silly addNameRange     '0.1.0',
+388 silly addNameRange     '0.2.0',
+388 silly addNameRange     '0.2.1',
+388 silly addNameRange     '0.2.2',
+388 silly addNameRange     '0.2.3',
+388 silly addNameRange     '0.2.4',
+388 silly addNameRange     '0.2.5',
+388 silly addNameRange     '0.2.6',
+388 silly addNameRange     '0.2.7',
+388 silly addNameRange     '0.3.0',
+388 silly addNameRange     '0.4.0',
+388 silly addNameRange     '0.5.0',
+388 silly addNameRange     '0.5.1',
+388 silly addNameRange     '0.5.2',
+388 silly addNameRange     '0.5.3',
+388 silly addNameRange     '0.5.4',
+388 silly addNameRange     '0.5.5',
+388 silly addNameRange     '0.5.6',
+388 silly addNameRange     '0.5.7',
+388 silly addNameRange     '0.5.8',
+388 silly addNameRange     '0.5.9',
+388 silly addNameRange     '0.5.10',
+388 silly addNameRange     '1.0.0',
+388 silly addNameRange     '1.0.1',
+388 silly addNameRange     '2.2.2',
+388 silly addNameRange     '2.3.0',
+388 silly addNameRange     '2.3.1',
+388 silly addNameRange     '2.3.2',
+388 silly addNameRange     '2.3.3',
+388 silly addNameRange     '1.9.1',
+388 silly addNameRange     '2.3.4',
+388 silly addNameRange     '2.3.5',
+388 silly addNameRange     '2.3.6' ] ]
+389 verbose about to build /usr/local/lib/node_modules/grunt
+390 info /usr/local/lib/node_modules/grunt unbuild
+391 verbose from cache /usr/local/lib/node_modules/grunt/package.json
+392 info preuninstall grunt@0.3.8
+393 info uninstall grunt@0.3.8
+394 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild grunt@0.3.8
+395 verbose /usr/local/bin,[object Object] binRoot
+396 info postuninstall grunt@0.3.8
+397 error Error: No compatible version found: connect@'>=1.8.6- <1.9.0-'
+397 error Valid install targets:
+397 error ["0.0.1","0.0.2","0.0.3","0.0.4","0.0.5","0.0.6","0.1.0","0.2.0","0.2.1","0.2.2","0.2.3","0.2.4","0.2.5","0.2.6","0.2.7","0.3.0","0.4.0","0.5.0","0.5.1","0.5.2","0.5.3","0.5.4","0.5.5","0.5.6","0.5.7","0.5.8","0.5.9","0.5.10","1.0.0","1.0.1","2.2.2","2.3.0","2.3.1","2.3.2","2.3.3","1.9.1","2.3.4","2.3.5","2.3.6"]
+397 error     at installTargetsError (/usr/local/lib/node_modules/npm/lib/cache.js:506:10)
+397 error     at next_ (/usr/local/lib/node_modules/npm/lib/cache.js:452:17)
+397 error     at next (/usr/local/lib/node_modules/npm/lib/cache.js:427:44)
+397 error     at /usr/local/lib/node_modules/npm/lib/cache.js:419:5
+397 error     at saved (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/get.js:136:7)
+397 error     at /usr/local/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:230:7
+397 error     at Object.oncomplete (fs.js:297:15)
+397 error  [Error: No compatible version found: connect@'>=1.8.6- <1.9.0-'
+397 error Valid install targets:
+397 error ["0.0.1","0.0.2","0.0.3","0.0.4","0.0.5","0.0.6","0.1.0","0.2.0","0.2.1","0.2.2","0.2.3","0.2.4","0.2.5","0.2.6","0.2.7","0.3.0","0.4.0","0.5.0","0.5.1","0.5.2","0.5.3","0.5.4","0.5.5","0.5.6","0.5.7","0.5.8","0.5.9","0.5.10","1.0.0","1.0.1","2.2.2","2.3.0","2.3.1","2.3.2","2.3.3","1.9.1","2.3.4","2.3.5","2.3.6"]]
+398 error You may report this log at:
+398 error     <http://github.com/isaacs/npm/issues>
+398 error or email it to:
+398 error     <npm-@googlegroups.com>
+399 error System Darwin 11.4.0
+400 error command "node" "/usr/local/bin/npm" "install" "-g" "grunt"
+401 error cwd /Users/chris/dev/steepr
+402 error node -v v0.8.0
+403 error npm -v 1.1.32
+404 error message No compatible version found: connect@'>=1.8.6- <1.9.0-'
+404 error message Valid install targets:
+404 error message ["0.0.1","0.0.2","0.0.3","0.0.4","0.0.5","0.0.6","0.1.0","0.2.0","0.2.1","0.2.2","0.2.3","0.2.4","0.2.5","0.2.6","0.2.7","0.3.0","0.4.0","0.5.0","0.5.1","0.5.2","0.5.3","0.5.4","0.5.5","0.5.6","0.5.7","0.5.8","0.5.9","0.5.10","1.0.0","1.0.1","2.2.2","2.3.0","2.3.1","2.3.2","2.3.3","1.9.1","2.3.4","2.3.5","2.3.6"]
+405 verbose exit [ 1, true ]
